@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>EduSoft</title>
+	
+	<!--Mis funciones-->
+	<script type="text/javascript">
+		function onLoad_MyR(funcion_MyR) { if (document.addEventListener)
+		{ window.addEventListener('load',funcion_MyR,false); }
+		else {	window.attachEvent('onload',funcion_MyR); } }
+		
+		onLoad_MyR(CargarLinezos);
+	
+		function CargarLinezos()
+		{
+			EducacionInteractivaGD('OSieSRty',500,300);
+			EducacionInteractivaGD('JUsERytD',500,275);
+			EducacionInteractivaGD('SDjnerbI',500,360);
+		}
+	</script>
+	<!--Locales-->
+	<link rel="stylesheet" href="css/css.css" />
+	<script src="js/js.js" charset="ISO-8859-1" ></script>
+	
+	<!--prettify-->
+	<!--	<link rel="stylesheet" href="../css/prettify/prettify.css" /> -->
+	<!--	<script src="../js/prettify/prettify.js" charset="ISO-8859-1" ></script> -->
+</head>
+<body>
+	<h1>EduSoft</h1>
+	<br/>
+		Dibuja en tu propio pizarron<br/>
+	<br/>
+	<div id="OSieSRty__iLugarDelCanvas_ESt" >
+		
+	</div>
+	<br/>
+		Anima la pelota, y llevala a donde tu consideras<br/>
+	<br/>
+	<div id="JUsERytD__iLugarDelCanvas_ESt" >
+		<textarea id="JUsERytD__iTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoCrearObjetos_ESt(); " invisible>
+o('swish').setQueEs('swish');
+o('swish').setQueTipo('swishBasico01');
+o('swish').setPosicion(20,20);
+o('pedro').setFormaCirculo(250,140,10);
+
+o('input').setQueEs('input');
+o('input').setPosicion(205,20);
+o('input').setValor(1);
+
+o('inputEnY').setQueEs('input');
+o('inputEnY').setPosicion(205,50);
+o('inputEnY').setValor(0);
+
+o('inputTx').setQueEs('input');
+o('inputTx').setPosicion(90,20);
+o('inputTx').setAncho(110);
+o('inputTx').setValor('Movimiento en X: ');
+o('inputTx').setPropiedad('readonly');
+
+o('inputEnYTx').setQueEs('input');
+o('inputEnYTx').setPosicion(90,50);
+o('inputEnYTx').setAncho(110);
+o('inputEnYTx').setValor('Movimiento en Y: ');
+o('inputEnYTx').setPropiedad('readonly');
+
+
+o('input2').setQueEs('input');
+o('input2').setPosicion(205,200);
+o('input2').setPropiedad('readonly');
+
+o('inputEnY2').setQueEs('input');
+o('inputEnY2').setPosicion(205,230);
+o('inputEnY2').setPropiedad('readonly');
+
+o('inputTx2').setQueEs('input');
+o('inputTx2').setPosicion(90,200);
+o('inputTx2').setAncho(110);
+o('inputTx2').setValor('Posición en X: ');
+o('inputTx2').setPropiedad('readonly');
+
+o('inputEnYTx2').setQueEs('input');
+o('inputEnYTx2').setPosicion(90,230);
+o('inputEnYTx2').setAncho(110);
+o('inputEnYTx2').setValor('Posición en Y: ');
+o('inputEnYTx2').setPropiedad('readonly');
+
+/*********************************
+o('MensajeIngresarNombre').setQueEs('input');
+o('MensajeIngresarNombre').setPosicion(0,320);
+o('MensajeIngresarNombre').setAncho(200);
+o('MensajeIngresarNombre').setValor('Ingresa tu nombre: ');
+o('MensajeIngresarNombre').setPropiedad('readonly');
+
+o('input3').setQueEs('input');
+o('input3').setQueTipo('nombre');
+o('input3').setPosicion(0,350);
+o('input3').setAncho(300);
+o('input3').setValor('');
+o('input3').setPropiedad('filtro');
+*********************************/
+		</textarea>
+		<textarea id="JUsERytD__iTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoAnimacion_ESt();" invisible>
+if(o('swish').getValor()!=0)
+{
+o('pedro').setMoverEnX(-1*soloNumeros(o('input').getValor()));
+o('pedro').setMoverEnY(-1*soloNumeros(o('inputEnY').getValor()));
+}
+o('input2').setValor(o('pedro').myPosicionEnX);
+o('inputEnY2').setValor(o('pedro').myPosicionEnY);
+		</textarea>
+	</div>
+	<br/>
+		No mas ejercicios clasicos...<br/>
+	<br/>
+	<div id="SDjnerbI__iLugarDelCanvas_ESt" >
+		<textarea id="SDjnerbI__iTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoCrearObjetos_ESt(); " invisible>
+var ultimoObjeto=o('Cliente');
+ultimoObjeto.formaRectangulo(340,40,140,140);
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(70);
+ultimoObjeto.setPosicionImagenEnY(0);
+
+var ultimoObjeto=o('Servidor');
+ultimoObjeto.formaRectangulo(340,190,140,140);
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(70);
+ultimoObjeto.setPosicionImagenEnY(140);
+
+var ultimoObjeto=o('PHP');
+ultimoObjeto.formaRectangulo(20,20,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(0);
+
+var ultimoObjeto=o('CSS');
+ultimoObjeto.formaRectangulo(20,100,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(70);
+
+var ultimoObjeto=o('HTML');
+ultimoObjeto.formaRectangulo(20,180,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(140);
+
+var ultimoObjeto=o('JavaScript');
+ultimoObjeto.formaRectangulo(20,270,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(210);
+
+o('resultado').setQueEs('input');
+o('resultado').setAncho(300);
+o('resultado').setValor('¿Donde va cada objeto de la izquierda?');
+o('resultado').setPosicion(100,0);
+o('resultado').setPropiedad('readonly');
+		</textarea>
+		<textarea id="SDjnerbI__iTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoAnimacion_ESt();" invisible>
+if(
+(o('Servidor').bnObjetoEnEste(o('PHP')))
+&&
+(o('Cliente').bnObjetoEnEste(o('CSS')))
+&&
+(o('Cliente').bnObjetoEnEste(o('HTML')))
+&&
+(o('Cliente').bnObjetoEnEste(o('JavaScript')))
+)
+{ o('resultado').setValor('¡Ganaste!'); }
+else
+{ o('resultado').setValor('¿Donde va cada objeto de la izquierda?'); }
+		</textarea>
+	</div>
+	
+</body>
+</html>

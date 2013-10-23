@@ -1,0 +1,177 @@
+	/***********************************
+	Globales { 
+	                                  */
+
+	body
+	{
+		font-family: Arial;
+		color: #333;
+		font-size: 13px;
+	}
+	
+	h1
+	{
+		font-size: 25px;
+		font-weight: normal;
+		text-align: center;
+	}
+	
+	.cTitulo_ESt
+	{
+		font-size: 20px;
+	}
+	
+	.cSubTitulo_ESt
+	{
+		
+	}
+	
+	/* } Globales
+	***********************************/
+	
+	
+	
+	/***********************************
+	Codigo para CreoEdu { 
+	                                  */
+	.cTabla_LugarDelCodigoJS_ESt
+	{
+		margin: 0px auto;
+	}
+		.cTabla_LugarDelCodigoJS_ESt tbody tr td
+		{
+			vertical-align: top;
+		}
+		
+		.cEspacioEntreLugares_ESt
+		{
+			width: 40px;
+			height: 40px;
+		}
+		
+		/***********************************
+		Colocar el texto { 
+	                                  */
+		
+		.cLugarDelCodigoJS_ESt
+		{
+			width: 400px;
+			/* min-height: 50px; */
+			
+			background-color: #F8F8F8;
+			text-align: left;
+			padding: 5px;
+			color: #636363;
+			box-shadow: 1px 1px 1px #888888;
+			border: 1px solid #EEE;
+		}
+			.cTextAreaCrearObjetos_LugarDelCodigoJS_ESt
+			{
+				width: 395px;
+				min-height: 30px;
+				border-width: 0px;
+				
+				padding: 0px;
+				margin: 0px;
+				border: 0px;
+				
+				font-family: Ubuntu, Arial;
+				font-size: 13px;
+				
+				position: relative;
+				background-color: transparent;
+				
+				/* display: none; */
+			}
+			/** Esta es la sombra del codigo de arriba, donde se veran los colores **/
+			.cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt
+			{
+				border-width: 0px;
+				
+				padding: 0px;
+				margin: 0px;
+				border: 0px;
+				
+				font-family: Ubuntu, Arial;
+				font-size: 13px;
+				
+			}
+			
+		/* } Colocar el texto
+		***********************************/
+		
+		/***********************************
+		Colocar el texto { 
+	                                  */
+		.cCanvas_LugarDelCanvas_ESt
+		{
+			border: 1px solid #E5E5E5;
+		}
+		
+		.cDiv_LugarDelCanvas_ESt
+		{
+			margin: -3px 1px 0px 1px;
+			height: 2px;
+		}
+			.cDiv_LugarDelCanvas_ESt input
+			{
+				border: 1px solid #DDD;
+				color: #333;
+			}
+			.cDiv_LugarDelCanvas_ESt input[readonly]
+			{
+				border: 1px solid #DDD;
+				background-color: #DDD;
+				color: #555;
+			}
+		.cConsola_ESt
+		{
+			width: 490px;
+			height: 140px;
+			border: 1px solid #333;
+			background-color: #333;
+			color: #EBEBEB;
+			font-family: Ubuntu, Arial;
+			font-size: 13px;
+			padding: 5px;
+			overflow: auto
+		}
+		/* } Colocar el texto
+		***********************************/
+		
+		
+	/* } Codigo para CreoEdu
+	***********************************/
+	
+	/***********************************
+	Codigo { */
+	
+	/* funciones conocidas */
+	span[fnc=ESt]{ color: #0C916B; }
+	/* funciones conocidas */
+	span[palclv=ESt]{ color: #0C916B; }
+	/* parentesis */
+	span[prntesis=ESt]{ color: #FFA606; }
+	/* punto y coma */
+	span[pntoycom=ESt]{ color: #008052; }
+	/* comillas */
+	span[cml=ESt]{ color: #058FCF; }
+	/* comillas */
+	span[num=ESt]{ color: #84ADAA; }
+	
+	/* } Codigo
+	***********************************/
+	
+	/***********************************
+	Solo para la interfaz de creación de modulos { */
+	
+	/* Oculta los text area donde esta el codigo */
+	textarea.cTextAreaCrearObjetos_LugarDelCodigoJS_ESt[invisible]
+	{
+		display: none;
+	}
+	
+	/* } Solo para la interfaz de creación de modulos
+	***********************************/
+	
+	

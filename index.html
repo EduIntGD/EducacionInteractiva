@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>EduSoft</title>
+	
+	<!--Mis funciones-->
+	<script type="text/javascript">
+		//	Carga las funciones que se ejecutaran al cargar la pagina
+		function onLoad_ESt(funcion_MyR) { if (document.addEventListener)
+		{ window.addEventListener('load',funcion_MyR,false); } else { 
+		window.attachEvent('onload',funcion_MyR); }	}
+		//	Carga todos los parametros inciales para programar el canvas
+		function _IniciarEduSoft_ESt() { IniciarEduSoft_ESt(); }
+		//	Carga todos los parametros inciales para programar el canvas
+		onLoad_ESt(_IniciarEduSoft_ESt);
+		//	Inicia todas las variables y objetos necesarios para el Lugar del codigo
+		function _IniciarVariablesDeLugarDelCodigo_ESt() { IniciarVariablesDeLugarDelCodigo_ESt(); }
+		//	Carga las variables y objetos necesarios para el codigo
+		onLoad_ESt(_IniciarVariablesDeLugarDelCodigo_ESt);
+	</script>
+	
+	<!--Locales-->
+	<link rel="stylesheet" href="css/css.css" />
+	<script src="js/js.js" charset="ISO-8859-1" ></script>
+	
+	<!--prettify-->
+	<!--	<link rel="stylesheet" href="../css/prettify/prettify.css" /> -->
+	<!--	<script src="../js/prettify/prettify.js" charset="ISO-8859-1" ></script> -->
+</head>
+<body>
+	<h1>EduSoft</h1>
+	<table class="cTabla_LugarDelCodigoJS_ESt" >
+	<tbody>
+	<tr>
+		<td colspan="2" >
+			
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="cTitulo_ESt" >Crear objetos</div>
+			<div id="iCrearObjetos_LugarDelCodigoJS_ESt" class="cLugarDelCodigoJS_ESt" >
+				<div id="LienzoDeCreacion__iSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" ></div>
+				<textarea id="LienzoDeCreacion__iTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoCrearObjetos_ESt(); " >
+var ultimoObjeto=o('Cliente');
+ultimoObjeto.formaRectangulo(340,40,140,140);
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(70);
+ultimoObjeto.setPosicionImagenEnY(0);
+
+var ultimoObjeto=o('Servidor');
+ultimoObjeto.formaRectangulo(340,190,140,140);
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(70);
+ultimoObjeto.setPosicionImagenEnY(140);
+
+var ultimoObjeto=o('PHP');
+ultimoObjeto.formaRectangulo(20,20,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(0);
+
+var ultimoObjeto=o('CSS');
+ultimoObjeto.formaRectangulo(20,100,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(70);
+
+var ultimoObjeto=o('HTML');
+ultimoObjeto.formaRectangulo(20,180,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(140);
+
+var ultimoObjeto=o('JavaScript');
+ultimoObjeto.formaRectangulo(20,270,70,70);
+ultimoObjeto.setQueEs('arrastrable');
+ultimoObjeto.setImagenFondo('images/ClaseDeClienteServidor.png');
+ultimoObjeto.setPosicionImagenEnX(0);
+ultimoObjeto.setPosicionImagenEnY(210);
+
+o('resultado').setQueEs('input');
+o('resultado').setAncho(300);
+o('resultado').setValor('¿Donde va cada objeto de la izquierda?');
+o('resultado').setPosicion(100,0);
+o('resultado').setPropiedad('readonly');
+				</textarea>
+			</div>
+			<div onclick="EjecutarDesdeCeroLienzo_ESt('LienzoDeCreacion'); " style="cursor: pointer; " >
+				ejecutar ->
+			</div>
+			<div class="cEspacioEntreLugares_ESt"></div>
+			<div class="cTitulo_ESt" >Animación</div>
+			<div id="iAnimacion_LugarDelCodigoJS_ESt" class="cLugarDelCodigoJS_ESt" >
+				<div id="LienzoDeCreacion__iSombraTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" ></div>
+				<textarea id="LienzoDeCreacion__iTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoAnimacion_ESt();" >
+if(
+(o('Servidor').bnObjetoEnEste(o('PHP')))
+&&
+(o('Cliente').bnObjetoEnEste(o('CSS')))
+&&
+(o('Cliente').bnObjetoEnEste(o('HTML')))
+&&
+(o('Cliente').bnObjetoEnEste(o('JavaScript')))
+)
+{ o('resultado').setValor('¡Ganaste!'); }
+else
+{ o('resultado').setValor('¿Donde va cada objeto de la izquierda?'); }
+				</textarea>
+			</div>
+			<div onclick="EjecutarDesdeCeroLienzo_ESt('LienzoDeCreacion'); EjecutarAnimacionLienzo_ESt('LienzoDeCreacion'); " style="cursor: pointer; " >
+				ejecutar ->
+			</div>
+			<div class="cEspacioEntreLugares_ESt" ></div>
+			<div class="cTitulo_ESt" >Al finalizar</div>
+			<div id="iAlFinalizar_LugarDelCodigoJS_ESt" class="cLugarDelCodigoJS_ESt" >
+				<div id="iSombraTextAreaAlFinalizar_LugarDelCodigoJS_ESt" class="cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" ></div>
+				<div id="iTextAreaAlFinalizar_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" contenteditable="true" ></div>
+			</div>
+		</td>
+		<td>
+			<div class="cEspacioEntreLugares_ESt"></div>
+		</td>
+		<td rowspan="2" >
+			<div class="cTitulo_ESt" >Resultado:</div>
+			<div id="LienzoDeCreacion__iLugarDelCanvas_ESt" >
+				<!-- <canvas id="iCanvas_LugarDelCanvas_ESt" class="cCanvas_LugarDelCanvas_ESt" width="500px" height="500px"  ></canvas><div id="iDiv_LugarDelCanvas_ESt" class="cDiv_LugarDelCanvas_ESt" ></div> -->
+			</div>
+		<!--<div class="cEspacioEntreLugares_ESt"></div>-->
+		<!--<div class="cSubTitulo_ESt" >Consola:</div>-->
+			<div id="iDivConsola_LugarDelCanvas_ESt" class="cConsola_ESt" >
+				
+			</div>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+</body>
+</html>
