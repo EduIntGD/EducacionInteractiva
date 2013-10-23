@@ -182,7 +182,7 @@
 	function Filtro_ESt(objeto,arExistePropiedad)
 	{
 		//	Tiene que ser un input
-		if(objeto.getEs()=='input')
+		if(objeto.getQueEs()=='input')
 		{
 			//	Si es tipo nombre se le aplica el filtro
 			if(objeto.getTipo()=='nombre')
@@ -1394,7 +1394,7 @@
 			
 			if(o(nombreObjeto_ESt).getForma()=='rectangulo')
 			{
-				if(o(nombreObjeto_ESt).getEs()=='forma')
+				if(o(nombreObjeto_ESt).getQueEs()=='forma')
 				{
 					if(o(nombreObjeto_ESt).getTipo()=='rectangulo')
 					{
@@ -1416,17 +1416,17 @@
 					}
 				}
 				//	En caso de ser un swish
-				else if(o(nombreObjeto_ESt).getEs()=='swish')
+				else if(o(nombreObjeto_ESt).getQueEs()=='swish')
 				{
 					DibujarImagenDelObjetoConNmbr(nombreObjeto_ESt);
 				}
 				//	Si es un objeto arrastrable
-				else if(o(nombreObjeto_ESt).getEs()=='arrastrable')
+				else if(o(nombreObjeto_ESt).getQueEs()=='arrastrable')
 				{
 					DibujarImagenDelObjetoConNmbr(nombreObjeto_ESt);
 				}
 				//	Si es una entrada de texto
-				else if(o(nombreObjeto_ESt).getEs()=='input')
+				else if(o(nombreObjeto_ESt).getQueEs()=='input')
 				{
 					//	Carga un rectangulo negro detras de esta para poder identigicarla con el canvas
 					_arCtx_ESt[_noDelLienzo_ESt].fillRect(posicionDeLaFiguraEnX,posicionDeLaFiguraEnY,o(nombreObjeto_ESt).myAncho,o(nombreObjeto_ESt).myAlto);
@@ -1496,7 +1496,7 @@
 		//	Pasa el  objeto a una variable
 		var objeto_ESt=o(nombreObjeto_ESt);
 		//	Si la imagen ya habia sido creada solo la carga
-		if(_arImagenesYaCargadas[objeto_ESt.myImagenFondo+'__'+objeto_ESt.getEs()]==undefined)
+		if(_arImagenesYaCargadas[objeto_ESt.myImagenFondo+'__'+objeto_ESt.getQueEs()]==undefined)
 		{
 			//	Crea un <img>, necesario para cargar imagenes en canvas
 			var ImagenFondo_=new Image();
@@ -1539,7 +1539,7 @@
 							var posicionDeImagenEnX=objeto.getPosicionImagenEnX();
 							var posicionDeImagenEnY=objeto.getPosicionImagenEnY();
 							//	En caso de ser swish
-							if(objeto.getEs()=='swish')
+							if(objeto.getQueEs()=='swish')
 							{
 								//	Si esta seleccionado el cambia el valor
 								if(this.objetoNombre.getValor()!=0)
@@ -1560,7 +1560,7 @@
 						var posicionDeImagenEnX=objeto.getPosicionImagenEnX();
 						var posicionDeImagenEnY=objeto.getPosicionImagenEnY();
 						//	En caso de ser swish
-						if(o(nombreObjeto_ESt).getEs()=='swish')
+						if(o(nombreObjeto_ESt).getQueEs()=='swish')
 						{
 							//	Si esta seleccionado el cambia el valor
 							if(this.objetoNombre.getValor()!=0)
@@ -1591,11 +1591,11 @@
 			//	Pide que carge la imagen
 			ImagenFondo_.src=o(nombreObjeto_ESt).myImagenFondo;
 			//	Guarda la imagen por si vulelven a cargarla
-			_arImagenesYaCargadas[o(nombreObjeto_ESt).myImagenFondo+'__'+o(nombreObjeto_ESt).getEs()]=ImagenFondo_;
+			_arImagenesYaCargadas[o(nombreObjeto_ESt).myImagenFondo+'__'+o(nombreObjeto_ESt).getQueEs()]=ImagenFondo_;
 		}
 		else
 		{
-			var ImagenFondo_=_arImagenesYaCargadas[o(nombreObjeto_ESt).myImagenFondo+'__'+o(nombreObjeto_ESt).getEs()];
+			var ImagenFondo_=_arImagenesYaCargadas[o(nombreObjeto_ESt).myImagenFondo+'__'+o(nombreObjeto_ESt).getQueEs()];
 			//	Se le agrega el objeto que tiene este, por si llega a ser otro objeto el que pide la misma imagen
 			ImagenFondo_.objetoNombre=o(nombreObjeto_ESt);
 			//	Carga una imagen ya creada
@@ -1765,7 +1765,7 @@
 					//	
 					this.setForma('rectangulo');
 					//	Si es una forma tambien el tipo es rectangulo
-					if(this.getEs()=='forma') { this.setQueTipo('rectangulo'); }
+					if(this.getQueEs()=='forma') { this.setQueTipo('rectangulo'); }
 				};
 			this.setFormaCirculo=
 				function(posicionEnX,posicionEnY,radio)
@@ -1780,7 +1780,7 @@
 					
 					this.setForma('circulo');
 					//	Si es una forma tambien el tipo es circulo
-					if(this.getEs()=='forma') { this.setQueTipo('circulo'); }
+					if(this.getQueEs()=='forma') { this.setQueTipo('circulo'); }
 				};
 				this.setRadio=
 					function(radio)
@@ -1818,7 +1818,7 @@
 					//	Informa que es
 					this.myQueEs=queEs;
 				};
-			this.getEs=function() { return this.myQueEs; };
+			this.getQueEs=function() { return this.myQueEs; };
 			
 			this.setQueTipo=
 				function(tipo)
@@ -1841,6 +1841,10 @@
 							break;
 						case 'nombre':
 							this.setPropiedad('filtro');
+							break;
+						case 'monedaPeso':
+							this.setPropiedad('filtro');
+							this.setPropiedad('mascara');
 							break;
 					}
 					//	Informa que tipo es
@@ -2603,7 +2607,7 @@
 					if(objetoNombre._bnOnClick)
 					{
 						//	Si es un swisn cambia el valor
-						if(objetoNombre.getEs()=='swish')
+						if(objetoNombre.getQueEs()=='swish')
 						{
 							//	Si el click se hizo sobre este
 							if(objetoNombre.bnObjetoSobreEste(punto(_posixionDelCursorEnX[_noDelLienzo_ESt],_posixionDelCursorEnY[_noDelLienzo_ESt])))

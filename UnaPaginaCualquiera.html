@@ -14,9 +14,10 @@
 	
 		function CargarLinezos()
 		{
-			EducacionInteractivaGD('OSieSRty',500,300);
-			EducacionInteractivaGD('JUsERytD',500,275);
+			EducacionInteractivaGD('OSieSRty',500,200);
+			EducacionInteractivaGD('JUsERytD',340,275);
 			EducacionInteractivaGD('SDjnerbI',500,360);
+			EducacionInteractivaGD('SJhiotRT',444+20,187+20);
 		}
 	</script>
 	<!--Locales-->
@@ -177,6 +178,72 @@ else
 { o('resultado').setValor('¿Donde va cada objeto de la izquierda?'); }
 		</textarea>
 	</div>
-	
+	<br/>
+		Prueba los filtros basicos, y las operaciones<br/>
+	<br/>
+	<div id="SJhiotRT__iLugarDelCanvas_ESt" >
+		<textarea id="SJhiotRT__iTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoCrearObjetos_ESt(); " invisible>
+o('mensajeIngreseValores').setQueEs('input');
+o('mensajeIngreseValores').setPosicion(20,20+100);
+o('mensajeIngreseValores').setAncho(425);
+o('mensajeIngreseValores').setValor('Suma los valores: A+B=C');
+o('mensajeIngreseValores').setQueTipo('monedaPeso');
+o('mensajeIngreseValores').setPropiedad('readonly');
+
+
+o('mensajeA').setQueEs('input');
+o('mensajeA').setPosicion(20,162);
+o('mensajeA').setValor('A: ');
+o('mensajeA').setAncho(25);
+o('mensajeA').setPropiedad('readonly');
+
+o('numeroA').setQueEs('input');
+o('numeroA').setPosicion(45,162);
+o('numeroA').setValor(2);
+o('numeroA').setQueTipo('monedaPeso');
+
+
+o('mensajeB').setQueEs('input');
+o('mensajeB').setPosicion(20+150,162);
+o('mensajeB').setValor('B: ');
+o('mensajeB').setAncho(25);
+o('mensajeB').setPropiedad('readonly');
+
+o('numeroB').setQueEs('input');
+o('numeroB').setPosicion(45+150,162);
+o('numeroB').setValor(5);
+o('numeroB').setQueTipo('monedaPeso');
+
+
+o('mensajeC').setQueEs('input');
+o('mensajeC').setPosicion(20+150*2,162);
+o('mensajeC').setValor('C: ');
+o('mensajeC').setAncho(25);
+o('mensajeC').setPropiedad('readonly');
+
+o('numeroC').setQueEs('input');
+o('numeroC').setPosicion(45+150*2,162);
+o('numeroC').setQueTipo('monedaPeso');
+o('numeroC').setPropiedad('readonly');
+
+
+
+o('MensajeIngresarNombre').setQueEs('input');
+o('MensajeIngresarNombre').setPosicion(20,20);
+o('MensajeIngresarNombre').setAncho(425);
+o('MensajeIngresarNombre').setValor('Ingresa tu nombre: ');
+o('MensajeIngresarNombre').setPropiedad('readonly');
+
+o('input3').setQueEs('input');
+o('input3').setQueTipo('nombre');
+o('input3').setPosicion(20,20+22+20);
+o('input3').setAncho(425);
+o('input3').setValor('');
+o('input3').setPropiedad('filtro');
+		</textarea>
+		<textarea id="SJhiotRT__iTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoAnimacion_ESt();" invisible>
+			o('numeroC').setValor(soloNumeros(o('numeroA').getValor())+soloNumeros(o('numeroB').getValor()));
+		</textarea>
+	</div>
 </body>
 </html>
