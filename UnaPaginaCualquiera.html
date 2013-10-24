@@ -10,16 +10,21 @@
 		{ window.addEventListener('load',funcion_MyR,false); }
 		else {	window.attachEvent('onload',funcion_MyR); } }
 		
-		onLoad_MyR(CargarLinezos);
-	
 		function CargarLinezos()
 		{
 			EducacionInteractivaGD('OSieSRty',500,200);
 			EducacionInteractivaGD('JUsERytD',340,275);
 			EducacionInteractivaGD('SDjnerbI',500,360);
 			EducacionInteractivaGD('SJhiotRT',444+20,187+20);
+			
+			//	Crea una tabla
+			CrearTabla_ESt('iDondeEstaraLaTabla',tabla);
 		}
+		
+		onLoad_MyR(CargarLinezos);
 	</script>
+	<!--Temporal donde estara el codigo para crear tablas e inputs-->
+	<script src="js/CrearTabla.js" charset="ISO-8859-1" ></script>
 	<!--Locales-->
 	<link rel="stylesheet" href="css/css.css" />
 	<script src="js/js.js" charset="ISO-8859-1" ></script>
@@ -30,6 +35,7 @@
 </head>
 <body>
 	<h1>EduSoft</h1>
+	<div id="iDondeEstaraLaTabla" ></div>
 	<br/>
 		Dibuja en tu propio pizarron<br/>
 	<br/>
