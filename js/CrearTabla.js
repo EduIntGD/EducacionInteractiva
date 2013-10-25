@@ -4,25 +4,26 @@ var tabla=
 	campos:
 	[
 		{
-			nombre: 'nombre',
-			tipo: 'input',
-			queSon: 'nombres',
-			filtro: 'convertirHTML',
-			ancho: 200
-		},
-		{
 			nombre: 'apellido',
 			tipo: 'input',
 			queSon: 'nombres',
 			filtro: 'convertirHTML',
-			ancho: 200
+			ancho: 100
+		},
+		{
+			nombre: 'nombre',
+			tipo: 'input',
+			queSon: 'nombres',
+			filtro: 'convertirHTML',
+			ancho: 100
 		},
 		{
 			nombre: 'edad',
 			tipo: 'input',
 			queSon: 'numeros',
 			filtro: 'soloNumeros',
-			ancho: 50
+			ancho: 50,
+			alineacion: 'center'
 		},
 		{
 			nombre: 'genero',
@@ -34,7 +35,8 @@ var tabla=
 			nombre: 'dinero',
 			tipo: 'input',
 			queSon: 'pesosColombianos',
-			ancho: 120
+			ancho: 120,
+			alineacion: 'right'
 		},
 	],
 	camposEnHead:
@@ -51,7 +53,7 @@ var tabla=
 		],
 		[
 			{
-				titulo: 'Nombre',
+				titulo: 'Nombres',
 				colspan: 2
 			},
 			{
@@ -107,12 +109,14 @@ function CrearTabla_ESt(id_ESt,JSON_Tabla_ESt)
 	//	oDivNivel02 <- oTable_ESt
 	oDivNv02_ESt.appendChild(oTable_ESt);
 	
+	//	Arreglo de cada uno de los campos con las caracteristicas del head
+	var camposDeLasFilasDelHead_ESt=JSON_Tabla_ESt.camposEnHead;
+	//	Arreglo de cada uno de los campos y sus caracteristicas
+	var camposDeLasFilas_ESt=JSON_Tabla_ESt.campos;
 	
 	//	HEAD
 	//	----
 	
-	//	Va a pasar por cada una de las filas de la 
-	var camposDeLasFilasDelHead_ESt=JSON_Tabla_ESt.camposEnHead;
 	//	Crea el thead
 	oTableTHeadTr_ESt=document.createElement('thead');
 	//	oTable <- oTableTr[contFilaHead]
@@ -181,5 +185,42 @@ function CrearTabla_ESt(id_ESt,JSON_Tabla_ESt)
 	//	Tbody
 	//	-----
 	
+	//	Arreglo de cada uno de los campos y sus caracteristicas
+	var contenidoDeLasFilas_ESt=JSON_Tabla_ESt.contenido;
+	
+	//	Crea el tbody
+	oTableTBody_ESt=document.createElement('tbody');
+	//	oTable <- oTableTBodyTr[contFilaHead]
+	oTable_ESt.appendChild(oTableTBody_ESt);
+	//	Donde estaran todas las filas, los tr
+	var oTableTBodyTr_ESt=new Array();
+	//	Donde estaran todas las columnas, los td
+	var oTableTBodyTrTd_ESt=new Array();
+	
+	//	Pasa por cada una de las filas del Body
+	for(var contFilaBody_ESt=0;contFilaBody_ESt<contenidoDeLasFilas_ESt.length;contFilaBody_ESt++)
+	{
+		//	Saca los arrelgos de la columna
+		var camposDeLaColumnaDelBody_ESt=contenidoDeLasFilas_ESt[contFilaBody_ESt];
+		//	Crea la fila, el tr
+		oTableTBodyTr_ESt[contFilaBody_ESt]=document.createElement('tr');
+		//	oTableTBodyTr_ESt <- oTableTr[contFilaBody]
+		oTableTBody_ESt.appendChild(oTableTBodyTr_ESt[contFilaBody_ESt]);
+		//	Donde estaran todas las columnas, los td
+		oTableTBodyTrTd_ESt[contFilaBody_ESt]=new Array();
+		//	Pasa por cada una de las columnas
+		for(var contColumnasBody_ESt=0;contColumnasBody_ESt<camposDeLaColumnaDelBody_ESt.length;contColumnasBody_ESt++)
+		{
+			//	Caracteristicas de la columna
+			var crDelCamposDeLaColumna=camposDeLaColumnaDelBody_ESt[contColumnasBody_ESt];
+			
+			//	Crea la columa
+			oTableTBodyTrTd_ESt[contFilaBody_ESt][contColumnasBody_ESt]=document.createElement('td');
+			//	oTableTBodyTr_ESt[contFilaBody_ESt] <- oTableTBodyTrTd_ESt[contFilaBody_ESt][contColumnasBody_ESt]
+			oTableTBodyTr_ESt[contFilaBody_ESt].appendChild(oTableTBodyTrTd_ESt[contFilaBody_ESt][contColumnasBody_ESt]);
+			//	Coloca el titulo que tiene esta
+			oTableTBodyTrTd_ESt[contFilaBody_ESt][contColumnasBody_ESt].innerHTML=contenidoDeLasFilas_ESt[contFilaBody_ESt][contColumnasBody_ESt];
+		}
+	}
 	
 }
