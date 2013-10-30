@@ -174,4 +174,56 @@
 	/* } Solo para la interfaz de creación de modulos
 	***********************************/
 	
+	/***********************************
+	   Para tablas creadas { */ 
+	.cDivDeTablaNvl01_ESt .cDivDeTablaNvl02_ESt table
+	{
+		border-collapse: collapse;
+	}
+	/** Oculta la primera fila, donde estan td con el ancho pero sin contenido **/
+	.cDivDeTablaNvl01_ESt table thead  tr:first-child td
+	{
+		height: 0px;
+		border: 0px;
+		background-color: transparent;
+	}
+	/**  **/
+	.cDivDeTablaNvl01_ESt table thead  tr td
+	{
+		height: 22px;
+		border: 1px solid #F1F1F1;
+		background-color: #F7F7F7;
+	}
+		.cDivDeTablaNvl01_ESt table thead  tr td .cTablaTheadTrTdDivDeTitulo_ESt
+		{
+			padding: 0px 5px;
+		}
+	.cDivDeTablaNvl01_ESt table tbody tr td
+	{
+		height: 22px;
+		border: 1px solid #F1F1F1;
+	}
+	.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td
+	{
+		background-color: #F7F7F7;
+	}
+		.cTablaTbodyTrTdDivParaTexto_ESt
+		{
+			padding: 0px 5px;
+		}
+		.cDivDeTablaNvl01_ESt table tbody  tr td .cTablaTbodyTrTdInput_ESt
+		{
+			padding: 0px 2px;
+			border: 1px solid #E0E0E0;
+			height: 18px;
+		}
+		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cTablaTbodyTrTdInput_ESt
+		{
+			background-color: #F7F7F7;
+		}
+		
+		
+	
+	/* } Para tablas creadas
+	***********************************/
 	

@@ -20,6 +20,34 @@
 		}
 	}
 	
+	function redondear_ESt(valor_MyR,decimales_MyR)
+	{
+		myDecimales_MyR = Math.pow(10,decimales_MyR);
+		return Math.round(valor_MyR*myDecimales_MyR)/myDecimales_MyR;
+	}
+	
+	//	12.343.345.35 <- 12343345.3789
+	function NumeroTipoMoneda_ESt(numero_MyR)
+	{
+		numero_MyR = redondear_ESt(numero_MyR,2);
+		var stNumero_MyR=numero_MyR.toString();
+		var valor_MyR=stNumero_MyR.split(".");
+		if(valor_MyR[0]==undefined) valor_MyR[0]=0;
+		if(valor_MyR[1]==undefined) { var pesitos_MyR="00"; }
+		else { valor_MyR[1]=valor_MyR[1]+'00'; var pesitos_MyR=valor_MyR[1].substr(0,2); }
+		var arNumero_MyR="";
+		var tempNumero_MyR;
+		while(valor_MyR[0].length>3)
+		{
+			tempNumero_MyR=valor_MyR[0].substr(valor_MyR[0].length-3,valor_MyR[0].length);
+			if(arNumero_MyR=="") arNumero_MyR="."+tempNumero_MyR;
+			else                 arNumero_MyR="."+tempNumero_MyR+arNumero_MyR;
+			valor_MyR[0]=valor_MyR[0].substr(0,valor_MyR[0].length-3);
+		}
+		arNumero_MyR=valor_MyR[0]+arNumero_MyR+","+pesitos_MyR;
+		return arNumero_MyR;
+	}
+	
 //	BORRAR
 //	+-> Si no se usa
 	//	Carga un archivo y lo lee
