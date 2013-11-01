@@ -18,7 +18,10 @@
 			EducacionInteractivaGD('SJhiotRT',444+20,187+20);
 			
 			//	Crea una tabla
-			CrearTabla_ESt('iDondeEstaraLaTabla',tabla);
+			_tablaContabilidad=new oTabla();
+			_tablaContabilidad.crearTabla('iDondeEstaraLaTabla',tabla);
+			_tablaContabilidad.colocarContenido(tabla);
+			_tablaContabilidad.ejecutarFunciones();
 		}
 		
 		onLoad_MyR(CargarLinezos);
