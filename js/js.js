@@ -90,22 +90,31 @@
 	var _arPosicionesEnYObjetosEstaticos=new Array();
 	//	Funcion original creada por:
 	//	Peter-Paul Koch y Alex Tingle.
+	function objetoPosX_ESt(obj_MyR)
+	{
+		var curleft = 0; if(obj_MyR.offsetParent) while(1) { curleft += obj_MyR.offsetLeft;
+		if(!obj_MyR.offsetParent) break; obj_MyR = obj_MyR.offsetParent; } else if(obj_MyR.x) curleft += obj_MyR.x;
+		return curleft;
+	}
 	function findPosX_ESt(id_ESt,bnObjetoEstatico_ESt)
 	{
 		if(!bnObjetoEstatico_ESt) { bnObjetoEstatico_ESt=false; }
 		
 		if(bnObjetoEstatico_ESt)
-		{
-			return _arPosicionesEnXObjetosEstaticos[id_ESt];
-		}
+		{ return _arPosicionesEnXObjetosEstaticos[id_ESt]; }
 		else
 		{
 			var obj_MyR = document.getElementById(id_ESt);
-			var curleft = 0; if(obj_MyR.offsetParent) while(1) { curleft += obj_MyR.offsetLeft;
-			if(!obj_MyR.offsetParent) break; obj_MyR = obj_MyR.offsetParent; } else if(obj_MyR.x) curleft += obj_MyR.x;
+			curleft=objetoPosX_ESt(obj_MyR);
 			_arPosicionesEnXObjetosEstaticos[id_ESt]=curleft;
 			return curleft;
 		}
+	}
+	function objetoPosY_ESt(obj_MyR)
+	{
+		var curtop = 0; if(obj_MyR.offsetParent) while(1) { curtop += obj_MyR.offsetTop;
+		if(!obj_MyR.offsetParent) break; obj_MyR = obj_MyR.offsetParent; } else if(obj_MyR.y) curtop += obj_MyR.y;
+		return curtop; 
 	}
 	function findPosY_ESt(id_ESt,bnObjetoEstatico_ESt)
 	{	
@@ -117,11 +126,10 @@
 		}
 		else
 		{
-			var obj_MyR = document.getElementById(id_ESt);
-			var curtop = 0; if(obj_MyR.offsetParent) while(1) { curtop += obj_MyR.offsetTop;
-			if(!obj_MyR.offsetParent) break; obj_MyR = obj_MyR.offsetParent; } else if(obj_MyR.y) curtop += obj_MyR.y;
+			var obj_MyR=document.getElementById(id_ESt);
+			curtop=objetoPosY_ESt(obj_MyR);
 			_arPosicionesEnYObjetosEstaticos[id_ESt]=curtop;
-			return curtop; 
+			return curtop;
 		}
 	}
 	function esNumero_ESt(number)

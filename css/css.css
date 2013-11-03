@@ -179,6 +179,8 @@
 	.cDivDeTablaNvl01_ESt .cDivDeTablaNvl02_ESt table
 	{
 		border-collapse: collapse;
+		font-family: Arial;
+		font-size: 13px;
 	}
 	/** Oculta la primera fila, donde estan td con el ancho pero sin contenido **/
 	.cDivDeTablaNvl01_ESt table thead  tr:first-child td
@@ -222,8 +224,47 @@
 			background-color: #F7F7F7;
 		}
 		
-		
+		.cTablaTbodyTrTdSelect_ESt
+		{
+			background-image: url(../images/Base/Base.png);
+			background-repeat: no-repeat;
+		}
+		.cDivDeTablaNvl01_ESt table tbody  tr td .cTablaTbodyTrTdSelect_ESt
+		{
+			padding: 0px 2px;
+			border: 1px solid #E0E0E0;
+			height: 18px;
+			background-image: url(../images/Base/Base.png);
+			background-repeat: no-repeat;
+			background-color: #F7F7F7;
+		}
+		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cTablaTbodyTrTdSelect_ESt
+		{
+			background-color: #F0F0F0;
+		}
 	
 	/* } Para tablas creadas
 	***********************************/
+	
+	/***********************************
+	Autocompletar {
+	*/
+		.cDivDivAutocompletar_ESt
+		{
+			padding: 2px 2px;
+			border-top: 1px solid #E0E0E0;
+			min-height: 18px;
+			background-color: #333;
+			cursor: pointer;
+			color: #DDD;
+		}
+		.cDivDivAutocompletar_ESt:hover
+		{
+			background-color: #555;
+		}
+		
+	/*
+	} Autocompletar
+	***********************************/
+	
 	

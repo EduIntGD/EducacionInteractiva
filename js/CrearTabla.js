@@ -8,14 +8,14 @@ var tabla=
 			queSon: 'texto',
 			tipo: 'nombres',
 			filtro: 'convertirHTML',
-			ancho: 100
+			ancho: 120
 		},
 		{
 			nombre: 'nombre',
 			queSon: 'texto',
 			tipo: 'nombres',
 			filtro: 'convertirHTML',
-			ancho: 100
+			ancho: 120
 		},
 		{
 			nombre: 'edad',
@@ -26,17 +26,31 @@ var tabla=
 			alineacion: 'center'
 		},
 		{
-			nombre: 'genero',
-			queSon: {select: [['masculino','Masculino'],['femenino','Femenino']]},
+			nombre: 'cargo',
+			queSon: 'select',
+			valoresSelect:    ['Diseñador','Programador','Usabilidad','Director'],
+			valoresReales:    ['diseñador','programador','Usabilidad','Director'], /**opcional*/
+			funcionPorSelect: [function() {  }, function() {  }], /**opcional*/
+			funcionAlSeleccionar: function(valorRealSeleccionado) {  }, /**opcional*/
 			filtro: 'convertirHTML',
-			ancho: 70,
+			ancho: 100,
 			alineacion: 'center'
+		},
+		{
+			nombre: 'ciudad',
+			queSon: 'autocompletar',
+			valoresSelect:    ['Bogota D.C.','Medellin','Cali','Neiva','Pasto','otra..'],
+			funcionPorSelect: [function() {  }, function() {  }], /**opcional*/
+			funcionAlSeleccionar: function(valorRealSeleccionado) {  }, /**opcional*/
+			tipo: 'pesosColombianos',
+			ancho: 150,
+			alineacion: 'left'
 		},
 		{
 			nombre: 'dinero',
 			queSon: 'input',
 			tipo: 'pesosColombianos',
-			ancho: 120,
+			ancho: 85,
 			alineacion: 'right'
 		},
 		{
@@ -49,7 +63,7 @@ var tabla=
 			nombre: 'total',
 			queSon: 'texto',
 			tipo: 'pesosColombianos',
-			ancho: 120,
+			ancho: 85,
 			alineacion: 'right',
 			propiedad: ['readonly']
 		}
@@ -60,8 +74,14 @@ var tabla=
 			{
 				titulo: 'Datos personales',
 				alineacion: 'center',
-				colspan: 4
+				colspan: 3
 			},
+			{
+				titulo: 'Datos empresariales',
+				alineacion: 'center',
+				colspan: 2
+			},
+			
 			{
 				titulo: 'Dinero',
 				alineacion: 'center',
@@ -87,7 +107,10 @@ var tabla=
 				titulo: 'Edad'
 			},
 			{
-				titulo: 'Genero'
+				titulo: 'Cargo'
+			},
+			{
+				titulo: 'Ciudad'
 			}
 		]
 	],
@@ -97,14 +120,10 @@ var tabla=
 	},
 	contenido:
 	[
-		['Julian David','Guerrero Pinilla',25,'masculino',2000,32],
-		['Nula Alexandra','Medina Rut',25,'femenino',200,84],
-		['Carlos Camilo','Medina Castro',25,'masculino',1200,23],
-		['Carlos Andres','Guille Luis',25,'masculino',3000,12],
-		['Julian David','Guerrero Pinilla',25,'masculino',5000,23],
-		['Andrea Alexandra','Medina Une',25,'femenino',4000,43],
-		['Carlos Camilo','Medina Castro',25,'masculino',3000,64],
-		['Carlos Andres','Guille Luis',25,'masculino',5000,12]
+		['Josue David','Guitierres Pinilla',25,'programador','Bogota D.C.',2000,32],
+		['Nula Alexandra','Medina Rut',25,'diseñador','',200,84],
+		['Carlos Camilo','Medina Castro',25,'diseñador','',1200,23],
+		['Carlos Andres','Guille Luis',25,'diseñador','',3000,12]
 	]
 }
 //	Arreglo con el numero de cada tabla
@@ -256,7 +275,7 @@ function CrearTabla_ESt(myTabla,id_ESt,JSON_Tabla_ESt)
 	myTabla.oTable_ESt.appendChild(myTabla.oTableTBody_ESt);
 }
 
-//	Coloca el contenido de la tabÃ±a
+//	Coloca el contenido de la tabña
 function colocarContenido_ESt(myTabla,JSON_Tabla_ESt)
 {
 	//	Arreglo de cada uno de los campos y sus caracteristicas
@@ -317,6 +336,15 @@ function colocarContenido_ESt(myTabla,JSON_Tabla_ESt)
 	}
 }
 
+//	contenidoDeLaColumna_ESt='25 años';
+//	campo_ESt={
+//		nombre: 'edad',
+//		queSon: 'texto',
+//		tipo: 'numeros',
+//		filtro: 'soloNumeros',
+//		ancho: 50,
+//		alineacion: 'center'
+//	};
 // 	El lugar donde crea los input, select, texto entre otros
 function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 {
@@ -329,6 +357,10 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 		case 'texto':
 				//	Crea el div donde estara el 
 				var oDiv_=document.createElement('div');
+				
+				//	Colocamos los valores del campo
+				oDiv_.campo_ESt=campo_ESt;
+				
 				//	Coloca la clase del texto
 				oDiv_.className='cTablaTbodyTrTdDivParaTexto_ESt';
 				//	Coloca el famoso ID
@@ -353,22 +385,19 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				//	Crea el input donde estara el 
 				var oInput_=document.createElement('input');
 				
-				//	Coloca la tabla
-				if(campo_ESt.objetoTabla) { oInput_.oTabla=campo_ESt.objetoTabla; }
+				//	Colocamos los valores del campo
+				oInput_.campo_ESt=campo_ESt;
+				
 				//	Coloca la clase del texto
 				oInput_.className='cTablaTbodyTrTdInput_ESt';
-				//	Coloca el famoso ID
-				if(campo_ESt.id) { oInput_.id=campo_ESt.id; }
 				//	Colocamos el ancho del objeto - bordeInput - paddingInput - paddingTd
 				oInput_.style.width=(anchoDelTexto_-2-4-2)+'px';
 				//	Colocamos el ancho del objeto - bordeInput - paddingInput - paddingTd
 				oInput_.style.textAlign=alineacionDelTexto_;
 				//	Colocamos el valor tal cual es cargado en esta variable
 				oInput_.valorReal=contenidoDeLaColumna_ESt;
-				//	Colocamos que es cada input, dentro de ellos
-				oInput_.tipo=campo_ESt.tipo;
 				//	Mostramos la mascara
-				oInput_.value=mascaraInput_ESt(oInput_.tipo,oInput_.valorReal);
+				oInput_.value=mascaraInput_ESt(oInput_.campo_ESt.tipo,oInput_.valorReal);
 				
 				//	Cuando es seleccionado cargamos el valor real
 				oInput_.onfocus=
@@ -383,9 +412,9 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 					function()
 					{
 						//	Se aplica el filtro
-						this.valorReal=filtroInput_ESt(this.tipo,this.value);
+						this.valorReal=filtroInput_ESt(this.campo_ESt.tipo,this.value);
 						//	Ejecutamos cada una de las funciones de las lineas
-						if(this.oTabla) { this.oTabla.ejecutarFunciones(); }
+						if(this.campo_ESt.objetoTabla) { this.campo_ESt.objetoTabla.ejecutarFunciones(); }
 					}
 					
 				//	Cuando se quita el foco hacemos un filtro y mostramos la mascara
@@ -393,21 +422,285 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 					function()
 					{
 						//	Guardamos el valor real
-						this.valorReal=filtroInput_ESt(this.tipo,this.value);
+						this.valorReal=filtroInput_ESt(this.campo_ESt.tipo,this.value);
 						//	Se coloca una mascara
-						this.value=mascaraInput_ESt(this.tipo,this.valorReal);
+						this.value=mascaraInput_ESt(this.campo_ESt.tipo,this.valorReal);
 					}
 				
-				//	Colocamos el tipo para que lo vea
-				oInput_.queSon=campo_ESt.queSon;
 				//	Retorna el objeto
 				return oInput_;
 			break;
+		case 'select':
+				//	Crea el input donde estara el 
+				var oInput_=document.createElement('input');
+				
+				//	Los valores que falta los cambia por los de por defecto
+				if(!campo_ESt.valoresReales)       { campo_ESt.valoresReales=campo_ESt.valoresSelect; }
+				if(!campo_ESt.background_select)   { campo_ESt.background_select='#CCC'; }
+				if(!campo_ESt.texto_select)        { campo_ESt.texto_select='#333'; }
+				if(!campo_ESt.background_selected) { campo_ESt.background_selected='#EEE'; }
+				if(!campo_ESt.texto_selected)      { campo_ESt.texto_selected='#333'; }
+				
+				//	Colocamos los valores del campo
+				oInput_.campo_ESt=campo_ESt;
+				
+				//	Coloca la clase del texto
+				oInput_.className='cTablaTbodyTrTdSelect_ESt';
+				//	valor del padding left, menos 2 de la clase coloca
+				var paddingLeft=8;
+				//	ancho del input
+				oInput_.ancho=(anchoDelTexto_-2-4-2-(paddingLeft-2));
+				//	Colocamos el ancho del objeto - bordeInput - paddingInput - paddingTd - (paddinIzquierdaParaFlechaDeSelect - padingInput)
+				oInput_.style.width=oInput_.ancho+'px';
+				//	Colocamos el padding, para colocar la flecha a la izquierda
+				oInput_.style.paddingLeft=paddingLeft+'px';
+				//	Colocamos la alineacion del texto
+				oInput_.style.textAlign=alineacionDelTexto_;
+				//	Colocamos el valor tal cual es cargado en esta variable
+				oInput_.valorReal=contenidoDeLaColumna_ESt;
+				//	valorReal <- oInput_.valorRealDelSelect[valorSelect]
+				oInput_.arValorSelectDelReal=new Array();
+				//	va a llenar el arreglo oInput_.valorRealDelSelect
+				for(var contParaContDeCol=0;contParaContDeCol<campo_ESt.valoresSelect.length;contParaContDeCol++)
+				{
+					if(oInput_.valorReal==campo_ESt.valoresReales[contParaContDeCol])
+					{
+						//	
+						oInput_.arValorSelectDelReal[campo_ESt.valoresReales[contParaContDeCol]]=campo_ESt.valoresSelect[contParaContDeCol];
+					
+					}
+				}
+				//	Mostramos el contenido de la tabla
+				oInput_.value=oInput_.arValorSelectDelReal[oInput_.valorReal];
+				
+				//	Valores necesarios para crear el objeto autocompletar
+				var valoresDelAutocompletar=
+				{
+					objetoDeSelect: oInput_
+					/**
+					ancho: ,
+					posicionEnX: ,
+					posicionEnY: ,
+					valoresSelect: campo_ESt.valoresSelect,
+					valoresReales: campo_ESt.valoresReales,
+					funcionPorSelect: campo_ESt.funcionPorSelect,
+					funcionAlSeleccionar: campo_ESt.funcionAlSeleccionar,
+					colores:
+						{
+							background_select: campo_ESt.background_select,
+							texto_select: campo_ESt.texto_select,
+							background_selected: campo_ESt.background_selected,
+							texto_selected: campo_ESt.texto_selected
+						}
+					**/
+				};
+				
+				//	Guardamos los valores dentro para ser consultados
+				oInput_.valoresDelAutocompletar=valoresDelAutocompletar;
+				//	true, si esta activado el autocompletar en este objeto
+				oInput_.bnVisibleAutocompletar=false;
+				//	Cuando es seleccionado cargamos el valor real
+				oInput_.onfocus=
+					function()
+					{
+						//	Crea el objeto autocompletar
+						this.objetoAutocompletar=crearAutocompletar_ESt(this);
+						//	Aparece el autocompletar
+						this.apareceAutocompletar(this.objetoAutocompletar);
+					};
+				//	Aparece, mas no crea el autocompletar
+				oInput_.apareceAutocompletar=
+					function(objetoAutocompletar_ESt)
+					{
+						//	Desaparece los autocompletar anterirmente activos
+						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarActual.desaparecerAutocompletar(); }
+//	ALERT
+//	Cambiar el id por algo que lo coloque sin este
+						document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').appendChild(objetoAutocompletar_ESt);
+						
+						objetoAutocompletar_ESt.style.position='absolute';
+						objetoAutocompletar_ESt.style.left=(objetoPosX_ESt(this)+8+1+2)+'px';
+						objetoAutocompletar_ESt.style.top=(objetoPosY_ESt(this)+20)+'px';
+						
+						//	true, si esta activado el autocompletar en este objeto
+						this.bnVisibleAutocompletar=true;
+						//	guarda el input del autocompletar actual;
+						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual; }
+						//	guarda el input del autocompletar actual;
+						_objetoInputAutocompletarActual=this;
+					}
+				//	Cuando se quita el foco
+				oInput_.onblur=
+					function()
+					{
+						//	Guarda el objeto que consultara en 500ms para desaparecer
+						_objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual;
+						//	Borra el autocompletar que ahora esta visible
+						this.desaparecerAutocompletar_=
+							function()
+							{
+								_objetoInputAutocompletarAnterior.desaparecerAutocompletar();
+							}
+						//	Desaparece el autocompletar
+						window.setTimeout(this.desaparecerAutocompletar_,500);
+					};
+				//	Desaparece el autocompletar
+				oInput_.desaparecerAutocompletar=
+					function()
+					{
+						//	Coloca visible el autocompletar
+						if(this.bnVisibleAutocompletar)
+						{
+//	ALERT
+//	Cambiar el id por algo que lo coloque sin este
+							document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').removeChild(this.objetoAutocompletar);
+							//	true, si esta activado el autocompletar en este objeto
+							this.bnVisibleAutocompletar=false;
+							
+							//	objeto con el autocompletar anteriormente activo
+							_objetoInputAutocompletarAnterior=this;
+						}
+					}
+				//	Colocamos el readonly
+				oInput_.readOnly=true;
+				//	Coloca los campos del autocompletar
+				oInput_.valoresSelect=campo_ESt.valoresSelect;
+				//	Retorna el objeto
+				return oInput_;
+			break;
+		case 'autocompletar':
+				//	Crea el input donde estara el 
+				var oInput_=document.createElement('input');
+				
+				//	Los valores que falta los cambia por los de por defecto
+				if(!campo_ESt.valoresReales)       { campo_ESt.valoresReales=campo_ESt.valoresSelect; }
+				if(!campo_ESt.background_select)   { campo_ESt.background_select='#CCC'; }
+				if(!campo_ESt.texto_select)        { campo_ESt.texto_select='#333'; }
+				if(!campo_ESt.background_selected) { campo_ESt.background_selected='#EEE'; }
+				if(!campo_ESt.texto_selected)      { campo_ESt.texto_selected='#333'; }
+				
+				//	Colocamos los valores del campo
+				oInput_.campo_ESt=campo_ESt;
+				
+				//	Coloca la clase del texto
+				oInput_.className='cTablaTbodyTrTdSelect_ESt';
+				//	valor del padding left, menos 2 de la clase coloca
+				var paddingLeft=8;
+				//	ancho del input
+				oInput_.ancho=(anchoDelTexto_-2-4-2-(paddingLeft-2));
+				//	Colocamos el ancho del objeto - bordeInput - paddingInput - paddingTd - (paddinIzquierdaParaFlechaDeSelect - padingInput)
+				oInput_.style.width=oInput_.ancho+'px';
+				//	Colocamos el padding, para colocar la flecha a la izquierda
+				oInput_.style.paddingLeft=paddingLeft+'px';
+				//	Colocamos la alineacion del texto
+				oInput_.style.textAlign=alineacionDelTexto_;
+				//	Colocamos el valor tal cual es cargado en esta variable
+				oInput_.valorReal=contenidoDeLaColumna_ESt;
+				//	valorReal <- oInput_.valorRealDelSelect[valorSelect]
+				oInput_.arValorSelectDelReal=new Array();
+//	AlERTA
+//	Puede optimizarce al meter el contenido en campo_ESt, y realizarlo una vez
+				//	va a llenar el arreglo oInput_.valorRealDelSelect
+				for(var contParaContDeCol=0;contParaContDeCol<campo_ESt.valoresSelect.length;contParaContDeCol++)
+				{
+					if(oInput_.valorReal==campo_ESt.valoresReales[contParaContDeCol])
+					{
+						//	
+						oInput_.arValorSelectDelReal[campo_ESt.valoresReales[contParaContDeCol]]=campo_ESt.valoresSelect[contParaContDeCol];
+					
+					}
+				}
+				//	Mostramos el contenido de la tabla
+				if(oInput_.valorReal!='')
+				{
+					oInput_.value=oInput_.arValorSelectDelReal[oInput_.valorReal];
+				}
+				
+				//	Valores necesarios para crear el objeto autocompletar
+				var valoresDelAutocompletar=
+				{
+					objetoDeSelect: oInput_,
+					valorBuscador: oInput_.value
+				};
+				
+				//	Guardamos los valores dentro para ser consultados
+				oInput_.valoresDelAutocompletar=valoresDelAutocompletar;
+				//	true, si esta activado el autocompletar en este objeto
+				oInput_.bnVisibleAutocompletar=false;
+				//	Cuando es seleccionado cargamos el valor real
+				oInput_.onkeyup=
+					function(e_ESt)
+					{
+						//	Coloca el objeto para poder buscarlo
+						this.valoresDelAutocompletar.valorBuscador=this.value;
+						//	Crea el objeto autocompletar
+						this.objetoAutocompletar=crearAutocompletar_ESt(this);
+						//	Aparece el autocompletar
+						this.apareceAutocompletar(this.objetoAutocompletar);
+					};
+				//	Aparece, mas no crea el autocompletar
+				oInput_.apareceAutocompletar=
+					function(objetoAutocompletar_ESt)
+					{
+						//	Desaparece los autocompletar anterirmente activos
+						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarActual.desaparecerAutocompletar(); }
+//	ALERT
+//	Cambiar el id por algo que lo coloque sin este
+						document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').appendChild(objetoAutocompletar_ESt);
+						
+						objetoAutocompletar_ESt.style.position='absolute';
+						objetoAutocompletar_ESt.style.left=(objetoPosX_ESt(this)+8+1+2)+'px';
+						objetoAutocompletar_ESt.style.top=(objetoPosY_ESt(this)+20)+'px';
+						
+						//	true, si esta activado el autocompletar en este objeto
+						this.bnVisibleAutocompletar=true;
+						//	guarda el input del autocompletar actual;
+						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual; }
+						//	guarda el input del autocompletar actual;
+						_objetoInputAutocompletarActual=this;
+					}
+				//	Cuando se quita el foco
+				oInput_.onblur=
+					function()
+					{
+						//	Guarda el objeto que consultara en 500ms para desaparecer
+						_objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual;
+						//	Borra el autocompletar que ahora esta visible
+						this.desaparecerAutocompletar_=
+							function()
+							{
+								_objetoInputAutocompletarAnterior.desaparecerAutocompletar();
+							}
+						//	Desaparece el autocompletar
+						window.setTimeout(this.desaparecerAutocompletar_,500);
+					};
+				//	Desaparece el autocompletar
+				oInput_.desaparecerAutocompletar=
+					function()
+					{
+						//	Coloca visible el autocompletar
+						if(this.bnVisibleAutocompletar)
+						{
+//	ALERT
+//	Cambiar el id por algo que lo coloque sin este
+							document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').innerHTML='';//removeChild(this.objetoAutocompletar);
+							//	true, si esta activado el autocompletar en este objeto
+							this.bnVisibleAutocompletar=false;
+							//	objeto con el autocompletar anteriormente activo
+							_objetoInputAutocompletarAnterior=this;
+						}
+					};
+				//	Coloca los campos del autocompletar
+				oInput_.valoresSelect=campo_ESt.valoresSelect;
+				//	Retorna el objeto
+				return oInput_;
+			break;
+		
 		//	En caso de no tener tipo solo coloca el contenido
 		default:
 				//	Crea el div donde estara el 
 				var oDiv_=document.createElement('div');
-				//	Coloca el famoso ID
+				//	Coloca el famoso ID, en caso de no ser parte de una tabla
 				if(campo_ESt.id) { oDiv_.id=campo_ESt.id; }
 				
 				//	Colocamos la alineacion del texto
@@ -422,9 +715,107 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 			break;
 	}
 }
-
+//	objeto con el autocompletar activo
+var _objetoInputAutocompletarActual;
+//	objeto con el autocompletar anteriormente activo
+var _objetoInputAutocompletarAnterior;
+//	Crea el autocompletar debajo del objeto indicado
+function crearAutocompletar_ESt(oInput_ESt)
+{
+	//	Pasamos los valores a una variable temporal para ser usados
+	var ancho_ESt=oInput_ESt.ancho;
+	var valoresSelect_ESt=oInput_ESt.campo_ESt.valoresSelect;
+	var valoresReales_ESt=oInput_ESt.campo_ESt.valoresReales;
+	if(oInput_ESt.campo_ESt.funcionPorSelect) { var funcionPorSelect_ESt=oInput_ESt.campo_ESt.funcionPorSelect; }
+	if(oInput_ESt.campo_ESt.funcionAlSeleccionar) { var funcionAlSeleccionar_ESt=oInput_ESt.campo_ESt.funcionAlSeleccionar; }
+	
+	if(oInput_ESt.campo_ESt.alineacion)
+	{ alineacionDelTexto_=oInput_ESt.campo_ESt.alineacion; } else { alineacionDelTexto_='left'; }
+	
+	
+	if(oInput_ESt.campo_ESt.colores)
+	{
+		if(oInput_ESt.campo_ESt.colores.background_select) { var colores_background_select=oInput_ESt.campo_ESt.colores.background_select; }
+		if(oInput_ESt.campo_ESt.colores.texto_select) { var colores_texto_select=oInput_ESt.campo_ESt.colores.texto_select; }
+		if(oInput_ESt.campo_ESt.colores.background_selected) { var colores_background_selected=oInput_ESt.campo_ESt.colores.background_selected; }
+		if(oInput_ESt.campo_ESt.colores.texto_selected) { var colores_texto_selected=oInput_ESt.campo_ESt.colores.texto_selected; }
+	}
+	else
+	{
+		//	var colores_background_select=oInput_ESt.campo_ESt.colores.background_select;
+		//	var colores_texto_select=oInput_ESt.campo_ESt.colores.texto_select;
+		//	var colores_background_selected=oInput_ESt.campo_ESt.colores.background_selected;
+		//	var colores_texto_selected=oInput_ESt.campo_ESt.colores.texto_selected;
+	}
+	
+	//	Crea el div donde esta el 
+	var oDivPrincipalAutocompletar_ESt=document.createElement('div');
+	
+	//	Pasa por cada uno de los seleccionables
+	for(var contValoresSelect=0;contValoresSelect<valoresSelect_ESt.length;contValoresSelect++)
+	{
+		//	Valor visible al señeccionar
+		var valorSelect_ESt=valoresSelect_ESt[contValoresSelect];
+		//	Valor real no mostrado
+		var valorReal_ESt=valoresReales_ESt[contValoresSelect];
+		
+		//	Verificamos si este tiene el valor parecido al que se esta escribiendo
+		var bnMostrarEsteValorReal=true;
+		//	Mira si existe el valor a comparar con este
+		if(oInput_ESt.valoresDelAutocompletar.valorBuscador)
+		{
+			//	Mira si tienen algo de similar entre los dos
+			if(!(valorReal_ESt.toUpperCase().match(oInput_ESt.valoresDelAutocompletar.valorBuscador.toUpperCase())))
+			{
+				//	Si no se parece no lo anota
+				var bnMostrarEsteValorReal=false;
+			}
+		}
+		//	Si se acepta que se creee este valor como real
+		if(bnMostrarEsteValorReal)
+		{
+			//	Crea el div donde estara uno de los autocompletar
+			var oDivPrDivAutocompletar_ESt=document.createElement('div');
+			//	oDivPrincipalAutocompletar_ESt_ <- oDivPrDivAurocompletar_ESt_
+			oDivPrincipalAutocompletar_ESt.appendChild(oDivPrDivAutocompletar_ESt);
+			
+			//	Colocamos el nombre de la clase
+			oDivPrDivAutocompletar_ESt.className='cDivDivAutocompletar_ESt';
+			
+			//	Colocamos la alineacion del texto
+			oDivPrincipalAutocompletar_ESt.style.textAlign=alineacionDelTexto_;
+			
+			//	Agregamos el ancho del autocompletar
+			oDivPrincipalAutocompletar_ESt.style.width=oInput_ESt.ancho+'px';
+			
+			//	Agregamos el input al que corresponde este autocompletar
+			oDivPrDivAutocompletar_ESt.oInput_ESt=oInput_ESt;
+			
+			//	Los valores del select
+			oDivPrDivAutocompletar_ESt.valorSelect=valorSelect_ESt;
+			oDivPrDivAutocompletar_ESt.valorReal=valorReal_ESt;
+			//	Al hacer click
+			oDivPrDivAutocompletar_ESt.onclick=
+				function()
+				{
+					//	Colocamos el valor real
+					this.oInput_ESt.valorReal=this.valorReal;
+					//	Colocamos el valor visible
+					this.oInput_ESt.value=this.valorSelect;
+					//	Al seleccionar desaperece el autocompletar
+					this.oInput_ESt.desaparecerAutocompletar();
+				};
+			//	Colocamos el contenido del select
+			oDivPrDivAutocompletar_ESt.innerHTML=valorSelect_ESt;
+		}
+	}
+	//	Retorna el objeto a crear el autocompletar
+	return oDivPrincipalAutocompletar_ESt;
+}
+//	Objeto tabla
 function oTabla()
 {
+	
 	this.crearTabla=
 		function(id_ESt,JSON_Tabla_ESt)
 		{
@@ -453,7 +844,6 @@ var _bnEjecuntandoFuncionPorFilas_ESt=false;
 //	Ejecuta las funciones linea por linea
 function ejecutarFuncinesDeLaTabla_ESt(myTabla)
 {
-
 	//	Pasamos por cada fila suponiendo que sea una sola pagina
 	for(var contFilas_=0;contFilas_<myTabla.contenidoDeLasFilas_ESt.length;contFilas_++)
 	{
@@ -501,19 +891,20 @@ function setValor(nombreDelCampo,valorDelCampo)
 		//	Pasa el objeto del campo a una variable
 		var objetoCampo_ESt=_oTablaActual_ESt.objetoCampoTablaNoFilaNombCol[_filaActual_ESt][nombreDelCampo];
 		//	Mira que objeto es
-		switch(objetoCampo_ESt.queSon)
+		switch(objetoCampo_ESt.campo_ESt.queSon)
 		{
 			case 'texto':
 				//	Guardamos el nuevo valor real
 				objetoCampo_ESt.valorReal=valorDelCampo;
 				//	Colocamos lo que debe verse
-				objetoCampo_ESt.innerHTML=mascaraInput_ESt(objetoCampo_ESt.tipo,valorDelCampo);
+				objetoCampo_ESt.innerHTML=mascaraInput_ESt(objetoCampo_ESt.campo_ESt.tipo,valorDelCampo);
 				break;
 			case 'input':
+			case 'select':
 				//	Guardamos el nuevo valor real
 				objetoCampo_ESt.valorReal=valorDelCampo;
 				//	Colocamos lo que debe veres
-				objetoCampo_ESt.value=mascaraInput_ESt(objetoCampo_ESt.tipo,valorDelCampo);
+				objetoCampo_ESt.value=mascaraInput_ESt(objetoCampo_ESt.campo_ESt.tipo,valorDelCampo);
 				break;
 			default:
 				objetoCampo_ESt.value=valorDelCampo;
@@ -525,42 +916,6 @@ function setValor(nombreDelCampo,valorDelCampo)
 		return document.getElementById(nombreDelCampo).value=valorDelCampo;
 	}
 }
-
-/*
-	//	Caracteristicas de la tabla
-	this.tablaJSON=JSON_Tabla_ESt;
-	//	Nombre de la tabla
-	this.nombreTabla=myTabla.nombreTabla_ESt;
-	//	La pagina que esta visible
-	this.noDeLaPaginaVisible=0;
-	//	Numero de filas por pagina
-	this.noFilasPorPagina[this.noDeLaPaginaVisible]=myTabla.camposDeLasFilas_ESt.length;
-	//	Numero de paginas que existen
-	this.noPaginas=1;
-	//	Funciones propias de este
-	this.EjecutarFormulasDeLaTabla=
-		function()
-		{
-			//	Pasamos por cada fila suponiendo que sea una sola pagina
-			for(var contFilas_=0;contFilas_<this.noFilasPorPagina[this.noDeLaPaginaVisible];contFilas_++)
-			{
-				//	
-				_filaActual=contFilas_;
-				//	
-				_paginaVisible=this.noDeLaPaginaVisible;
-				//	
-				if(tablaJSON.funcionesPorFila)
-				{
-					//	true mientras se este ejecutando una funcion por filas
-					_bnEjecuntandoFuncionPorFilas=true;
-					//	Ejecuta la funcion creada por el usuario
-					tablaJSON.funcionesPorFila();
-					//	true mientras se este ejecutando una funcion por filas
-					_bnEjecuntandoFuncionPorFilas=false;
-				}
-			}
-		}
-*/
 
 //	
 //	Sin seleccionar
@@ -653,9 +1008,12 @@ function mascaraInput_ESt(tipoDeMascara,valor_ESt)
 	
 	return valorReturn_ESt;
 }
+/***********************
+Autocompletar {
+*/
 
-//	
-function EjecutarFormulasDeLaTabla()
-{
-	
-}
+
+
+/*
+} Autocompletar
+***********************/
