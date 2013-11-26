@@ -306,11 +306,13 @@
 	function ManejoDelCodigoCrearObjetos_ESt()
 	{
 		FiltrarCodigoDeRealASombra_ESt('CrearObjetos');
+		ColocarElTextAreaSobreSombra_ESt('CrearObjetos');
 	}
 	//	Se encarga de manejar todo el texto
 	function ManejoDelCodigoAnimacion_ESt()
 	{
 		FiltrarCodigoDeRealASombra_ESt('Animacion');
+		ColocarElTextAreaSobreSombra_ESt('Animacion');
 	}
 	
 	function FiltrarCodigoDeRealASombra_ESt(nombreDelCodigo)
@@ -322,6 +324,25 @@
 				break;
 			case 'Animacion':
 				_oSombreDeAnimacion_LugarDelCodigo_ESt.innerHTML=PasarDeCodigoAColor_ESt(_oAnimacion_LugarDelCodigo_ESt.value);
+				break;
+			case 'Cero':
+				
+				break;
+		}
+	}
+	
+	function ColocarElTextAreaSobreSombra_ESt(nombreDelCodigo)
+	{
+		switch(nombreDelCodigo)
+		{
+			case 'CrearObjetos':
+				//	_oCrearObjetos_LugarDelCodigo_ESt.style.left=objetoPosX_ESt(_oSombreDeCrearObjetos_LugarDelCodigo_ESt)+'px';
+				_oCrearObjetos_LugarDelCodigo_ESt.style.top=-_oSombreDeCrearObjetos_LugarDelCodigo_ESt.offsetHeight+'px';
+				_oCrearObjetos_LugarDelCodigo_ESt.style.height=_oSombreDeCrearObjetos_LugarDelCodigo_ESt.offsetHeight+'px';
+				break;
+			case 'Animacion':
+				_oAnimacion_LugarDelCodigo_ESt.style.top=-_oSombreDeAnimacion_LugarDelCodigo_ESt.offsetHeight+'px';
+				_oAnimacion_LugarDelCodigo_ESt.style.height=_oSombreDeAnimacion_LugarDelCodigo_ESt.offsetHeight+'px';
 				break;
 			case 'Cero':
 				

@@ -81,6 +81,8 @@
 				position: relative;
 				background-color: transparent;
 				
+				color: rgba(0,0,0,0.1);
+				position: relative;
 				/* display: none; */
 			}
 			/** Esta es la sombra del codigo de arriba, donde se veran los colores **/
@@ -258,9 +260,14 @@
 			cursor: pointer;
 			color: #DDD;
 		}
-		.cDivDivAutocompletar_ESt:hover
+		.cDivDivAutocompletarSel_ESt
 		{
-			background-color: #555;
+			padding: 2px 2px;
+			border-top: 1px solid #E0E0E0;
+			min-height: 18px;
+			background-color: #777;
+			cursor: pointer;
+			color: #DDD;
 		}
 		
 	/*
