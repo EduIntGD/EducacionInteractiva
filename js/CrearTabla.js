@@ -139,7 +139,7 @@ var tabla=
 	},
 	contenido:
 	[
-		['Josue David','Guitierres Pinilla',25,'programador','Bogotá D.C.',2000,32],
+		['Josue David','Gabo Pinilla',25,'programador','Bogotá D.C.',2000,32],
 		['Nula Alexandra','Medina Rut',25,'diseñador','',200,84],
 		['Carlos Camilo','Medina Castro',25,'diseñador','',1200,23],
 		['Carlos Andres','Guille Luis',25,'diseñador','',3000,12]
@@ -355,22 +355,26 @@ function colocarContenido_ESt(myTabla,JSON_Tabla_ESt)
 	}
 }
 
-//	contenidoDeLaColumna_ESt='25 años';
-//	campo_ESt={
-//		nombre: 'edad',
-//		queSon: 'texto',
-//		tipo: 'numeros',
-//		bnFiltroPersonalizado: false, // (por defecto)
-//		filtro: 'soloNumeros',
-//		ancho: 50,
-//		alineacion: 'center'
-//	};
+	/*
+	contenidoDeLaColumna_ESt='25 años';
+	campo_ESt={
+		nombre: 'edad',					//	El nombre es suyo
+		queSon: 'texto',				//	Puede ser: 'texto','input','select','autocompletar'
+		tipo: 'numeros',				//	Puede ser: 'numeros','pesosColombianos','numeroDeDocumento'
+		bnFiltroPersonalizado: false, 	//	Este filtro es , por defecto es false
+		filtro: 'soloNumeros',			//	Puede ser: 'soloNumeros','convertirHTML'
+		ancho: 50,						//	El ancho del input
+		alineacion: 'center'			//	La alineacion de este
+		presentacion: 'clasica'			//	Puede ser: 'clasica'
+			//	En caso de ser select:
+			valoresSelect:    ['Diseñador','Programador','Usabilidad','Director'],	//	Valores para mostrar
+			valoresReales:    ['diseñador','programador','Usabilidad','Director'],	//	Valores reales, enviados en el formulario
+	};
+	*/
 // 	El lugar donde crea los input, select, texto entre otros
 function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 {
 	//	Si no es un filtro previo coloca uno por defecto
-	
-	
 	if(campo_ESt.alineacion)
 	{ alineacionDelTexto_=campo_ESt.alineacion; } else { alineacionDelTexto_='left'; }
 	anchoDelTexto_=campo_ESt.ancho;
@@ -385,7 +389,7 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oDiv_.campo_ESt=campo_ESt;
 				
 				//	Coloca la clase del texto
-				oDiv_.className='cTablaTbodyTrTdDivParaTexto_ESt';
+				oDiv_.className='cDivParaTexto_ESt';
 				//	Coloca el famoso ID
 				if(campo_ESt.id) { oDiv_.id=campo_ESt.id; }
 				
@@ -410,9 +414,24 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				
 				//	Colocamos los valores del campo
 				oInput_.campo_ESt=campo_ESt;
+				//	Colocamos el nombre
+				if(campo_ESt.nombre)
+				{ oInput_.name=campo_ESt.nombre; }
+				//	Colocamos el id
+				if(campo_ESt.id)
+				{ oInput_.id=campo_ESt.id; }
 				
-				//	Coloca la clase del texto
-				oInput_.className='cTablaTbodyTrTdInput_ESt';
+				//	Si este tiene una presentacion clasica
+				if(campo_ESt.presentacion=='clasica')
+				{
+					//	Coloca la clase del texto
+					oInput_.className='cInputClasico_ESt';
+				}
+				else
+				{
+					//	Coloca la clase del texto
+					oInput_.className='cInput_ESt';
+				}
 				//	Colocamos el ancho del objeto - bordeInput - paddingInput - paddingTd
 				oInput_.style.width=(anchoDelTexto_-2-4-2)+'px';
 				//	Colocamos el ancho del objeto - bordeInput - paddingInput - paddingTd
@@ -467,8 +486,18 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				//	Colocamos los valores del campo
 				oInput_.campo_ESt=campo_ESt;
 				
-				//	Coloca la clase del texto
-				oInput_.className='cTablaTbodyTrTdSelect_ESt';
+				//	Si este tiene una presentacion clasica
+				if(campo_ESt.presentacion=='clasica')
+				{
+					//	Coloca la clase del texto clasico, con el formato comun
+					oInput_.className='cSelectClasico_ESt';
+				}
+				else
+				{
+					//	Coloca la clase del texto
+					oInput_.className='cSelect_ESt';
+				}
+				
 				//	valor del padding left, menos 2 de la clase coloca
 				var paddingLeft=8;
 				//	ancho del input
@@ -499,22 +528,6 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				var valoresDelAutocompletar=
 				{
 					objetoDeSelect: oInput_
-					/**
-					ancho: ,
-					posicionEnX: ,
-					posicionEnY: ,
-					valoresSelect: campo_ESt.valoresSelect,
-					valoresReales: campo_ESt.valoresReales,
-					funcionPorSelect: campo_ESt.funcionPorSelect,
-					funcionAlSeleccionar: campo_ESt.funcionAlSeleccionar,
-					colores:
-						{
-							background_select: campo_ESt.background_select,
-							texto_select: campo_ESt.texto_select,
-							background_selected: campo_ESt.background_selected,
-							texto_selected: campo_ESt.texto_selected
-						}
-					**/
 				};
 				
 				//	Guardamos los valores dentro para ser consultados
@@ -525,46 +538,7 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.onkeyup=
 					function(e_MyR)
 					{
-						//	Conocer el numero de la tecla oprimida
-						var key_MyR=e_MyR.keyCode;
-						//	Enter
-						if(key_MyR==13)
-						{
-							//	Esta es el arreglo de divs que aparece en el autocompletar
-							this.valorSelect=this.arODivPrincipalAutocompletar_ESt[this.posicionDelValoreSeleccionado].valorSelect;
-							//	Coloca el valor a seleccionar en donde debe estar
-							this.value=this.valorSelect;
-							//	Coloca el valor real para ser usado
-							this.valorReal=this.arODivPrincipalAutocompletar_ESt[this.posicionDelValoreSeleccionado].valorReal;
-							//	Desaparece el autocompletar
-							this.desaparecerAutocompletar();
-						}
-						//	Arriba
-						else if(key_MyR==38)
-						{
-							//	Para que cuando oprima la fecha no suba en la pantalla
-							e_MyR.preventDefault();
-							//	Si es mayor de cero reduce la posicion
-							if(0<this.posicionDelValoreSeleccionado)
-							{
-								//	Una posicion menos
-								this.cargarNuevaPosicionSeleccionada(--this.posicionDelValoreSeleccionado);
-							}
-						}
-						//	Abajo
-						else if(key_MyR==40)
-						{
-							//	Para que cuando oprima la fecha no suba en la pantalla
-							e_MyR.preventDefault();
-							//	Si es mayor de cero reduce la posicion
-							if(this.posicionDelValoreSeleccionado<this.arODivPrincipalAutocompletar_ESt.length)
-							{
-								//	Una posicion menos
-								this.cargarNuevaPosicionSeleccionada(++this.posicionDelValoreSeleccionado);
-							}
-						}
-						
-						return false;
+						return onSelectKeyup_ESt(this,e_MyR);
 					}
 				//	Colocar el la seleccion del autocompletar en una posicion espesifica
 				oInput_.cargarNuevaPosicionSeleccionada=
@@ -577,21 +551,15 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.cargarNuevaSeleccion=
 					function()
 					{
-						for(contValoresSelect=0;contValoresSelect<this.arODivPrincipalAutocompletar_ESt.length;contValoresSelect++)
-						{
-							//	Si este esta en la posicion del valor seleccionado, conmunmente en 0
-							if(this.posicionDelValoreSeleccionado==contValoresSelect)
-							{
-								//	Colocamos el nombre de la clase
-								this.arODivPrincipalAutocompletar_ESt[contValoresSelect].className='cDivDivAutocompletarSel_ESt';
-							}
-							else
-							{
-								//	Colocamos el nombre de la clase
-								this.arODivPrincipalAutocompletar_ESt[contValoresSelect].className='cDivDivAutocompletar_ESt';
-							}
-						}
+						cargarNuevaSeleccion_ESt(this);
 					}
+				//	Cambiar los seleccionadores
+				oInput_.setValoresSelect=
+					function(arValoresSelect)
+					{ setValoresSelect_ESt(this,arValoresSelect); }
+				oInput_.setValoresRealesSelect=
+					function(arValoresSelect,arValoresReales)
+					{ setValoresRealesSelect_ESt(this,arValoresSelect,arValoresReales); }
 				//	Cuando es seleccionado cargamos el valor real
 				oInput_.onfocus=
 					function()
@@ -605,54 +573,19 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.apareceAutocompletar=
 					function(objetoAutocompletar_ESt)
 					{
-						//	Desaparece los autocompletar anteriormente activos
-						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarActual.desaparecerAutocompletar(); }
-//	ALERT
-//	Cambiar el id por algo que lo coloque sin este
-						document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').appendChild(objetoAutocompletar_ESt);
-						
-						objetoAutocompletar_ESt.style.position='absolute';
-						objetoAutocompletar_ESt.style.left=(objetoPosX_ESt(this)+8+1+2)+'px';
-						objetoAutocompletar_ESt.style.top=(objetoPosY_ESt(this)+20)+'px';
-						
-						//	true, si esta activado el autocompletar en este objeto
-						this.bnVisibleAutocompletar=true;
-						//	guarda el input del autocompletar actual;
-						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual; }
-						//	guarda el input del autocompletar actual;
-						_objetoInputAutocompletarActual=this;
+						apareceAutocompletar_ESt(this,objetoAutocompletar_ESt);
 					}
 				//	Cuando se quita el foco
 				oInput_.onblur=
 					function()
 					{
-						//	Guarda el objeto que consultara en 500ms para desaparecer
-						_objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual;
-						//	Borra el autocompletar que ahora esta visible
-						this.desaparecerAutocompletar_=
-							function()
-							{
-								_objetoInputAutocompletarAnterior.desaparecerAutocompletar();
-							}
-						//	Desaparece el autocompletar
-						window.setTimeout(this.desaparecerAutocompletar_,500);
+						onBurnSelect_ESt(this);
 					};
 				//	Desaparece el autocompletar
 				oInput_.desaparecerAutocompletar=
 					function()
 					{
-						//	Coloca visible el autocompletar
-						if(this.bnVisibleAutocompletar)
-						{
-//	ALERT
-//	Cambiar el id por algo que lo coloque sin este
-							document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').removeChild(this.objetoAutocompletar);
-							//	true, si esta activado el autocompletar en este objeto
-							this.bnVisibleAutocompletar=false;
-							
-							//	objeto con el autocompletar anteriormente activo
-							_objetoInputAutocompletarAnterior=this;
-						}
+						desaparecerAutocompletar_ESt(this);
 					}
 				//	Colocamos el readonly
 				oInput_.readOnly=true;
@@ -675,8 +608,18 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				//	Colocamos los valores del campo
 				oInput_.campo_ESt=campo_ESt;
 				
-				//	Coloca la clase del texto
-				oInput_.className='cTablaTbodyTrTdSelect_ESt';
+				//	Si este tiene una presentacion clasica
+				if(campo_ESt.presentacion=='clasica')
+				{
+					//	Coloca la clase del texto clasico, con el formato comun
+					oInput_.className='cSelectClasico_ESt';
+				}
+				else
+				{
+					//	Coloca la clase del texto
+					oInput_.className='cSelect_ESt';
+				}
+				
 				//	valor del padding left, menos 2 de la clase coloca
 				var paddingLeft=8;
 				//	ancho del input
@@ -720,6 +663,20 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.valoresDelAutocompletar=valoresDelAutocompletar;
 				//	true, si esta activado el autocompletar en este objeto
 				oInput_.bnVisibleAutocompletar=false;
+				//	Cuando es seleccionado cargamos el valor real
+				oInput_.onkeyup=
+					function(e_MyR)
+					{
+						if(!onSelectKeyup_ESt(this,e_MyR))
+						{
+							//	Coloca el objeto para poder buscarlo
+							this.valoresDelAutocompletar.valorBuscador=this.value;
+							//	Crea el objeto autocompletar
+							this.objetoAutocompletar=crearAutocompletar_ESt(this);
+							//	Aparece el autocompletar
+							this.apareceAutocompletar(this.objetoAutocompletar);
+						}
+					};
 				//	Colocar el la seleccion del autocompletar en una posicion espesifica
 				oInput_.cargarNuevaPosicionSeleccionada=
 					function(posicion_MyR)
@@ -731,124 +688,33 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.cargarNuevaSeleccion=
 					function()
 					{
-						for(contValoresSelect=0;contValoresSelect<this.arODivPrincipalAutocompletar_ESt.length;contValoresSelect++)
-						{
-							//	Si este esta en la posicion del valor seleccionado, conmunmente en 0
-							if(this.posicionDelValoreSeleccionado==contValoresSelect)
-							{
-								//	Colocamos el nombre de la clase
-								this.arODivPrincipalAutocompletar_ESt[contValoresSelect].className='cDivDivAutocompletarSel_ESt';
-							}
-							else
-							{
-								//	Colocamos el nombre de la clase
-								this.arODivPrincipalAutocompletar_ESt[contValoresSelect].className='cDivDivAutocompletar_ESt';
-							}
-						}
+						cargarNuevaSeleccion_ESt(this);
 					}
-				//	Cuando es seleccionado cargamos el valor real
-				oInput_.onkeyup=
-					function(e_MyR)
-					{
-						//	Conocer el numero de la tecla oprimida
-						var key_MyR=e_MyR.keyCode;
-						//	Enter
-						if(key_MyR==13)
-						{
-							//	Esta es el arreglo de divs que aparece en el autocompletar
-							this.valorSelect=this.arODivPrincipalAutocompletar_ESt[this.posicionDelValoreSeleccionado].valorSelect;
-							//	Coloca el valor a seleccionar en donde debe estar
-							this.value=this.valorSelect;
-							//	Coloca el valor real para ser usado
-							this.valorReal=this.arODivPrincipalAutocompletar_ESt[this.posicionDelValoreSeleccionado].valorReal;
-							//	Desaparece el autocompletar
-							this.desaparecerAutocompletar();
-						}
-						//	Arriba
-						else if(key_MyR==38)
-						{
-							//	Para que cuando oprima la fecha no suba en la pantalla
-							e_MyR.preventDefault();
-							//	Si es mayor de cero reduce la posicion
-							if(0<this.posicionDelValoreSeleccionado)
-							{
-								//	Una posicion menos
-								this.cargarNuevaPosicionSeleccionada(--this.posicionDelValoreSeleccionado);
-							}
-						}
-						//	Abajo
-						else if(key_MyR==40)
-						{
-							//	Para que cuando oprima la fecha no suba en la pantalla
-							e_MyR.preventDefault();
-							//	Si es mayor de cero reduce la posicion
-							if(this.posicionDelValoreSeleccionado<this.arODivPrincipalAutocompletar_ESt.length)
-							{
-								//	Una posicion menos
-								this.cargarNuevaPosicionSeleccionada(++this.posicionDelValoreSeleccionado);
-							}
-						}
-						else
-						{
-							//	Coloca el objeto para poder buscarlo
-							this.valoresDelAutocompletar.valorBuscador=this.value;
-							//	Crea el objeto autocompletar
-							this.objetoAutocompletar=crearAutocompletar_ESt(this);
-							//	Aparece el autocompletar
-							this.apareceAutocompletar(this.objetoAutocompletar);
-						}
-					};
+				//	Cambiar los seleccionadores
+				oInput_.setValoresSelect=
+					function(arValoresSelect)
+					{ setValoresSelect_ESt(this,arValoresSelect); }
+				oInput_.setValoresRealesSelect=
+					function(arValoresSelect,arValoresReales)
+					{ setValoresRealesSelect_ESt(this,arValoresSelect,arValoresReales); }
+				
 				//	Aparece, mas no crea el autocompletar
 				oInput_.apareceAutocompletar=
 					function(objetoAutocompletar_ESt)
 					{
-						//	Desaparece los autocompletar anterirmente activos
-						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarActual.desaparecerAutocompletar(); }
-//	ALERT
-//	Cambiar el id por algo que lo coloque sin este
-						document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').appendChild(objetoAutocompletar_ESt);
-						
-						objetoAutocompletar_ESt.style.position='absolute';
-						objetoAutocompletar_ESt.style.left=(objetoPosX_ESt(this)+8+1+2)+'px';
-						objetoAutocompletar_ESt.style.top=(objetoPosY_ESt(this)+20)+'px';
-						
-						//	true, si esta activado el autocompletar en este objeto
-						this.bnVisibleAutocompletar=true;
-						//	guarda el input del autocompletar actual;
-						if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual; }
-						//	guarda el input del autocompletar actual;
-						_objetoInputAutocompletarActual=this;
+						apareceAutocompletar_ESt(this,objetoAutocompletar_ESt);
 					}
 				//	Cuando se quita el foco
 				oInput_.onblur=
 					function()
 					{
-						//	Guarda el objeto que consultara en 500ms para desaparecer
-						_objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual;
-						//	Borra el autocompletar que ahora esta visible
-						this.desaparecerAutocompletar_=
-							function()
-							{
-								_objetoInputAutocompletarAnterior.desaparecerAutocompletar();
-							}
-						//	Desaparece el autocompletar
-						window.setTimeout(this.desaparecerAutocompletar_,500);
+						onBurnSelect_ESt(this);
 					};
 				//	Desaparece el autocompletar
 				oInput_.desaparecerAutocompletar=
 					function()
 					{
-						//	Coloca visible el autocompletar
-						if(this.bnVisibleAutocompletar)
-						{
-//	ALERT
-//	Cambiar el id por algo que lo coloque sin este
-							document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').innerHTML='';//removeChild(this.objetoAutocompletar);
-							//	true, si esta activado el autocompletar en este objeto
-							this.bnVisibleAutocompletar=false;
-							//	objeto con el autocompletar anteriormente activo
-							_objetoInputAutocompletarAnterior=this;
-						}
+						desaparecerAutocompletar_ESt(this);
 					};
 				//	Coloca los campos del autocompletar
 				oInput_.valoresSelect=campo_ESt.valoresSelect;
@@ -875,6 +741,142 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 			break;
 	}
 }
+function onSelectKeyup_ESt(oInput_ESt,e_MyR)
+{
+	//	Conocer el numero de la tecla oprimida
+	var key_MyR=e_MyR.keyCode;
+	//	Enter
+	if(key_MyR==13)
+	{
+		//	Esta es el arreglo de divs que aparece en el autocompletar
+		oInput_ESt.valorSelect=oInput_ESt.arODivPrincipalAutocompletar_ESt[oInput_ESt.posicionDelValoreSeleccionado].valorSelect;
+		//	Coloca el valor a seleccionar en donde debe estar
+		oInput_ESt.value=oInput_ESt.valorSelect;
+		//	Coloca el valor real para ser usado
+		oInput_ESt.valorReal=oInput_ESt.arODivPrincipalAutocompletar_ESt[oInput_ESt.posicionDelValoreSeleccionado].valorReal;
+		//	Desaparece el autocompletar
+		oInput_ESt.desaparecerAutocompletar();
+		//	Retorna un Bieen
+		return true;
+	}
+	//	Arriba
+	else if(key_MyR==38)
+	{
+		//	Para que cuando oprima la fecha no suba en la pantalla
+		e_MyR.preventDefault();
+		//	Si es mayor de cero reduce la posicion
+		if(0<oInput_ESt.posicionDelValoreSeleccionado)
+		{
+			//	Una posicion menos
+			oInput_ESt.cargarNuevaPosicionSeleccionada(--oInput_ESt.posicionDelValoreSeleccionado);
+		}
+		//	Retorna un Bieen
+		return true;
+	}
+	//	Abajo
+	else if(key_MyR==40)
+	{
+		//	Para que cuando oprima la fecha no suba en la pantalla
+		e_MyR.preventDefault();
+		//	Si es mayor de cero reduce la posicion
+		if(oInput_ESt.posicionDelValoreSeleccionado<oInput_ESt.arODivPrincipalAutocompletar_ESt.length)
+		{
+			//	Una posicion menos
+			oInput_ESt.cargarNuevaPosicionSeleccionada(++oInput_ESt.posicionDelValoreSeleccionado);
+		}
+		//	Retorna un Bieen
+		return true;
+	}
+	//	Retorna un, no se movio ni hizo enter
+	return false;
+}
+
+function cargarNuevaSeleccion_ESt(oInput_ESt)
+{
+	for(contValoresSelect=0;contValoresSelect<oInput_ESt.arODivPrincipalAutocompletar_ESt.length;contValoresSelect++)
+	{
+		//	Si este esta en la posicion del valor seleccionado, conmunmente en 0
+		if(oInput_ESt.posicionDelValoreSeleccionado==contValoresSelect)
+		{
+			//	Colocamos el nombre de la clase
+			oInput_ESt.arODivPrincipalAutocompletar_ESt[contValoresSelect].className='cDivDivAutocompletarSel_ESt';
+		}
+		else
+		{
+			//	Colocamos el nombre de la clase
+			oInput_ESt.arODivPrincipalAutocompletar_ESt[contValoresSelect].className='cDivDivAutocompletar_ESt';
+		}
+	}
+}
+
+function apareceAutocompletar_ESt(oInput_ESt,objetoAutocompletar_ESt)
+{
+	//	Desaparece los autocompletar anteriormente activos
+	if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarActual.desaparecerAutocompletar(); }
+//	ALERT
+//	Cambiar el id por algo que lo coloque sin este
+	document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').appendChild(objetoAutocompletar_ESt);
+	
+	objetoAutocompletar_ESt.style.position='absolute';
+	objetoAutocompletar_ESt.style.left=(objetoPosX_ESt(oInput_ESt)+8+1+2)+'px';
+	objetoAutocompletar_ESt.style.top=(objetoPosY_ESt(oInput_ESt)+20)+'px';
+	
+	//	true, si esta activado el autocompletar en este objeto
+	oInput_ESt.bnVisibleAutocompletar=oInput_ESt;
+	//	guarda el input del autocompletar actual;
+	if(_objetoInputAutocompletarActual) { _objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual; }
+	//	guarda el input del autocompletar actual;
+	_objetoInputAutocompletarActual=oInput_ESt;
+}
+
+function onBurnSelect_ESt(oInput_ESt)
+{
+	//	Guarda el objeto que consultara en 500ms para desaparecer
+	_objetoInputAutocompletarAnterior=_objetoInputAutocompletarActual;
+	//	Borra el autocompletar que ahora esta visible
+	oInput_ESt.desaparecerAutocompletar_=
+		function()
+		{
+			_objetoInputAutocompletarAnterior.desaparecerAutocompletar();
+		}
+	//	Desaparece el autocompletar
+	window.setTimeout(oInput_ESt.desaparecerAutocompletar_,500);
+}
+
+function desaparecerAutocompletar_ESt(oInput_ESt)
+{
+	//	Coloca visible el autocompletar
+	if(oInput_ESt.bnVisibleAutocompletar)
+	{
+//	ALERT
+//	Cambiar el id por algo que lo coloque sin este
+		//	document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').removeChild(oInput_ESt.objetoAutocompletar);
+		document.getElementById('iDondeEstaraTEmporalmeneElAutocompletar').innerHTML='';//removeChild(this.objetoAutocompletar);
+		//	true, si esta activado el autocompletar en este objeto
+		oInput_ESt.bnVisibleAutocompletar=false;
+		//	objeto con el autocompletar anteriormente activo
+		_objetoInputAutocompletarAnterior=oInput_ESt;
+	}
+}
+
+//	colocarNuevosValoresRealesSelect([5200,2300])
+function setValoresRealesSelect_ESt(oInput_ESt,arValoresReales)
+{
+	//	Guarda los valores reales
+	oInput_ESt.campo_ESt.valoresReales=arValoresReales;
+	//	Pasamos por cada uno de estos y le aplicamos la mascara
+	for(var contValoresReales=0;contValoresReales<arValoresReales.length;contValoresReales++)
+	{
+		oInput_ESt.campo_ESt.valoresSelect[contValoresReales]=mascaraInput_ESt(oInput_ESt.campo_ESt.tipo,arValoresReales[contValoresReales]);
+	}
+}
+//	colocarNuevosValoresSelect(['Juan','David'],['juan','david'])
+function setValoresSelect_ESt(oInput_ESt,arValoresSelect,arValoresReales)
+{
+	oInput_ESt.campo_ESt.valoresSelect=arValoresSelect;
+	oInput_ESt.campo_ESt.valoresReales=arValoresReales;
+}
+
 //	objeto con el autocompletar activo
 var _objetoInputAutocompletarActual;
 //	objeto con el autocompletar anteriormente activo
@@ -1162,6 +1164,11 @@ function filtroInput_ESt(tipoDeFiltro,valor_ESt)
 					if(valorReturn_ESt.split(',').length==2  && valorReturn_ESt.split('.').length==1)
 					{ valorReturn_ESt=valorReturn_ESt.replace(',','.'); }
 					break;
+				case 'numeroDeDocumento':
+					while(valorReturn_ESt.indexOf(' ')!=-1) { valorReturn_ESt=valorReturn_ESt.replace(' ',''); }
+					while(valorReturn_ESt.indexOf(',')!=-1) { valorReturn_ESt=valorReturn_ESt.replace(',',''); }
+					while(valorReturn_ESt.indexOf('.')!=-1) { valorReturn_ESt=valorReturn_ESt.replace('.',''); }
+					break;
 				default:
 					valorReturn_ESt=valorReturn_ESt;
 					break;
@@ -1189,8 +1196,18 @@ function mascaraInput_ESt(tipoDeMascara,valor_ESt)
 				case 'pesosColombianos':
 					//	Si hat algo coloca la mascara
 					if(valorReturn_ESt!='')
+					{ valorReturn_ESt='$ '+NumeroTipoMoneda_ESt(valorReturn_ESt); }
+					break;
+				case 'numeroDeDocumento':
+					//	Si hat algo coloca la mascara
+					if(valorReturn_ESt!='')
 					{
-						valorReturn_ESt='$ '+NumeroTipoMoneda_ESt(valorReturn_ESt);
+						var arValorReturn_ESt=valorReturn_ESt.split('-');
+						arValorReturn_ESt[0]=NumeroTipoMoneda_ESt(arValorReturn_ESt[0],0);
+						if(1<arValorReturn_ESt.length)
+						{ valorReturn_ESt=arValorReturn_ESt[0]+'-'+arValorReturn_ESt[1]; }
+						else
+						{ valorReturn_ESt=arValorReturn_ESt[0]; }
 					}
 					break;
 			}

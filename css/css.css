@@ -211,27 +211,27 @@
 	{
 		background-color: #F7F7F7;
 	}
-		.cTablaTbodyTrTdDivParaTexto_ESt
+		.cDivParaTexto_ESt
 		{
 			padding: 0px 5px;
 		}
-		.cDivDeTablaNvl01_ESt table tbody  tr td .cTablaTbodyTrTdInput_ESt
+		.cDivDeTablaNvl01_ESt table tbody  tr td .cInput_ESt, .cInputClasico_ESt
 		{
 			padding: 0px 2px;
 			border: 1px solid #E0E0E0;
 			height: 18px;
 		}
-		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cTablaTbodyTrTdInput_ESt
+		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cInput_ESt
 		{
 			background-color: #F7F7F7;
 		}
 		
-		.cTablaTbodyTrTdSelect_ESt
+		.cSelect_ESt
 		{
 			background-image: url(../images/Base/Base.png);
 			background-repeat: no-repeat;
 		}
-		.cDivDeTablaNvl01_ESt table tbody  tr td .cTablaTbodyTrTdSelect_ESt
+		.cDivDeTablaNvl01_ESt table tbody  tr td .cSelect_ESt, .cSelectClasico_ESt
 		{
 			padding: 0px 2px;
 			border: 1px solid #E0E0E0;
@@ -240,7 +240,7 @@
 			background-repeat: no-repeat;
 			background-color: #F7F7F7;
 		}
-		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cTablaTbodyTrTdSelect_ESt
+		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cSelect_ESt
 		{
 			background-color: #F0F0F0;
 		}
