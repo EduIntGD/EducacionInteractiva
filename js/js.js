@@ -5,6 +5,13 @@
 	//	variables usada para personas que hablan español
 	verdadero=true;
 	
+	//	Clona un objeto
+	function cloneObject_ESt(obj) {
+	if(null==obj || 'object'!=typeof obj) { return obj; } 
+	var copy = obj.constructor(); for (var attr in obj) {
+	if(obj.hasOwnProperty(attr)) copy[attr]= obj[attr]; }
+	return copy; }
+	
 	var _arSolUnaVezLanzTruePrCod_ESt=new Array();
 	//	Solo una vez lanza true por codigo, todas las demas false
 	function SolUnaVezLanzTruePrCod_ESt(codigo_ESt)

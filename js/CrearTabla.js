@@ -404,6 +404,14 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				
 				//	Colocamos el tipo para que lo vea
 				oDiv_.queSon=campo_ESt.queSon;
+				
+				//	Introducir un valor
+				oDiv_.setValor=
+					function(valor)
+					{
+						this.innerHTML=mascaraInput_ESt(this.tipo,valor);
+					};
+				
 				//	Retornamos el objeto creado
 				return oDiv_;
 			break;
@@ -539,6 +547,17 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.valoresDelAutocompletar=valoresDelAutocompletar;
 				//	true, si esta activado el autocompletar en este objeto
 				oInput_.bnVisibleAutocompletar=false;
+				//	Colocarle un valor
+				oInput_.setValor=
+					function(valor)
+					{
+						//	Colocamos el nuevo valor real
+						this.valorReal=valor;
+						//	Colocamos el valor real del select
+						this.valorSelect=mascaraInput_ESt(this.tipo,this.valorReal);
+						//	Colocamos el valor para mostrarlo
+						this.value=this.valorSelect;
+					};
 				//	Cuando oprimimos una tecla
 				oInput_.onkeyup=
 					function(e_MyR)
@@ -667,6 +686,17 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				oInput_.valoresDelAutocompletar=valoresDelAutocompletar;
 				//	true, si esta activado el autocompletar en este objeto
 				oInput_.bnVisibleAutocompletar=false;
+				//	Colocarle un valor
+				oInput_.setValor=
+					function(valor)
+					{
+						//	Colocamos el nuevo valor real
+						this.valorReal=valor;
+						//	Colocamos el valor real del select
+						this.valorSelect=mascaraInput_ESt(this.tipo,this.valorReal);
+						//	Colocamos el valor para mostrarlo
+						this.value=this.valorSelect;
+					};
 				//	Cuando es seleccionado cargamos el valor real
 				oInput_.onkeyup=
 					function(e_MyR)
@@ -904,19 +934,37 @@ function desaparecerAutocompletar_ESt(oInput_ESt)
 //	colocarNuevosValoresRealesSelect([5200,2300])
 function setValoresRealesSelect_ESt(oInput_ESt,arValoresReales)
 {
-	//	Guarda los valores reales
-	oInput_ESt.campo_ESt.valoresReales=arValoresReales;
+	var arValoresReales_ESt=new Array();
+	arValoresReales_ESt=arValoresReales;
+	//	Guarda los valores realesx
+	oInput_ESt.campo_ESt.valoresReales=new Array();
+	oInput_ESt.campo_ESt.valoresReales=arValoresReales_ESt;
+	//	Damos un valor provisional antes de aplicar la mascara
+	oInput_ESt.campo_ESt.valoresSelect=new Array();
 	//	Pasamos por cada uno de estos y le aplicamos la mascara
 	for(var contValoresReales=0;contValoresReales<arValoresReales.length;contValoresReales++)
 	{
-		oInput_ESt.campo_ESt.valoresSelect[contValoresReales]=mascaraInput_ESt(oInput_ESt.campo_ESt.tipo,arValoresReales[contValoresReales]);
+		oInput_ESt.campo_ESt.valoresSelect[contValoresReales]=mascaraInput_ESt(oInput_ESt.campo_ESt.tipo,oInput_ESt.campo_ESt.valoresReales[contValoresReales]);
 	}
 }
 //	colocarNuevosValoresSelect(['Juan','David'],['juan','david'])
 function setValoresSelect_ESt(oInput_ESt,arValoresSelect,arValoresReales)
 {
+	//	Asignamos los vaores select
 	oInput_ESt.campo_ESt.valoresSelect=arValoresSelect;
-	oInput_ESt.campo_ESt.valoresReales=arValoresReales;
+	//	Averiguamos si tienen o no los valores reales, en caso de que no, le hacemos el filtro correspondoente
+	if(arValoresReales==undefined)
+	{
+		for(var contValoresSelect=0;contValoresSelect<arValoresSelect.length;contValoresSelect++)
+		{
+			oInput_ESt.campo_ESt.valoresReales=filtroInput_ESt(oInput_ESt.campo_ESt.tipo,oInput_ESt.campo_ESt.valoresSelect);
+		}
+	}
+	else
+	{
+		//	Si existe este solo se le asigna
+		oInput_ESt.campo_ESt.valoresReales=arValoresReales;
+	}
 }
 
 //	objeto con el autocompletar activo
@@ -1031,6 +1079,9 @@ function crearAutocompletar_ESt(oInput_ESt)
 				function()
 				{
 					seleccionarPosicionActualDelSelect(oInput_ESt);
+//	ALERT
+//	Creo que es asi
+					//	seleccionarPosicionActualDelSelect(this.oInput_ESt);
 				};
 			//	Colocamos el contenido del select
 			oDivPrDivAutocompletar_ESt.innerHTML=valorSelect_ESt;
@@ -1045,7 +1096,6 @@ function crearAutocompletar_ESt(oInput_ESt)
 //	Objeto tabla
 function oTabla()
 {
-	
 	this.crearTabla=
 		function(id_ESt,JSON_Tabla_ESt)
 		{
@@ -1253,12 +1303,3 @@ function mascaraInput_ESt(tipoDeMascara,valor_ESt)
 	
 	return valorReturn_ESt;
 }
-/***********************
-Autocompletar {
-*/
-
-
-
-/*
-} Autocompletar
-***********************/

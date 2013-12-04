@@ -231,14 +231,20 @@
 			background-image: url(../images/Base/Base.png);
 			background-repeat: no-repeat;
 		}
-		.cDivDeTablaNvl01_ESt table tbody  tr td .cSelect_ESt, .cSelectClasico_ESt
+		.cDivDeTablaNvl01_ESt table tbody  tr td  input.cSelect_ESt[readonly], input.cSelectClasico_ESt[readonly]
+		{
+			background-color: #F7F7F7;
+			background-image: url(../images/Base/Base.png);
+		}
+		.cDivDeTablaNvl01_ESt table tbody  tr td  input.cSelect_ESt, input.cSelectClasico_ESt
 		{
 			padding: 0px 2px;
 			border: 1px solid #E0E0E0;
 			height: 18px;
 			background-image: url(../images/Base/Base.png);
 			background-repeat: no-repeat;
-			background-color: #F7F7F7;
+			background-color: #FFF;
+			color: #333;
 		}
 		.cDivDeTablaNvl01_ESt table tbody  tr:nth-child(2n) td .cSelect_ESt
 		{
