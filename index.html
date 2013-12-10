@@ -11,11 +11,11 @@
 		{ window.addEventListener('load',funcion_MyR,false); } else { 
 		window.attachEvent('onload',funcion_MyR); }	}
 		//	Carga todos los parametros inciales para programar el canvas
-		function _IniciarEduSoft_ESt() { IniciarEduSoft_ESt(); }
+		function _IniciarEduSoft_ESt() { iniciarEduSoft_ESt(); }
 		//	Carga todos los parametros inciales para programar el canvas
 		onLoad_ESt(_IniciarEduSoft_ESt);
 		//	Inicia todas las variables y objetos necesarios para el Lugar del codigo
-		function _IniciarVariablesDeLugarDelCodigo_ESt() { IniciarVariablesDeLugarDelCodigo_ESt(); }
+		function _IniciarVariablesDeLugarDelCodigo_ESt() { iniciarVariablesDeLugarDelCodigo_ESt(); }
 		//	Carga las variables y objetos necesarios para el codigo
 		onLoad_ESt(_IniciarVariablesDeLugarDelCodigo_ESt);
 	</script>
@@ -42,7 +42,7 @@
 			<div class="cTitulo_ESt" >Crear objetos</div>
 			<div id="iCrearObjetos_LugarDelCodigoJS_ESt" class="cLugarDelCodigoJS_ESt" >
 				<div id="LienzoDeCreacion__iSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" ></div>
-				<textarea id="LienzoDeCreacion__iTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoCrearObjetos_ESt(); " ></textarea>
+				<textarea id="LienzoDeCreacion__iTextAreaCrearObjetos_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="manejoDelCodigoCrearObjetos_ESt(); " ></textarea>
 			</div>
 			<div onclick="EjecutarDesdeCeroLienzo_ESt('LienzoDeCreacion'); " style="cursor: pointer; " >
 				ejecutar ->
@@ -51,7 +51,7 @@
 			<div class="cTitulo_ESt" >Animación</div>
 			<div id="iAnimacion_LugarDelCodigoJS_ESt" class="cLugarDelCodigoJS_ESt" >
 				<div id="LienzoDeCreacion__iSombraTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt" ></div>
-				<textarea id="LienzoDeCreacion__iTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="ManejoDelCodigoAnimacion_ESt();" ></textarea>
+				<textarea id="LienzoDeCreacion__iTextAreaAnimacion_LugarDelCodigoJS_ESt" class="cTextAreaCrearObjetos_LugarDelCodigoJS_ESt" onkeyup="manejoDelCodigoAnimacion_ESt();" ></textarea>
 			</div>
 			<div onclick="EjecutarDesdeCeroLienzo_ESt('LienzoDeCreacion'); EjecutarAnimacionLienzo_ESt('LienzoDeCreacion'); " style="cursor: pointer; " >
 				ejecutar ->

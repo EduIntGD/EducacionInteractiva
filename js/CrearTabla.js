@@ -390,7 +390,7 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				//	Coloca la clase del texto
 				oDiv_.className='cDivParaTexto_ESt';
 				//	Coloca el famoso ID
-				if(campo_ESt.id) { oDiv_.id=campo_ESt.id; }
+				if(campo_ESt.id) { oDiv_.id=campo_ESt.id.toString(); }
 				
 				//	Colocamos la alineacion del texto
 				oDiv_.style.textAlign=alineacionDelTexto_;
@@ -424,10 +424,10 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				
 				//	Colocamos el nombre
 				if(campo_ESt.nombre)
-				{ oInput_.name=campo_ESt.nombre; }
+				{ oInput_.name=campo_ESt.nombre.toString(); }
 				//	Colocamos el id
 				if(campo_ESt.id)
-				{ oInput_.id=campo_ESt.id; }
+				{ oInput_.id=campo_ESt.id.toString(); }
 				
 				//	Si este tiene una presentacion clasica
 				if(campo_ESt.presentacion=='clasica')
@@ -494,10 +494,10 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				
 				//	Colocamos el nombre
 				if(campo_ESt.nombre)
-				{ oInput_.name=campo_ESt.nombre; }
+				{ oInput_.name=campo_ESt.nombre.toString(); }
 				//	Colocamos el id
 				if(campo_ESt.id)
-				{ oInput_.id=campo_ESt.id; }
+				{ oInput_.id=campo_ESt.id.toString(); }
 				
 				//	Si este tiene una presentacion clasica
 				if(campo_ESt.presentacion=='clasica')
@@ -631,6 +631,13 @@ function crearElemento_ESt(contenidoDeLaColumna_ESt,campo_ESt)
 				
 				//	Colocamos los valores del campo
 				oInput_.campo_ESt=campo_ESt;
+				
+				//	Colocamos el nombre
+				if(campo_ESt.nombre)
+				{ oInput_.name=campo_ESt.nombre.toString(); }
+				//	Colocamos el id
+				if(campo_ESt.id)
+				{ oInput_.id=campo_ESt.id.toString(); }
 				
 				//	Si este tiene una presentacion clasica
 				if(campo_ESt.presentacion=='clasica')
@@ -1159,7 +1166,14 @@ function getValor(nombreDelCampo)
 	else
 	{
 		//	Devuelve el valor que hay
-		return document.getElementById(nombreDelCampo).value;
+		if(document.getElementById(nombreDelCampo).valorReal)
+		{
+			return document.getElementById(nombreDelCampo).valorReal;
+		}
+		else
+		{
+			return document.getElementById(nombreDelCampo).value;
+		}
 	}
 }
 //	Funcion para obtener el valor
@@ -1283,14 +1297,14 @@ function mascaraInput_ESt(tipoDeMascara,valor_ESt)
 				case 'pesosColombianos':
 					//	Si hat algo coloca la mascara
 					if(valorReturn_ESt!='')
-					{ valorReturn_ESt='$ '+NumeroTipoMoneda_ESt(valorReturn_ESt); }
+					{ valorReturn_ESt='$ '+numeroTipoMoneda_ESt(valorReturn_ESt); }
 					break;
 				case 'numeroDeDocumento':
 					//	Si hat algo coloca la mascara
 					if(valorReturn_ESt!='')
 					{
 						var arValorReturn_ESt=valorReturn_ESt.split('-');
-						arValorReturn_ESt[0]=NumeroTipoMoneda_ESt(arValorReturn_ESt[0],0);
+						arValorReturn_ESt[0]=numeroTipoMoneda_ESt(arValorReturn_ESt[0],0);
 						if(1<arValorReturn_ESt.length)
 						{ valorReturn_ESt=arValorReturn_ESt[0]+'-'+arValorReturn_ESt[1]; }
 						else

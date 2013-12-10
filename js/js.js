@@ -5,46 +5,27 @@
 	//	variables usada para personas que hablan español
 	verdadero=true;
 	
-	//	Clona un objeto
-	function cloneObject_ESt(obj) {
-	if(null==obj || 'object'!=typeof obj) { return obj; } 
-	var copy = obj.constructor(); for (var attr in obj) {
-	if(obj.hasOwnProperty(attr)) copy[attr]= obj[attr]; }
-	return copy; }
-	
-	var _arSolUnaVezLanzTruePrCod_ESt=new Array();
-	//	Solo una vez lanza true por codigo, todas las demas false
-	function SolUnaVezLanzTruePrCod_ESt(codigo_ESt)
+	//	12 <- redondear_ESt(12.245,0);
+	//	12.2 <- redondear_ESt(12.245,1);
+	//	12.23 <- redondear_ESt(12.245,2);
+	function redondear_ESt(valor_ESt,decimales_ESt)
 	{
-		if(_arSolUnaVezLanzTruePrCod_ESt[codigo_ESt]==undefined)
-		{
-			_arSolUnaVezLanzTruePrCod_ESt[codigo_ESt]=true;
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	function redondear_ESt(valor_MyR,decimales_MyR)
-	{
-		myDecimales_MyR = Math.pow(10,decimales_MyR);
-		return Math.round(valor_MyR*myDecimales_MyR)/myDecimales_MyR;
+		var myDecimales_ESt = Math.pow(10,decimales_ESt);
+		return Math.round(valor_ESt*myDecimales_ESt)/myDecimales_ESt;
 	}
 	
 	//	12.343.345.38 <- 12343345.3789
-	function NumeroTipoMoneda_ESt(numero_MyR,numeroDecimales)
+	function numeroTipoMoneda_ESt(numero_MyR,numeroDecimales_ESt)
 	{
-		if(numeroDecimales==undefined) { numeroDecimales=2; }
-		numero_MyR = redondear_ESt(numero_MyR,numeroDecimales);
+		if(numeroDecimales_ESt==undefined) { numeroDecimales_ESt=2; }
+		numero_MyR = redondear_ESt(numero_MyR,numeroDecimales_ESt);
 		var stNumero_MyR=numero_MyR.toString();
 		var valor_MyR=stNumero_MyR.split(".");
 		if(valor_MyR[0]==undefined) valor_MyR[0]=0;
 		if(valor_MyR[1]==undefined)
 		{
 			var pesitos_MyR='';
-			for(contDecimales=0;contDecimales<numeroDecimales;contDecimales++)
+			for(contDecimales=0;contDecimales<numeroDecimales_ESt;contDecimales++)
 			{
 				pesitos_MyR=pesitos_MyR+'0';
 			}
@@ -52,8 +33,8 @@
 		else
 		{
 			valor_MyR[1]=valor_MyR[1];
-			var pesitos_MyR=redondear_ESt(valor_MyR[1],numeroDecimales).toString();
-			while(pesitos_MyR.length<numeroDecimales) { pesitos_MyR=pesitos_MyR+'0'; }
+			var pesitos_MyR=redondear_ESt(valor_MyR[1],numeroDecimales_ESt).toString();
+			while(pesitos_MyR.length<numeroDecimales_ESt) { pesitos_MyR=pesitos_MyR+'0'; }
 		}
 		var arNumero_MyR='';
 		var tempNumero_MyR;
@@ -64,12 +45,28 @@
 			else                 arNumero_MyR="."+tempNumero_MyR+arNumero_MyR;
 			valor_MyR[0]=valor_MyR[0].substr(0,valor_MyR[0].length-3);
 		}
-		if(0<numeroDecimales)
+		if(0<numeroDecimales_ESt)
 		{ arNumero_MyR=valor_MyR[0]+arNumero_MyR+","+pesitos_MyR; }
 		else
 		{ arNumero_MyR=valor_MyR[0]+arNumero_MyR; }
 		return arNumero_MyR;
 	}
+	
+	//	Se asegura de que un codigo solo retorne true una sola vez
+	var _arSolUnaVezLanzTruePrCod_ESt=new Array();
+	//	Solo una vez lanza true por codigo, todas las demas false
+	function bnCodigoNoUsado_ESt(codigo_ESt)
+	{ if(_arSolUnaVezLanzTruePrCod_ESt[codigo_ESt]==undefined) {
+	_arSolUnaVezLanzTruePrCod_ESt[codigo_ESt]=true; return true;
+	} else { return false; } }
+	
+	
+	//	Clona un objeto
+	function cloneObject_ESt(obj_ESt) {
+	if(null==obj_ESt || 'object'!=typeof obj_ESt) { return obj_ESt; } 
+	var copy = obj_ESt.constructor(); for (var attr in obj_ESt) {
+	if(obj_ESt.hasOwnProperty(attr)) copy[attr]= obj_ESt[attr]; }
+	return copy; }
 	
 	
 //	BORRAR
@@ -156,9 +153,9 @@
 			return curtop;
 		}
 	}
-	function esNumero_ESt(number)
+	function bnNumero_ESt(numero_ESt)
 	{
-		return !isNaN(number%1);
+		return !isNaN(numero_ESt%1);
 	}
 	
 	function AgregarDatosSeparado_see(valor_MyR,separador_MyR,datosSeparados_MyR)
@@ -188,7 +185,7 @@
 		}
 		else
 		{
-		//	Si no existe lo agrega
+			//	Si no existe lo agrega
 			if(bnExtDatosAntes)
 			{
 				return datosSeparados_MyR=datosSeparados_MyR+separador_MyR+valor_MyR;
@@ -314,7 +311,7 @@
 	_idAnimacion_LugarDelCodigo_ESt='LienzoDeCreacion__iTextAreaAnimacion_LugarDelCodigoJS_ESt';
 	
 	//	Inicia todas las variables y objetos necesarios para el Lugar del codigo
-	function IniciarVariablesDeLugarDelCodigo_ESt()
+	function iniciarVariablesDeLugarDelCodigo_ESt()
 	{
 		//	Donde el codigo bien bonito con colores
 		_oSombreDeCrearObjetos_LugarDelCodigo_ESt=document.getElementById(_idSombreDeCrearObjetos_LugarDelCodigo_ESt);
@@ -327,27 +324,28 @@
 	}
 	
 	//	Se encarga de manejar todo el texto
-	function ManejoDelCodigoCrearObjetos_ESt()
+	function manejoDelCodigoCrearObjetos_ESt()
 	{
-		FiltrarCodigoDeRealASombra_ESt('CrearObjetos');
-		ColocarElTextAreaSobreSombra_ESt('CrearObjetos');
-	}
-	//	Se encarga de manejar todo el texto
-	function ManejoDelCodigoAnimacion_ESt()
-	{
-		FiltrarCodigoDeRealASombra_ESt('Animacion');
-		ColocarElTextAreaSobreSombra_ESt('Animacion');
+		filtrarCodigoDeRealASombra_ESt('CrearObjetos');
+		colocarElTextAreaSobreSombra_ESt('CrearObjetos');
 	}
 	
-	function FiltrarCodigoDeRealASombra_ESt(nombreDelCodigo)
+	//	Se encarga de manejar todo el texto
+	function manejoDelCodigoAnimacion_ESt()
+	{
+		filtrarCodigoDeRealASombra_ESt('Animacion');
+		colocarElTextAreaSobreSombra_ESt('Animacion');
+	}
+	
+	function filtrarCodigoDeRealASombra_ESt(nombreDelCodigo)
 	{
 		switch(nombreDelCodigo)
 		{
 			case 'CrearObjetos':
-				_oSombreDeCrearObjetos_LugarDelCodigo_ESt.innerHTML=PasarDeCodigoAColor_ESt(_oCrearObjetos_LugarDelCodigo_ESt.value);
+				_oSombreDeCrearObjetos_LugarDelCodigo_ESt.innerHTML=pasarDeCodigoAColor_ESt(_oCrearObjetos_LugarDelCodigo_ESt.value);
 				break;
 			case 'Animacion':
-				_oSombreDeAnimacion_LugarDelCodigo_ESt.innerHTML=PasarDeCodigoAColor_ESt(_oAnimacion_LugarDelCodigo_ESt.value);
+				_oSombreDeAnimacion_LugarDelCodigo_ESt.innerHTML=pasarDeCodigoAColor_ESt(_oAnimacion_LugarDelCodigo_ESt.value);
 				break;
 			case 'Cero':
 				
@@ -355,7 +353,7 @@
 		}
 	}
 	
-	function ColocarElTextAreaSobreSombra_ESt(nombreDelCodigo)
+	function colocarElTextAreaSobreSombra_ESt(nombreDelCodigo)
 	{
 		switch(nombreDelCodigo)
 		{
@@ -374,20 +372,23 @@
 		}
 	}
 	
-	
-	function CualEsElElementoMasCercano_ESt(valor_ESt_,arDeElementos_ESt)
+	//	Verifica cual de los valores del arreglo[arDeElementos_ESt] esta mas cercano al origen
+	//	0 <- cualEsElElementoMasCercano_ESt('abc',['a','b','c']);
+	//	2 <- cualEsElElementoMasCercano_ESt('abc',['b','c','a']);
+	//	1 <- cualEsElElementoMasCercano_ESt('abc',['c','a','b']);
+	function cualEsElElementoMasCercano_ESt(valor_ESt,arDeElementos_ESt)
 	{
-		//	true, so encuentra alguno de los caracteres
+		//	true, si encuentra alguno de los caracteres
 		var bnEncntroAlgnLgrDndNSeTndrEnCuent_ESt=false;
 		//	Retorna el lugar en el arreglo deonde esta el elemento mas cercano, pero si no encuentra devuelve -1
 		var noDeLugaresDondeNoSeTendreEnCuenta_ESt=-1;
 		//	Contenera la posicion mas sercana de los caracteres dentro de los cuales no se actua
-		var posicionMasCercana=valor_ESt_.length;
+		var posicionMasCercana=valor_ESt.length;
 		//	Busca cual de los caracteres a no mostrar esta mas cercano
 		for(var contDeLugaresDondeNoSeTendreEnCuenta=0;contDeLugaresDondeNoSeTendreEnCuenta<arDeElementos_ESt.length;contDeLugaresDondeNoSeTendreEnCuenta++)
 		{
 			//	Posicion mas cercana
-			var posicionMasCercana_=valor_ESt_.indexOf(arDeElementos_ESt[contDeLugaresDondeNoSeTendreEnCuenta]);
+			var posicionMasCercana_=valor_ESt.indexOf(arDeElementos_ESt[contDeLugaresDondeNoSeTendreEnCuenta]);
 			//	Posicion mas cercana
 			if(posicionMasCercana_<posicionMasCercana && posicionMasCercana_!=-1)
 			{
@@ -405,9 +406,9 @@
 	//	como un espacio o un parentesis
 	var _DivisorDePalabras='¨';
 	//	se encarga de pasar de un codigo div a otro sin problemas
-	function PasarDeCodigoAColor_ESt(valor_ESt)
+	function pasarDeCodigoAColor_ESt(valor_ESt)
 	{
-		/**	PasarDeCodigoAColor_ESt("o('pedro').setPosicionEnX(12);"); **/
+		/**	pasarDeCodigoAColor_ESt("o('pedro').setPosicionEnX(12);"); **/
 		
 		//	Coloca un divizor al comienzo y al final
 		var valor_ESt_=valor_ESt;
@@ -424,7 +425,7 @@
 		var stDespsComillas_ESt='';
 		
 		//	Busca cual es el elemento mas cercano al origen para continuar
-		var noPosicionDelElementoMasCercano=CualEsElElementoMasCercano_ESt(valor_ESt_,arIniDeLugaresDondeNoSeTendreEnCuenta);
+		var noPosicionDelElementoMasCercano=cualEsElElementoMasCercano_ESt(valor_ESt_,arIniDeLugaresDondeNoSeTendreEnCuenta);
 		//	Arreglo que contiene lo que esta dentro de las comillas
 		var arDentroDeLasComillas=new Array();
 		//	Solo entra si encuentra algun tipo de comill
@@ -497,7 +498,7 @@
 				}
 				
 				//	Busca cual es el elemento mas cercano al origen para continuar
-				var noPosicionDelElementoMasCercano=CualEsElElementoMasCercano_ESt(valor_ESt_,arIniDeLugaresDondeNoSeTendreEnCuenta);
+				var noPosicionDelElementoMasCercano=cualEsElElementoMasCercano_ESt(valor_ESt_,arIniDeLugaresDondeNoSeTendreEnCuenta);
 				//	Solo entra si encuentra algun tipo de comill
 				if(noPosicionDelElementoMasCercano!=-1)
 				{
@@ -597,7 +598,7 @@
 		//	Pasa por cada palabra
 		for(var contPorPalabrasValor_ESt=0;contPorPalabrasValor_ESt<arPorPalabrasValor_ESt.length;contPorPalabrasValor_ESt++)
 		{
-			if(esNumero_ESt(arPorPalabrasValor_ESt[contPorPalabrasValor_ESt]))
+			if(bnNumero_ESt(arPorPalabrasValor_ESt[contPorPalabrasValor_ESt]))
 			{
 				arPorPalabrasValor_ESt[contPorPalabrasValor_ESt]='<span num="ESt" >'+arPorPalabrasValor_ESt[contPorPalabrasValor_ESt]+'</span>';
 			}
@@ -617,23 +618,28 @@
 	var _codigoDeCreacionParaLienzo=new Array();
 	//	
 	var _codigoDeAnimacionParaLienzo=new Array();
-	//	
+	//	Esta es la funcion necesaria para poder cargar un canvas
 	function EducacionInteractivaGD(codigoUnico,ancho,alto)
 	{
 		//	Carga todos los parametros inciales para programar el canvas
-		IniciarEduSoft_ESt(codigoUnico,ancho,alto);
+		iniciarEduSoft_ESt(codigoUnico,ancho,alto);
 		//	Guarda el codigo de creacion para este numero de lienzo
 	//	_codigoDeCreacionParaLienzo[_arNumeroD,elLienzo_ESt[codigoUnico]]=getCodigo('JUsERytD','creacion');
 		//	Guarda el codigo de animacion para este numero de lienzo
 	//	_codigoDeAnimacionParaLienzo[_arNumeroDelLienzo_ESt[codigoUnico]]=getCodigo('JUsERytD','animacion');
+//	Warning
+// 	Eliminar
 		//	Inicia todas las variables y objetos necesarios para el Lugar del codigo
-		IniciarVariablesDeLugarDelCodigo_ESt();
+	//	iniciarVariablesDeLugarDelCodigo_ESt();
 		//	Crea las variables basicas
 		EjecutarDesdeCeroLienzo_ESt(codigoUnico);
 		//	Ejecuta la animacion
 		EjecutarAnimacionLienzo_ESt(codigoUnico);
 	}
-		
+
+//	Warning
+//	Si no se usa favor eliminar
+/*
 		var _idCodigoCreacionLugarDelCanvas_ESt='iCreacionLugarDelCanvas_ESt';
 		var _idCodigoAnimacionLugarDelCanvas_ESt='iAnimacionLugarDelCanvas_ESt';
 		//	Regresa el codigo para su ejecución
@@ -649,9 +655,10 @@
 					break;
 			}
 		}
-	
+*/	
+
 	//	Carga todos los parametros inciales para programar el canvas
-	function IniciarEduSoft_ESt(codigoUnicoLienzo_ESt,ancho_ESt,alto_ESt)
+	function iniciarEduSoft_ESt(codigoUnicoLienzo_ESt,ancho_ESt,alto_ESt)
 	{
 		//	Es un codigo unico por cada lienzo, la idea es que carguen varios lienzos en una pagina
 		if(codigoUnicoLienzo_ESt==undefined)
@@ -661,16 +668,18 @@
 	//	var altoLienzo_ESt=500;
 		
 		//	Iniciar variables para modificar el canvas
-		//	ColocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt,anchoLienzo_ESt,altoLienzo_ESt);
-		ColocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
+		//	colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt,anchoLienzo_ESt,altoLienzo_ESt);
+		colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
 		//	Crea el lugar done se desarrollara todo lo que es canvas
-		CrearLienzo_ESt(codigoUnicoLienzo_ESt,ancho_ESt,alto_ESt);
+		crearLienzo_ESt(codigoUnicoLienzo_ESt,ancho_ESt,alto_ESt);
 		//	Inicia el canvas sin codigo
-		IniciarCanvas_ESt();
+		iniciarCanvas_ESt();
 		//	Crea el rectangulo que esta alrededor del mouse
-		CrearRectanguloQueSigueElMouse_ESt();
+//	Warning
+//	Obsoleto
+		//	CrearRectanguloQueSigueElMouse_ESt();
 		//	Finalizar variables para modificar el canvas
-		FinalizarVariablesNecesariasParaCanvas_ESt();
+		finalizarVariablesNecesariasParaCanvas_ESt();
 	}
 	
 		//	Variables globales necesarias para el Lienzo
@@ -681,7 +690,7 @@
 		var _bnEjecutandoUnLienzo=false;
 		
 		//	Carga todas las variables globales necesarias para el Linezo
-		function ColocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt)
+		function colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt)
 		{
 			//	Es un codigo unico por cada lienzo, la idea es que carguen varios lienzos en una pagina
 			if(codigoUnicoLienzo_ESt==undefined) { var codigoUnicoLienzo_ESt='JUsERytD'; }
@@ -704,7 +713,7 @@
 		}
 		
 		//	Finalizar variables para modificar el canvas
-		function FinalizarVariablesNecesariasParaCanvas_ESt()
+		function finalizarVariablesNecesariasParaCanvas_ESt()
 		{
 			_codigoUnicoLienzo_ESt='';
 			_anchoLienzo_ESt=0;
@@ -733,7 +742,7 @@
 	var _arAnchoLienzo_ESt=new Array();
 	var _arAltoLienzo_ESt=new Array();
 	//	Funcion para colocar el ancho y alto al canvas
-	function AnchoYAltoDelLienzo_ESt(ancho_ESt,alto_ESt)
+	function anchoYAltoDelLienzo_ESt(ancho_ESt,alto_ESt)
 	{
 		var noDelLienzo_ESt=_noDeLienzos_ESt;
 		
@@ -741,7 +750,7 @@
 		_arAltoLienzo_ESt[noDelLienzo_ESt]=alto_ESt;
 	}
 	//	Crea el lugar done se desarrollara todo lo que es canvas
-	function CrearLienzo_ESt(codigoUnico,ancho_ESt,alto_ESt)
+	function crearLienzo_ESt(codigoUnico,ancho_ESt,alto_ESt)
 	{
 		//	Cada lienzo maneja un codigo unico constante que va asociado a un numero unico variable
 		//	que cuenta la cantidad de lienzos en la pagina(0,1,2,..)
@@ -786,7 +795,7 @@
 			//	Alto del lienzo
 			_arAltoLienzo_ESt[_noDeLienzos_ESt]=altoLienzo_ESt;
 			//	Inicia las variable para el numero de lienzo
-			VariablesInicialesParaUnNuevoLienzo()
+			variablesInicialesParaUnNuevoLienzo();
 			
 			//	Creamos lo demas que va dentro
 			//	------------------------------
@@ -838,7 +847,7 @@
 	}
 	
 	//	Inicia las variable para el numero de lienzo
-	function VariablesInicialesParaUnNuevoLienzo()
+	function variablesInicialesParaUnNuevoLienzo()
 	{
 		//	Arreglo que retorna true si existe el objeto
 		_arBnObjetos_ESt[_noDelLienzo_ESt]=new Array();
@@ -850,6 +859,9 @@
 		_noObjetosLineas_ESt[_noDelLienzo_ESt]=0;
 	}
 	
+//	Warning
+//	Obsoleto, tiene que eliminarse, ya existe algo mejor que esto
+/*
 	//	true, si el rectangulo que sigue al mouse esta creado
 	var _bnRectanguloQueSigueElMouse_ESt=false;
 	//	Crea un rectangulo para seguir al mouse
@@ -860,7 +872,7 @@
 		//	true, si el rectangulo que sigue al mouse esta creado
 		_bnRectanguloQueSigueElMouse_ESt=true;
 	}
-	
+*/
 	//	Id del canvas a animar
 	var _idCanvas_ESt='iCanvas_LugarDelCanvas_ESt';
 	//	className del canvas a animar
@@ -870,7 +882,7 @@
 	//	ancho del borde de este canvas
 	var _achoBordeCanvas=1;
 	//	Inicia todo lo que es canvas
-	function IniciarCanvas_ESt()
+	function iniciarCanvas_ESt()
 	{
 		//	Carga el bojeto canvas
 		var oCanvas_ESt=_arOCanvas_ESt[_noDelLienzo_ESt];
@@ -898,18 +910,18 @@
 	var _iConsola_ESt='iDivConsola_LugarDelCanvas_ESt';
 	//	Cuenta el numero de veces que la consola a sido iniciada y las borra a las 50
 	//	Escribe dentro de la consola
-	function consola(valor)
+	function consola(valor_ESt)
 	{
 		try
 		{
 			//	Objeto de la consola
 			_oConsola_ESt=document.getElementById(_iConsola_ESt);
 			//	Escribe en la consola
-			_oConsola_ESt.innerHTML=valor+'<br/>'+_oConsola_ESt.innerHTML;
+			_oConsola_ESt.innerHTML=valor_ESt+'<br/>'+_oConsola_ESt.innerHTML;
 		}
 		catch(err)
 		{
-			console.info(valor);
+			console.info(valor_ESt);
 		}
 	}
 	
@@ -917,11 +929,11 @@
 	Funciones basicas
 	************************************/
 	
-//ALERTA
-//NO funciona de manera correcta, se siguiere integrar MyRTools
-	function PasarDeHTMLATexto(vHTML)
+//	IMPORTANT
+//	NO funciona de manera correcta, se siguiere integrar MyRTools
+	function pasarDeHTMLATexto_ESt(vHTML_ESt)
 	{
-		var vHTML_=vHTML;
+		var vHTML_=vHTML_ESt;
 		vHTML_=vHTML_.split('<div>').join('');
 		vHTML_=vHTML_.split('<br>').join('');
 		vHTML_=vHTML_.split('<br/>').join('');
@@ -944,7 +956,7 @@
 	//	Posicion del cursor(Mouse) en Y para cada lienzo
 	var _posixionDelCursorEnY=new Array();
 	
-	function conocerLaPosicionDelCursor(evento,noLienso)
+	function conocerLaPosicionDelCursor_ESt(evento,noLienso)
 	{
 		//	En caso de ser touch
 		if(evento.targetTouches)
@@ -994,32 +1006,32 @@
 	//	true, si esta el cursor sobre el lienzo
 	var _bnCursorSobreEsteLienzo_ESt=new Array();
 	//	true o false si el cursor esta en este lienzo o no
-	//	Lo saca con la posicion de la funcion conocerLaPosicionDelCursor,
+	//	Lo saca con la posicion de la funcion conocerLaPosicionDelCursor_ESt,
 	//	que debio ser ejecutada antes de esta
 	function bnEstaCursorEnEsteLienzo_ESt(noDelLienzo_ESt)
 	{
 		//	Informa que el cursor esta en este lienzo
 		return _bnCursorSobreEsteLienzo_ESt[noDelLienzo_ESt];
 	}
-	//	
+	//	Retorna true si el cursor estÃ¡ arrastrando algun objeto sobre este lienzo.
 	function bnObjetoArrastrandoEnEsteLienzo_ESt(noDelLienzo_ESt)
 	{
 		//	Informa que el cursor esta en este lienzo
 		return _bnObjetoArrastrandoEnEsteLienzo_ESt[noDelLienzo_ESt];
 	}
-	//	
 	
+	//	
 	var _onCursorMove=
 		function(evento)
 		{
-			//	Previene que las acciones por defecto se ejecuten, como el mover el scrool cuando arrastramos
+			//	Previene que las acciones por defecto se ejecuten, como el mover el scrol cuando arrastramos
 			evento.preventDefault();
 			
 			//	Pasa por cada uno de los lienzos y sca la posicion del cursorEnX y cursorEnY
 			for(var contLiensos=0;contLiensos<_noDeLienzos_ESt;contLiensos++)
 			{
 				//	Saca la posicion del cursor
-				conocerLaPosicionDelCursor(evento,contLiensos);
+				conocerLaPosicionDelCursor_ESt(evento,contLiensos);
 				
 				//	Evita que se salga de los limietes del canavas
 				if(_posixionDelCursorEnX[contLiensos]<0)
@@ -1032,6 +1044,9 @@
 				{ _posixionDelCursorEnY[contLiensos]=_arOCanvas_ESt[contLiensos].height; }
 			}
 			
+//	Warning
+//	Obsoleto
+/*
 			//	true, si el rectangulo que sigue al cursor esta creado
 			if(_bnRectanguloQueSigueElMouse_ESt)
 			{
@@ -1039,6 +1054,7 @@
 			//	o('RectanguloQueSigueElMouse_ESt').setEje('centro');
 			//	o('RectanguloQueSigueElMouse_ESt').setPosicion(_posixionDelCursorEnX,_posixionDelCursorEnY);
 			}
+*/
 			//	true, mientras el cursor se mantenga oprimido
 			if(_bnCursorOprimido)
 			{
@@ -1067,7 +1083,7 @@
 				for(var contLiensos=0;contLiensos<_noDeLienzos_ESt;contLiensos++)
 				{
 					//	Saca la posicion del cursor
-					conocerLaPosicionDelCursor(evento,contLiensos);
+					conocerLaPosicionDelCursor_ESt(evento,contLiensos);
 					
 					//	Pasa por cada uno de los objetos y busca si tiene que empezar de arrastrar algun elemento
 					for(var contObjetos_ESt=0;contObjetos_ESt<_noObjetos_ESt[contLiensos];contObjetos_ESt++)
@@ -1128,6 +1144,7 @@
 				}
 			}
 		};
+	
 	//	true, durante el frame que se hizo click en el lienzo correspindiente
 	var _bnOnClick_ESt=new Array();
 	var _onClick=
@@ -1139,7 +1156,7 @@
 			for(var contLiensos=0;contLiensos<_noDeLienzos_ESt;contLiensos++)
 			{
 				//	Saca la posicion del cursor, y retorn true si hizo click dentro de este lienzo
-				var bnHizoClickDentroDelLienzo=conocerLaPosicionDelCursor(evento,contLiensos);
+				var bnHizoClickDentroDelLienzo=conocerLaPosicionDelCursor_ESt(evento,contLiensos);
 				//	Evita que se salga de los limietes del canavas
 				if(_posixionDelCursorEnX[contLiensos]<0)
 				{_posixionDelCursorEnX[contLiensos]=0; }
@@ -1154,26 +1171,31 @@
 				if(bnHizoClickDentroDelLienzo)
 				{
 					//	true, informa que se realizo un click
-					InformarSobreClick_ESt(contLiensos,true);
+					informarSobreClick_ESt(contLiensos,true);
 				}
 			}
 			
+//	Warning
+//	Obsoleto, borrar despues de un tiempo
+/*
 			//	true, si el rectangulo que sigue al mouse esta creado
 			if(_bnRectanguloQueSigueElMouse_ESt)
 			{
 			//	o('RectanguloAlHacerClick_ESt').setEje('centro');
 			//	o('RectanguloAlHacerClick_ESt').setPosicion(_posixionDelCursorEnX,_posixionDelCursorEnY);
 			}
+*/
 		};
 	
-	function InformarSobreClick_ESt(noLienso,bnDelClick_ESt)
+	
+	function informarSobreClick_ESt(noLienso,bnDelClick_ESt)
 	{
 		_bnOnClick_ESt[noLienso]=bnDelClick_ESt;
 	}
 	
 	//  Retorna la posicion en el lienzo del cursor en X y Y
-	function getPosicionDelCursorEnX(noLienso) { return _posixionDelCursorEnX[noLienso]; }
-	function getPosicionDelCursorEnY(noLienso) { return _posixionDelCursorEnY[noLienso]; }
+	function getPosicionDelCursorEnX(noLienso_ESt) { return _posixionDelCursorEnX[noLienso_ESt]; }
+	function getPosicionDelCursorEnY(noLienso_ESt) { return _posixionDelCursorEnY[noLienso_ESt]; }
 	
 	function getUltimaTeclaOprimida()
 	{
@@ -1192,43 +1214,9 @@
 		}
 	}
 	
-	//	Recueda la ultima flecha
-	var _ultimaFlechaOprimida=0;
-	//	Distingue la ultima flecha y solo flechas oprimidas
-	function getUltimaFlechaOprimida()
+	function soloNumeros(valor_ESt)
 	{
-		//	Si es una flecha la cambia
-		if(
-		_ultimaTeclaOprimida==37
-		||
-		_ultimaTeclaOprimida==38
-		||
-		_ultimaTeclaOprimida==39
-		||
-		_ultimaTeclaOprimida==40
-		)
-		{
-			//	Carga la ultima flecha oprimida
-			_ultimaFlechaOprimida=_ultimaTeclaOprimida;
-		}
-		
-		//	Carga la ultima flecha oprimida, si no carga 0
-		switch(_ultimaFlechaOprimida)
-		{
-			case 37:
-				return 'izquierda';
-			case 38:
-				return 'arriba';
-			case 39:
-				return 'derecha';
-			case 40:
-				return 'abajo';
-		}
-	}
-	
-	function soloNumeros(valor)
-	{
-		var valorARetornar=parseFloat(valor);
+		var valorARetornar=parseFloat(valor_ESt);
 		if(isNaN(valorARetornar))
 		{ return 0; }
 		else
@@ -1435,7 +1423,7 @@
 		//	Numero de objetos
 		_noObjetos_ESt[_noDelLienzo_ESt]=0;
 		//	Inicia las variable para el numero de lienzo
-		VariablesInicialesParaUnNuevoLienzo()
+		variablesInicialesParaUnNuevoLienzo();
 	}
 	
 	//	Limpia todo el contenido del lienzo
@@ -2501,7 +2489,7 @@
 	function EjecutarDesdeCeroLienzo_ESt(codigoUnicoLienzo_ESt)
 	{
 		//	Iniciar variables para modificar el canvas
-		ColocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
+		colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
 		//	Si esta corriendo la animacion la detiene
 		DetenerLaAnimacion_ESt();
 		//	Reiniciar variables globales
@@ -2517,7 +2505,7 @@
 		//	Dibuja en el lienso las variables
 		DibujarEnElLienzoLasVariables_ESt();
 		//	Finalizar variables para modificar el canvas
-		FinalizarVariablesNecesariasParaCanvas_ESt();
+		finalizarVariablesNecesariasParaCanvas_ESt();
 	}
 	
 	//	idDondeEstaElCodigoPuro
@@ -2535,7 +2523,7 @@
 			//	Ejecuta el codigo si este existe
 			if(oDondeEstaElCodigoPuro_ESt)
 			{
-				eval(' try{ '+PasarDeHTMLATexto(oDondeEstaElCodigoPuro_ESt.value)+' } catch(err) { DetenerLaAnimacion_ESt(); consola(err.message); }');
+				eval(' try{ '+oDondeEstaElCodigoPuro_ESt.value+' } catch(err) { DetenerLaAnimacion_ESt(); consola(err.message); }');
 			}
 		}
 	}
@@ -2580,7 +2568,7 @@
 	function EjecutarAnimacion_ESt(codigoUnicoLienzo_ESt)
 	{
 		//	Iniciar variables para modificar el canvas
-		ColocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
+		colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
 		//	Crea las lineas que se esten cargando en el momento
 		CargarLosTrazosDelPizarron();
 		//	Leer el codigo de crear objetos
@@ -2598,7 +2586,7 @@
 		//	Limpiar variables por frame
 		LimpiarVariablesAlFinalDelFrame();
 		//	Finalizar variables para modificar el canvas
-		FinalizarVariablesNecesariasParaCanvas_ESt();
+		finalizarVariablesNecesariasParaCanvas_ESt();
 		//	Informa que se esta ejecutando la animacion
 		_bnSeEstaEjecuntandoLaAnimacion=true;
 	}
@@ -2707,7 +2695,7 @@
 					}
 				}
 				//	Informa que no hay mas click realizados
-				InformarSobreClick_ESt(_noDelLienzo_ESt,false);
+				informarSobreClick_ESt(_noDelLienzo_ESt,false);
 			}
 		}
 		
