@@ -1,8 +1,8 @@
-	/**
+ï»¿	/**
 	Globales
 	************************************/
 	
-	//	variables usada para personas que hablan español
+	//	variables usada para personas que hablan espaÃ±ol
 	verdadero=true;
 	
 	//	12 <- redondear_ESt(12.245,0);
@@ -100,9 +100,9 @@
 	function ReplaceAll_ESt(aCambiar_MyR,aColocar,valor_MyR)
 	{
 		while(0<=valor_MyR.indexOf(aCambiar_MyR))
-		{ valor_MyR=valor_MyR.replace(aCambiar_MyR,'¬'); }
-		while(0<=valor_MyR.indexOf('¬'))
-		{ valor_MyR=valor_MyR.replace('¬',aColocar); }
+		{ valor_MyR=valor_MyR.replace(aCambiar_MyR,'Â¬'); }
+		while(0<=valor_MyR.indexOf('Â¬'))
+		{ valor_MyR=valor_MyR.replace('Â¬',aColocar); }
 		return valor_MyR;
 	}
 	//	Cuando se tienen objetos estaticos el saca una vez la posicion, y el resto
@@ -404,7 +404,7 @@
 	
 	//	Divizor de palabras, la idea es colocar uno antes y despues de cada cosa que divide una palabra,
 	//	como un espacio o un parentesis
-	var _DivisorDePalabras='¨';
+	var _DivisorDePalabras='Â¨';
 	//	se encarga de pasar de un codigo div a otro sin problemas
 	function pasarDeCodigoAColor_ESt(valor_ESt)
 	{
@@ -431,7 +431,7 @@
 		//	Solo entra si encuentra algun tipo de comill
 		if(noPosicionDelElementoMasCercano!=-1)
 		{
-			//	Contendra la posición mas cercana de los caracteres dentro de los cuales no se actua
+			//	Contendra la posiciÃ³n mas cercana de los caracteres dentro de los cuales no se actua
 			var posicionMasCercana=valor_ESt_.indexOf(arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano]);
 			//	TipoDeCaracterANoTenerEnCuenta, que esta mas cercano al comienzo
 			var crtrIniConContenidoANoTenerEnCuenta=arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano];
@@ -502,7 +502,7 @@
 				//	Solo entra si encuentra algun tipo de comill
 				if(noPosicionDelElementoMasCercano!=-1)
 				{
-					//	Contendra la posición mas cercana de los caracteres dentro de los cuales no se actua
+					//	Contendra la posiciÃ³n mas cercana de los caracteres dentro de los cuales no se actua
 					var posicionMasCercana=valor_ESt_.indexOf(arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano]);
 					//	TipoDeCaracterANoTenerEnCuenta, que esta mas cercano al comienzo
 					var crtrIniConContenidoANoTenerEnCuenta=arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano];
@@ -632,9 +632,9 @@
 		//	Inicia todas las variables y objetos necesarios para el Lugar del codigo
 	//	iniciarVariablesDeLugarDelCodigo_ESt();
 		//	Crea las variables basicas
-		EjecutarDesdeCeroLienzo_ESt(codigoUnico);
+		ejecutarDesdeCeroLienzo_ESt(codigoUnico);
 		//	Ejecuta la animacion
-		EjecutarAnimacionLienzo_ESt(codigoUnico);
+		ejecutarAnimacionLienzo_ESt(codigoUnico);
 	}
 
 //	Warning
@@ -642,7 +642,7 @@
 /*
 		var _idCodigoCreacionLugarDelCanvas_ESt='iCreacionLugarDelCanvas_ESt';
 		var _idCodigoAnimacionLugarDelCanvas_ESt='iAnimacionLugarDelCanvas_ESt';
-		//	Regresa el codigo para su ejecución
+		//	Regresa el codigo para su ejecuciÃ³n
 		function getCodigo(codigoUnico,tipoCodigo)
 		{
 			switch(tipoCodigo)
@@ -1013,7 +1013,7 @@
 		//	Informa que el cursor esta en este lienzo
 		return _bnCursorSobreEsteLienzo_ESt[noDelLienzo_ESt];
 	}
-	//	Retorna true si el cursor estÃ¡ arrastrando algun objeto sobre este lienzo.
+	//	Retorna true si el cursor estÃƒÂ¡ arrastrando algun objeto sobre este lienzo.
 	function bnObjetoArrastrandoEnEsteLienzo_ESt(noDelLienzo_ESt)
 	{
 		//	Informa que el cursor esta en este lienzo
@@ -1246,7 +1246,7 @@
 	//	Guarda el resultado del filtro, para identificar si toca volver a aplicarlo
 	var _arResultadoDelFilro=new Array();
 	//	Crea un imput el el lugar deseado
-	function CrearInput_ESt(nombreObjeto_ESt,posicionEnX,posicionEnY,ancho,alto,propiedades)
+	function crearInput_ESt(nombreObjeto_ESt,posicionEnX,posicionEnY,ancho,alto,propiedades)
 	{
 		//	si existe la pripiedad esta qudara aca asi: arExistePropiedad[nombrePropiedad]=true;
 		var arExistePropiedad=new Array();
@@ -1348,7 +1348,7 @@
 			oNewInput.nombreObjeto_ESt=nombreObjeto_ESt;
 			//	Le colocamos el numero del lienzo
 			oNewInput.myNoLienzo=_noDelLienzo_ESt;
-			//	Colocamos la posición
+			//	Colocamos la posiciÃ³n
 			oNewInput.style.position='relative';
 			//	Lo colocamos en la posicion en X
 			oNewInput.style.left=(posicionEnX)+'px';
@@ -1390,7 +1390,7 @@
 	************************************/
 	
 	//	La animacion se detiene
-	function DetenerLaAnimacion_ESt()
+	function detenerLaAnimacion_ESt()
 	{
 		//	Si existe borra los parametros la animacion anterior
 		if(_bnSeEstaEjecuntandoLaAnimacion)
@@ -1398,7 +1398,7 @@
 	}
 	
 	//	Aca se reinicaran todas las variables
-	function ReiniciarVariables_ESt()
+	function reiniciarVariables_ESt()
 	{
 		//	Arreglo por numero con el nombre de las variables
 		_arNoObjeto_ESt[_noDelLienzo_ESt]=new Array();
@@ -1427,13 +1427,13 @@
 	}
 	
 	//	Limpia todo el contenido del lienzo
-	function LimpiarLienzo_ESt()
+	function limpiarLienzo_ESt()
 	{
 		//	Limpia el canvas
 		_arCtx_ESt[_noDelLienzo_ESt].clearRect(0,0,_arOCanvas_ESt[_noDelLienzo_ESt].width,_arOCanvas_ESt[_noDelLienzo_ESt].height);
 	}
 	//	Limpia los objetos que no son del lienzo
-	function LimpiarDivDelLienzo_ESt()
+	function limpiarDivDelLienzo_ESt()
 	{
 		//	Limpia los objetos que son del div
 		_arODiv_ESt[_noDelLienzo_ESt].innerHTML='';
@@ -1443,7 +1443,7 @@
 	//	Se utilizan estos dos porque en caso de que alguno de los dos cambie se carga algo diferente
 	var _arImagenesYaCargadas=new Array();
 	//	Dibuja en el lienso las variables
-	function DibujarEnElLienzoLasVariables_ESt()
+	function dibujarEnElLienzoLasVariables_ESt()
 	{
 		for(var contObjetos_ESt=0;contObjetos_ESt<_noObjetos_ESt[_noDelLienzo_ESt];contObjetos_ESt++)
 		{
@@ -1474,7 +1474,7 @@
 						}
 						else
 						{
-							DibujarImagenDelObjetoConNmbr(nombreObjeto_ESt);
+							dibujarImagenDelObjetoConNmbr_ESt(nombreObjeto_ESt);
 						}
 					}
 					else if(o(nombreObjeto_ESt).getTipo()==='circulo')
@@ -1487,12 +1487,12 @@
 				//	En caso de ser un swish
 				else if(o(nombreObjeto_ESt).getQueEs()=='swish')
 				{
-					DibujarImagenDelObjetoConNmbr(nombreObjeto_ESt);
+					dibujarImagenDelObjetoConNmbr_ESt(nombreObjeto_ESt);
 				}
 				//	Si es un objeto arrastrable
 				else if(o(nombreObjeto_ESt).getQueEs()=='arrastrable')
 				{
-					DibujarImagenDelObjetoConNmbr(nombreObjeto_ESt);
+					dibujarImagenDelObjetoConNmbr_ESt(nombreObjeto_ESt);
 				}
 				//	Si es una entrada de texto
 				else if(o(nombreObjeto_ESt).getQueEs()=='input')
@@ -1500,7 +1500,7 @@
 					//	Carga un rectangulo negro detras de esta para poder identigicarla con el canvas
 					_arCtx_ESt[_noDelLienzo_ESt].fillRect(posicionDeLaFiguraEnX,posicionDeLaFiguraEnY,o(nombreObjeto_ESt).myAncho,o(nombreObjeto_ESt).myAlto);
 					//	Crea el input para poder ingresar datos
-					CrearInput_ESt(nombreObjeto_ESt,posicionDeLaFiguraEnX,posicionDeLaFiguraEnY,o(nombreObjeto_ESt).myAncho,o(nombreObjeto_ESt).myAlto,o(nombreObjeto_ESt).myPropiedades); 
+					crearInput_ESt(nombreObjeto_ESt,posicionDeLaFiguraEnX,posicionDeLaFiguraEnY,o(nombreObjeto_ESt).myAncho,o(nombreObjeto_ESt).myAlto,o(nombreObjeto_ESt).myPropiedades); 
 				}
 			}
 			else
@@ -1520,7 +1520,7 @@
 	//	Se utilizan estos dos porque en caso de que alguno de los dos cambie se carga algo diferente
 	var _arImagenesYaCargadas=new Array();
 	//	Dibuja en el lienso las variables
-	function DibujarEnElLienzoLasVariablesLineas_ESt()
+	function dibujarEnElLienzoLasVariablesLineas_ESt()
 	{
 		for(var contObjetosLineas_ESt=0;contObjetosLineas_ESt<_noObjetosLineas_ESt[_noDelLienzo_ESt];contObjetosLineas_ESt++)
 		{
@@ -1557,10 +1557,10 @@
 		}
 	}
 	
-	
-	
-	//	Dibuja la imagen en el lienzo, el motivo por el cual tambien se envia la posciion de la figura es porque esta puede cambar con respecto al eje
-	function DibujarImagenDelObjetoConNmbr(nombreObjeto_ESt)
+	//	Dibuja la imagen en el lienzo, el motivo por el cual 
+	//	tambien se envia la posciion de la figura es porque 
+	//	esta puede cambar con respecto al eje
+	function dibujarImagenDelObjetoConNmbr_ESt(nombreObjeto_ESt)
 	{
 		//	Pasa el  objeto a una variable
 		var objeto_ESt=o(nombreObjeto_ESt);
@@ -1653,7 +1653,7 @@
 					//	Informa que ya se creo la imagen
 					this.bnYaCargoImagen=true;
 				};
-			//	Añade los objetos para que sean creados cuando cargue la imagen
+			//	AÃ±ade los objetos para que sean creados cuando cargue la imagen
 			ImagenFondo_.addNombreObjetoConImgSinCargar(nombreObjeto_ESt,ImagenFondo_.setPosicionDeLaFiguraEnX,ImagenFondo_.setPosicionDeLaFiguraEnY);
 			//	Informa que funcuon usara al cargar la imagen
 			ImagenFondo_.onload=ImagenFondo_.alCargarImagen;
@@ -1760,7 +1760,7 @@
 			this.myPropiedades='';
 			//	Informa si tiene imagenes de fondo
 			this.myBnImagenFondo=false;
-			//	Posición del cursor con respecto al eje del objeto
+			//	PosiciÃ³n del cursor con respecto al eje del objeto
 			this.myPosicionDelCursorEnX=0;
 			this.myPosicionDelCursorEnY=0;
 			//	Direccion de la imagen de fondo
@@ -1930,7 +1930,7 @@
 				function(propiedad)
 				{
 					//	Devuelve un arreglo con las propieades existente = true
-					var arPropiedades_=arPropiedadesExistentes(this.myPropiedades);
+					var arPropiedades_=arPropiedadesExistentes_ESt(this.myPropiedades);
 					//	Mira si existe la propiedad en la lista
 					if(arPropiedades_[propiedad])
 					{ return true; }
@@ -1998,7 +1998,7 @@
 					this.myMovimientoEnX=0;
 					this.myMovimientoEnY=0;
 				};
-			//	Cambia unicamente la posicion en X ı Y
+			//	Cambia unicamente la posicion en X Ã½ Y
 			this.setPosicion=
 				function(posicionEnX,posicionEnY)
 				{
@@ -2234,9 +2234,9 @@
 						//	     |             |    |
 						//	     |          A  |
 						//	ym - |      o------|    |
-						//	     |       ¬¬¬   | B  
-						//	     |        C ¬¬¬|    |
-						//	     |           E |¬¬¬ __
+						//	     |       Â¬Â¬Â¬   | B  
+						//	     |        C Â¬Â¬Â¬|    |
+						//	     |           E |Â¬Â¬Â¬ __
 						//	y2 - +-------------+   |__|
 						//	
 						
@@ -2456,10 +2456,10 @@
 		//		Muy importante para no hacer objetos tan pesados
 		
 		//	Devuelve un arreglo con las propieades existente = true
-		//		arPropiedadesExistentes['nombrePorpiedadExistente01']=true;
-		//		arPropiedadesExistentes['nombrePorpiedadExistente03']=true;
-		//		arPropiedadesExistentes['nombrePorpiedadExistente05']=true;
-		function arPropiedadesExistentes(propiedades)
+		//		arPropiedadesExistentes_ESt['nombrePorpiedadExistente01']=true;
+		//		arPropiedadesExistentes_ESt['nombrePorpiedadExistente03']=true;
+		//		arPropiedadesExistentes_ESt['nombrePorpiedadExistente05']=true;
+		function arPropiedadesExistentes_ESt(propiedades)
 		{
 			//	si existe la pripiedad esta qudara aca asi: arExistePropiedad[nombrePropiedad]=true;
 			var arExistePropiedad=new Array();
@@ -2486,24 +2486,24 @@
 	************************************/
 	
 	//	Esta funcion ejecuta desde cero todo lo que se realizara con el lienzo
-	function EjecutarDesdeCeroLienzo_ESt(codigoUnicoLienzo_ESt)
+	function ejecutarDesdeCeroLienzo_ESt(codigoUnicoLienzo_ESt)
 	{
 		//	Iniciar variables para modificar el canvas
 		colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
 		//	Si esta corriendo la animacion la detiene
-		DetenerLaAnimacion_ESt();
+		detenerLaAnimacion_ESt();
 		//	Reiniciar variables globales
-		ReiniciarVariables_ESt();
+		reiniciarVariables_ESt();
 		//	Leer el codigo de crear objetos
-		LeerCrearObjetos_ESt();
+		leerCrearObjetos_ESt();
 		//	Limpia el lienzo
-		LimpiarLienzo_ESt();
+		limpiarLienzo_ESt();
 		//	Limpia los objetos que no estan en el lienzo
-		LimpiarDivDelLienzo_ESt();
+		limpiarDivDelLienzo_ESt();
 		//	Dibuja en el lienso las variables
-		DibujarEnElLienzoLasVariablesLineas_ESt();
+		dibujarEnElLienzoLasVariablesLineas_ESt();
 		//	Dibuja en el lienso las variables
-		DibujarEnElLienzoLasVariables_ESt();
+		dibujarEnElLienzoLasVariables_ESt();
 		//	Finalizar variables para modificar el canvas
 		finalizarVariablesNecesariasParaCanvas_ESt();
 	}
@@ -2511,11 +2511,11 @@
 	//	idDondeEstaElCodigoPuro
 	var _idDondeEstaElCodigoPuro_ESt='iTextAreaCrearObjetos_LugarDelCodigoJS_ESt';
 	//	Leer el codigo de crear objetos
-	function LeerCrearObjetos_ESt()
+	function leerCrearObjetos_ESt()
 	{
 		if(_codigoDeCreacionParaLienzo[_noDelLienzo_ESt]!==undefined)
 		{
-			eval(' try{ '+_codigoDeCreacionParaLienzo[_noDelLienzo_ESt]+' } catch(err) { DetenerLaAnimacion_ESt(); consola(err.message); }');
+			eval(' try{ '+_codigoDeCreacionParaLienzo[_noDelLienzo_ESt]+' } catch(err) { detenerLaAnimacion_ESt(); consola(err.message); }');
 		}
 		else
 		{
@@ -2523,13 +2523,13 @@
 			//	Ejecuta el codigo si este existe
 			if(oDondeEstaElCodigoPuro_ESt)
 			{
-				eval(' try{ '+oDondeEstaElCodigoPuro_ESt.value+' } catch(err) { DetenerLaAnimacion_ESt(); consola(err.message); }');
+				eval(' try{ '+oDondeEstaElCodigoPuro_ESt.value+' } catch(err) { detenerLaAnimacion_ESt(); consola(err.message); }');
 			}
 		}
 	}
 
 	/**
-	Ejecutar los primeros pasos de animación
+	Ejecutar los primeros pasos de animaciÃ³n
 	************************************/
 	
 	//	Numero de frames por segundo
@@ -2555,36 +2555,37 @@
 	var _bnSeEstaEjecuntandoLaAnimacion=false;
 	//	Valor de la animacion
 	var _noAnimacion;
-	//	Esta la animacion, debe ir despues del EjecutarDesdeCeroLienzo_ESt()
-	function EjecutarAnimacionLienzo_ESt(codigoUnicoLienzo_ESt)
+	//	Inicia la animaciÃ³n, debe ir despues del ejecutarDesdeCeroLienzo_ESt()
+	function ejecutarAnimacionLienzo_ESt(codigoUnicoLienzo_ESt)
 	{
 		//	Si existe borra los parametros la animacion anterior
 		if(_bnSeEstaEjecuntandoLaAnimacion)
 		{ clearInterval(_noAnimacion); }
 		//	Planear	entrar esta en un tiempo determinado
-		_noAnimacion=setInterval("EjecutarAnimacion_ESt('"+codigoUnicoLienzo_ESt+"'); ",getMilisegundosDeUnFrame_ESt());
+		_noAnimacion=setInterval("ejecutarAnimacion_ESt('"+codigoUnicoLienzo_ESt+"'); ",getMilisegundosDeUnFrame_ESt());
 	}
 	
-	function EjecutarAnimacion_ESt(codigoUnicoLienzo_ESt)
+	//	La funcion que se ejecuta en cada frame
+	function ejecutarAnimacion_ESt(codigoUnicoLienzo_ESt)
 	{
 		//	Iniciar variables para modificar el canvas
 		colocarVariablesNecesariasParaCanvas_ESt(codigoUnicoLienzo_ESt);
 		//	Crea las lineas que se esten cargando en el momento
-		CargarLosTrazosDelPizarron();
+		cargarLosTrazosDelPizarron_ESt();
 		//	Leer el codigo de crear objetos
-		LeerAnimacion_ESt();
+		leerAnimacion_ESt();
 		//	Limpia el lienzo
-		LimpiarLienzo_ESt();
+		limpiarLienzo_ESt();
 		//	Verificar Onclicks
-		VerificarOnClicks();
+		verificarOnClicks_ESt();
 		//	Verificar seguir al cursor
-		ObjetosQueSeguenAlCursor();
+		objetosQueSeguenAlCursor_ESt();
 		//	Dibuja en el lienzo las lineas de las variables
-		DibujarEnElLienzoLasVariablesLineas_ESt();
+		dibujarEnElLienzoLasVariablesLineas_ESt();
 		//	Dibuja en el lienzo las variables
-		DibujarEnElLienzoLasVariables_ESt();
+		dibujarEnElLienzoLasVariables_ESt();
 		//	Limpiar variables por frame
-		LimpiarVariablesAlFinalDelFrame();
+		limpiarVariablesAlFinalDelFrame_ESt();
 		//	Finalizar variables para modificar el canvas
 		finalizarVariablesNecesariasParaCanvas_ESt();
 		//	Informa que se esta ejecutando la animacion
@@ -2596,7 +2597,7 @@
 		//	Bandera que indica que se esta creando un trazo
 		var _bnCreandoUnTrazo=new Array();
 		//	Crea las lineas que se esten cargando en el momento
-		function CargarLosTrazosDelPizarron()
+		function cargarLosTrazosDelPizarron_ESt()
 		{
 			//	Si el cursor esta oprimido
 			if(_bnCursorOprimido)
@@ -2631,7 +2632,7 @@
 		}
 		
 		//	Limpia todas las variables que toca borrar por frame
-		function LimpiarVariablesAlFinalDelFrame()
+		function limpiarVariablesAlFinalDelFrame_ESt()
 		{
 //	ALERTA
 //	Toca borrar el objeto no ocultarlo
@@ -2644,11 +2645,11 @@
 		//	idDondeEstaElCodigoPuro
 		var _idDondeEstaElCodigoPuro_LeerAnimacion_ESt='iTextAreaAnimacion_LugarDelCodigoJS_ESt';
 		//	Leer el codigo de crear objetos
-		function LeerAnimacion_ESt()
+		function leerAnimacion_ESt()
 		{
 			if(_codigoDeAnimacionParaLienzo[_noDelLienzo_ESt]!==undefined)
 			{
-				eval('try{ '+_codigoDeAnimacionParaLienzo[_noDelLienzo_ESt]+' } catch(err) { DetenerLaAnimacion_ESt(); consola(err.message); } ');
+				eval('try{ '+_codigoDeAnimacionParaLienzo[_noDelLienzo_ESt]+' } catch(err) { detenerLaAnimacion_ESt(); consola(err.message); } ');
 			}
 			else
 			{
@@ -2656,12 +2657,12 @@
 				//	Ejecuta este codigo si existe
 				if(oDondeEstaElCodigoPuro_Animacion_ESt)
 				{
-					eval('try{ '+oDondeEstaElCodigoPuro_Animacion_ESt.value+' } catch(err) { DetenerLaAnimacion_ESt(); consola(err.message); } ');
+					eval('try{ '+oDondeEstaElCodigoPuro_Animacion_ESt.value+' } catch(err) { detenerLaAnimacion_ESt(); consola(err.message); } ');
 				}
 			}
 		}
 		
-		function VerificarOnClicks()
+		function verificarOnClicks_ESt()
 		{
 			for(var contObjetos_ESt=0;contObjetos_ESt<_noObjetos_ESt[_noDelLienzo_ESt];contObjetos_ESt++)
 			{
@@ -2699,7 +2700,7 @@
 			}
 		}
 		
-		function ObjetosQueSeguenAlCursor()
+		function objetosQueSeguenAlCursor_ESt()
 		{
 			//	Pasa por cada uno de los objetos
 			for(var contObjetos_ESt=0;contObjetos_ESt<_noObjetos_ESt[_noDelLienzo_ESt];contObjetos_ESt++)

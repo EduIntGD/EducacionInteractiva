@@ -1,4 +1,4 @@
-var tabla=
+Ôªøvar tabla=
 {
 	nombreTabla: 'Pagos01',
 	campos:
@@ -28,8 +28,8 @@ var tabla=
 		{
 			nombre: 'cargo',
 			queSon: 'select',
-			valoresSelect:    ['DiseÒador','Programador','Usabilidad','Director'],
-			valoresReales:    ['diseÒador','programador','Usabilidad','Director'], /**opcional*/
+			valoresSelect:    ['Dise√±ador','Programador','Usabilidad','Director'],
+			valoresReales:    ['dise√±ador','programador','Usabilidad','Director'], /**opcional*/
 			funcionPorSelect: [function() {  }, function() {  }], /**opcional*/
 			funcionAlSeleccionar: function(valorRealSeleccionado) {  }, /**opcional*/
 			filtro: 'convertirHTML',
@@ -40,24 +40,24 @@ var tabla=
 			nombre: 'ciudad',
 			queSon: 'autocompletar',
 			valoresSelect: [
-			'Bogot· D.C.','MedellÌn - Antioquia','Cali - Valle del Cauca','Barranquilla - Atl·ntico','Cartagena - BolÌvar','C˙cuta - Norte de Santander','Soledad - Atl·ntico',
-			'IbaguÈ - Tolima','Bucaramanga - Santander','Soacha - Cundinamarca','Santa Marta - Magdalena','Pereira - Risaralda','Villavicencio - Meta','Bello - Antioquia',
-			'Valledupar - Cesar','Pasto - NariÒo','MonterÌa - CÛrdoba','Manizales - Caldas','Buenaventura - Valle del Cauca','Neiva - Huila','Palmira - Valle del Cauca',
-			'Armenia - QuindÌo','Popay·n - Cauca','Sincelejo - Sucre','Floridablanca - Santander','Itag¸Ì - Antioquia','Riohacha - La Guajira','Envigado - Antioquia',
-			'Tulu· - Valle del Cauca','Dosquebradas - Risaralda','Barrancabermeja - Santander','Tumaco - NariÒo','Tunja - Boyac·','GirÛn - Santander','ApartadÛ - Antioquia',
-			'Florencia - Caquet·','Uribia - La Guajira','Maicao - La Guajira','Turbo - Antioquia','Piedecuesta - Santander','Yopal - Casanare','Ipiales - NariÒo',
-			'Cartago - Valle del Cauca','Fusagasug· - Cundinamarca','Facatativ· - Cundinamarca','MaganguÈ - BolÌvar','Pitalito - Huila','ChÌa - Cundinamarca','Zipaquir· - Cundinamarca',
-			'Malambo - Atl·ntico','Santa Cruz de Lorica - CÛrdoba','Rionegro - Antioquia','Buga - Valle del Cauca','QuibdÛ - ChocÛ','JamundÌ - Valle del Cauca','Sogamoso - Boyac·',
-			'Duitama - Boyac·','Yumbo - Valle del Cauca','Caucasia - Antioquia','Girardot - Cundinamarca','CiÈnaga - Magdalena','OcaÒa - Norte de Santander','Manaure - La Guajira',
-			'Sabanalarga - Atl·ntico','Tierralta - CÛrdoba','Aguachica - Cesar','Santander de Quilichao - Cauca','CeretÈ - CÛrdoba','Sahag˙n - CÛrdoba','Arauca - Arauca',
-			'Villa del Rosario - Norte de Santander','GarzÛn - Huila','Candelaria - Valle del Cauca','Mosquera - Cundinamarca','MontelÌbano - CÛrdoba','Calarc· - QuindÌo','Espinal - Tolima',
-			'La Dorada - Caldas','Caldas - Antioquia','Los Patios - Norte de Santander','Madrid - Cundinamarca','El Carmen de BolÌvar - BolÌvar','Funza - Cundinamarca','ChigorodÛ - Antioquia',
-			'Santa Rosa de Cabal - Risaralda','Turbaco - BolÌvar','San AndrÈs - San AndrÈs y Providencia','Arjona - BolÌvar','Copacabana - Antioquia','Planeta Rica - CÛrdoba','AcacÌas - Meta',
-			'San Vicente del Cagu·n - Caquet·','Chiquinquir· - Boyac·','San JosÈ del Guaviare - Guaviare','CiÈnaga de Oro - CÛrdoba','Corozal - Sucre','La Plata - Huila','La Estrella - Antioquia',
-			'Riosucio - Caldas','Granada - Meta','Zona Bananera - Magdalena','NecoclÌ - Antioquia','Puerto AsÌs - Putumayo','Florida - Valle del Cauca','FundaciÛn - Magdalena',
-			'El Cerrito - Valle del Cauca','Baranoa - Atl·ntico','Pamplona - Norte de Santander','Plato - Magdalena','San Marcos - Sucre','El Banco - Magdalena','Cajic· - Cundinamarca',
-			'Puerto Boyac· - Boyac·','VillamarÌa - Caldas','Pradera - Valle del Cauca','Carepa - Antioquia','Chinchin· - Caldas','Girardota - Antioquia','Marinilla - Antioquia',
-			'Tame - Arauca','AgustÌn Codazzi - Cesar','La Ceja - Antioquia','Valle del Guamuez - Putumayo','Sabaneta - Antioquia','Orito - Putumayo'
+			'Bogot√° D.C.','Medell√≠n - Antioquia','Cali - Valle del Cauca','Barranquilla - Atl√°ntico','Cartagena - Bol√≠var','C√∫cuta - Norte de Santander','Soledad - Atl√°ntico',
+			'Ibagu√© - Tolima','Bucaramanga - Santander','Soacha - Cundinamarca','Santa Marta - Magdalena','Pereira - Risaralda','Villavicencio - Meta','Bello - Antioquia',
+			'Valledupar - Cesar','Pasto - Nari√±o','Monter√≠a - C√≥rdoba','Manizales - Caldas','Buenaventura - Valle del Cauca','Neiva - Huila','Palmira - Valle del Cauca',
+			'Armenia - Quind√≠o','Popay√°n - Cauca','Sincelejo - Sucre','Floridablanca - Santander','Itag√º√≠ - Antioquia','Riohacha - La Guajira','Envigado - Antioquia',
+			'Tulu√° - Valle del Cauca','Dosquebradas - Risaralda','Barrancabermeja - Santander','Tumaco - Nari√±o','Tunja - Boyac√°','Gir√≥n - Santander','Apartad√≥ - Antioquia',
+			'Florencia - Caquet√°','Uribia - La Guajira','Maicao - La Guajira','Turbo - Antioquia','Piedecuesta - Santander','Yopal - Casanare','Ipiales - Nari√±o',
+			'Cartago - Valle del Cauca','Fusagasug√° - Cundinamarca','Facatativ√° - Cundinamarca','Magangu√© - Bol√≠var','Pitalito - Huila','Ch√≠a - Cundinamarca','Zipaquir√° - Cundinamarca',
+			'Malambo - Atl√°ntico','Santa Cruz de Lorica - C√≥rdoba','Rionegro - Antioquia','Buga - Valle del Cauca','Quibd√≥ - Choc√≥','Jamund√≠ - Valle del Cauca','Sogamoso - Boyac√°',
+			'Duitama - Boyac√°','Yumbo - Valle del Cauca','Caucasia - Antioquia','Girardot - Cundinamarca','Ci√©naga - Magdalena','Oca√±a - Norte de Santander','Manaure - La Guajira',
+			'Sabanalarga - Atl√°ntico','Tierralta - C√≥rdoba','Aguachica - Cesar','Santander de Quilichao - Cauca','Ceret√© - C√≥rdoba','Sahag√∫n - C√≥rdoba','Arauca - Arauca',
+			'Villa del Rosario - Norte de Santander','Garz√≥n - Huila','Candelaria - Valle del Cauca','Mosquera - Cundinamarca','Montel√≠bano - C√≥rdoba','Calarc√° - Quind√≠o','Espinal - Tolima',
+			'La Dorada - Caldas','Caldas - Antioquia','Los Patios - Norte de Santander','Madrid - Cundinamarca','El Carmen de Bol√≠var - Bol√≠var','Funza - Cundinamarca','Chigorod√≥ - Antioquia',
+			'Santa Rosa de Cabal - Risaralda','Turbaco - Bol√≠var','San Andr√©s - San Andr√©s y Providencia','Arjona - Bol√≠var','Copacabana - Antioquia','Planeta Rica - C√≥rdoba','Acac√≠as - Meta',
+			'San Vicente del Cagu√°n - Caquet√°','Chiquinquir√° - Boyac√°','San Jos√© del Guaviare - Guaviare','Ci√©naga de Oro - C√≥rdoba','Corozal - Sucre','La Plata - Huila','La Estrella - Antioquia',
+			'Riosucio - Caldas','Granada - Meta','Zona Bananera - Magdalena','Necocl√≠ - Antioquia','Puerto As√≠s - Putumayo','Florida - Valle del Cauca','Fundaci√≥n - Magdalena',
+			'El Cerrito - Valle del Cauca','Baranoa - Atl√°ntico','Pamplona - Norte de Santander','Plato - Magdalena','San Marcos - Sucre','El Banco - Magdalena','Cajic√° - Cundinamarca',
+			'Puerto Boyac√° - Boyac√°','Villamar√≠a - Caldas','Pradera - Valle del Cauca','Carepa - Antioquia','Chinchin√° - Caldas','Girardota - Antioquia','Marinilla - Antioquia',
+			'Tame - Arauca','Agust√≠n Codazzi - Cesar','La Ceja - Antioquia','Valle del Guamuez - Putumayo','Sabaneta - Antioquia','Orito - Putumayo'
 			],
 			funcionPorSelect: [function() {  }, function() {  }], /**opcional*/
 			funcionAlSeleccionar: function(valorRealSeleccionado) {  }, /**opcional*/
@@ -138,10 +138,10 @@ var tabla=
 	},
 	contenido:
 	[
-		['Josue David','Gabo Pinilla',25,'programador','Bogot· D.C.',2000,32],
-		['Nula Alexandra','Medina Rut',25,'diseÒador','',200,84],
-		['Carlos Camilo','Medina Castro',25,'diseÒador','',1200,23],
-		['Carlos Andres','Guille Luis',25,'diseÒador','',3000,12]
+		['Josue David','Gabo Pinilla',25,'programador','Bogot√° D.C.',2000,32],
+		['Nula Alexandra','Medina Rut',25,'dise√±ador','',200,84],
+		['Carlos Camilo','Medina Castro',25,'dise√±ador','',1200,23],
+		['Carlos Andres','Guille Luis',25,'dise√±ador','',3000,12]
 	]
 }
 //	Arreglo con el numero de cada tabla
@@ -355,7 +355,7 @@ function colocarContenido_ESt(myTabla,JSON_Tabla_ESt)
 }
 
 	/*
-	contenidoDeLaColumna_ESt='25 aÒos';
+	contenidoDeLaColumna_ESt='25 a√±os';
 	campo_ESt={
 		nombre: 'edad',					//	El nombre es suyo
 		queSon: 'texto',				//	Puede ser: 'texto','input','select','autocompletar'
@@ -366,8 +366,8 @@ function colocarContenido_ESt(myTabla,JSON_Tabla_ESt)
 		alineacion: 'center'			//	La alineacion de este
 		presentacion: 'clasica'			//	Puede ser: 'clasica'
 			//	En caso de ser select:
-			valoresSelect:    ['DiseÒador','Programador','Usabilidad','Director'],	//	Valores para mostrar
-			valoresReales:    ['diseÒador','programador','Usabilidad','Director'],	//	Valores reales, enviados en el formulario
+			valoresSelect:    ['Dise√±ador','Programador','Usabilidad','Director'],	//	Valores para mostrar
+			valoresReales:    ['dise√±ador','programador','Usabilidad','Director'],	//	Valores reales, enviados en el formulario
 	};
 	*/
 // 	El lugar donde crea los input, select, texto entre otros
@@ -1020,7 +1020,7 @@ function crearAutocompletar_ESt(oInput_ESt)
 	//	Pasa por cada uno de los seleccionables
 	for(var contValoresSelect=0;contValoresSelect<valoresSelect_ESt.length;contValoresSelect++)
 	{
-		//	Valor visible al seÒeccionar
+		//	Valor visible al se√±eccionar
 		var valorSelect_ESt=valoresSelect_ESt[contValoresSelect];
 		//	Valor real no mostrado
 		var valorReal_ESt=valoresReales_ESt[contValoresSelect];

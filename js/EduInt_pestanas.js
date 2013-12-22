@@ -1,4 +1,4 @@
-function CargarEnDivCargado_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt)
+﻿function CargarEnDivCargado_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt)
 {
 	if(!_arCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt][nombreDelDatoACargar_ESt])
 	{
