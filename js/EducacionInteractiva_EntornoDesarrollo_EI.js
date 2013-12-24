@@ -106,7 +106,7 @@
 	
 	//	Divizor de palabras, la idea es colocar uno antes y despues de cada cosa que divide una palabra,
 	//	como un espacio o un parentesis
-	var _DivisorDePalabras='¨';
+	var _DivisorDePalabras='ï¿½';
 	//	se encarga de pasar de un codigo div a otro sin problemas
 	function pasarDeCodigoAColor_ESt(valor_ESt)
 	{
@@ -133,7 +133,7 @@
 		//	Solo entra si encuentra algun tipo de comill
 		if(noPosicionDelElementoMasCercano!=-1)
 		{
-			//	Contendra la posición mas cercana de los caracteres dentro de los cuales no se actua
+			//	Contendra la posiciï¿½n mas cercana de los caracteres dentro de los cuales no se actua
 			var posicionMasCercana=valor_ESt_.indexOf(arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano]);
 			//	TipoDeCaracterANoTenerEnCuenta, que esta mas cercano al comienzo
 			var crtrIniConContenidoANoTenerEnCuenta=arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano];
@@ -204,7 +204,7 @@
 				//	Solo entra si encuentra algun tipo de comill
 				if(noPosicionDelElementoMasCercano!=-1)
 				{
-					//	Contendra la posición mas cercana de los caracteres dentro de los cuales no se actua
+					//	Contendra la posiciï¿½n mas cercana de los caracteres dentro de los cuales no se actua
 					var posicionMasCercana=valor_ESt_.indexOf(arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano]);
 					//	TipoDeCaracterANoTenerEnCuenta, que esta mas cercano al comienzo
 					var crtrIniConContenidoANoTenerEnCuenta=arIniDeLugaresDondeNoSeTendreEnCuenta[noPosicionDelElementoMasCercano];
