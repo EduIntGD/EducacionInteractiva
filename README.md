@@ -1,5 +1,5 @@
-Eduin
-=====
+Educación Interactiva
+=====================
 Programa educativo para dar educación de calidad a todos los rincones de Colombia y el mundo
 Solo necesita HTM5
 Funciona en Tablets, Celulares y computadores
