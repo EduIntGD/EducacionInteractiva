@@ -16,6 +16,7 @@
 		text-align: center;
 	}
 	
+	
 	.cTitulo_ESt
 	{
 		font-size: 20px;
@@ -28,8 +29,6 @@
 	
 	/* } Globales
 	***********************************/
-	
-	
 	
 	/***********************************
 	Codigo para CreoEdu { 
@@ -56,7 +55,7 @@
 		.cLugarDelCodigoJS_ESt
 		{
 			width: 400px;
-			/* min-height: 50px; */
+			min-height: 32px;
 			
 			background-color: #F8F8F8;
 			text-align: left;
@@ -64,9 +63,16 @@
 			color: #636363;
 			box-shadow: 1px 1px 1px #888888;
 			border: 1px solid #EEE;
+			
+			font-family: monospace,Arial;
+			position: relative;
 		}
 			.cTextAreaCrearObjetos_LugarDelCodigoJS_ESt
 			{
+				position: absolute;
+				top: 5px;
+				left: 5px;
+				
 				width: 395px;
 				min-height: 30px;
 				border-width: 0px;
@@ -78,12 +84,14 @@
 				font-family: Ubuntu, Arial;
 				font-size: 13px;
 				
-				position: relative;
 				background-color: transparent;
 				
-				color: rgba(0,0,0,0.1);
-				position: relative;
+				color: rgba(0,0,0,0.3);
 				/* display: none; */
+			}
+			.cTextAreaCrearObjetos_LugarDelCodigoJS_ESt:focus
+			{
+				outline: none;
 			}
 			/** Esta es la sombra del codigo de arriba, donde se veran los colores **/
 			.cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt

@@ -61,11 +61,11 @@
 		{
 			case 'CrearObjetos':
 				//	_oCrearObjetos_LugarDelCodigo_ESt.style.left=objetoPosX_ESt(_oSombreDeCrearObjetos_LugarDelCodigo_ESt)+'px';
-				_oCrearObjetos_LugarDelCodigo_ESt.style.top=-_oSombreDeCrearObjetos_LugarDelCodigo_ESt.offsetHeight+'px';
+				//_oCrearObjetos_LugarDelCodigo_ESt.style.top=-_oSombreDeCrearObjetos_LugarDelCodigo_ESt.offsetHeight+'px';
 				_oCrearObjetos_LugarDelCodigo_ESt.style.height=_oSombreDeCrearObjetos_LugarDelCodigo_ESt.offsetHeight+'px';
 				break;
 			case 'Animacion':
-				_oAnimacion_LugarDelCodigo_ESt.style.top=-_oSombreDeAnimacion_LugarDelCodigo_ESt.offsetHeight+'px';
+				//_oAnimacion_LugarDelCodigo_ESt.style.top=-_oSombreDeAnimacion_LugarDelCodigo_ESt.offsetHeight+'px';
 				_oAnimacion_LugarDelCodigo_ESt.style.height=_oSombreDeAnimacion_LugarDelCodigo_ESt.offsetHeight+'px';
 				break;
 			case 'Cero':
@@ -221,14 +221,20 @@
 		/**	"%o(LasComillasSeRemplazanPorTextosUnicos).setPosicionEnX(12);%" **/
 		
 		//	Estas son las palabras que tipicamente dividen una palabra de otra
-		//	Estas son las palabras que tipicamente dividen una palabra de otra
 		var arPalabrasQueSimbolisanElFinDeUnaPlabra=[' ','(',')','[',']','+',';','.','\r','\n',',','='];
+		//	Coloco un simbolo al comienzo y al final
+		valor_ESt_=_DivisorDePalabras+valor_ESt_+_DivisorDePalabras;
 		//	Pasa por cada una de estas y le coloca antes y despues de las mismas un '[%]' de tal manera que divida estas palabras
 		for(contPalabrasQSEFDUP=0;contPalabrasQSEFDUP<arPalabrasQueSimbolisanElFinDeUnaPlabra.length;contPalabrasQSEFDUP++)
 		{
 			var valor_ESt_=ReplaceAll_ESt(arPalabrasQueSimbolisanElFinDeUnaPlabra[contPalabrasQSEFDUP],_DivisorDePalabras+arPalabrasQueSimbolisanElFinDeUnaPlabra[contPalabrasQSEFDUP]+_DivisorDePalabras,valor_ESt_);
 		}
 		/**	"%o%(%LasComillasSeRemplazanPorTextosUnicos%)%%.%posicionEnX%(%12%)%;" **/
+		
+		//	Cambia los espacios por s simil en HTML
+		valor_ESt_=ReplaceAll_ESt(' ','&nbsp;',valor_ESt_);
+		valor_ESt_=ReplaceAll_ESt('<','&#60;',valor_ESt_);
+		valor_ESt_=ReplaceAll_ESt('>','&#62;',valor_ESt_);
 		
 		//	Las funciones tipicas
 		var arPalabrasQueSimbolisanFunciones=
@@ -288,12 +294,16 @@
 		//	Cambia los cambios de linea del tecto en cambios de linea HTML
 		var valor_ESt_=ReplaceAll_ESt("\r"+_DivisorDePalabras+"\n",'<br/>',valor_ESt_);
 		var valor_ESt_=ReplaceAll_ESt("\n",'<br/>',valor_ESt_);
+		var valor_ESt_=ReplaceAll_ESt("\r",'<br/>',valor_ESt_);
 		
 		//	Vuelve a convertir lo que esta entre comillas pero con un span
 		for(var contDentroDeLasComillas_ESt=0;contDentroDeLasComillas_ESt<arDentroDeLasComillas.length;contDentroDeLasComillas_ESt++)
 		{
 			valor_ESt_=valor_ESt_.replace(textoParaRemplazarContenidoDeComillas_ESt+contDentroDeLasComillas_ESt,_DivisorDePalabras+'<span cml="ESt" >'+arIniContenidoANoTenerEnCuenta[contDentroDeLasComillas_ESt]+arDentroDeLasComillas[contDentroDeLasComillas_ESt]+(arBnLasComillasFinalizaron[contDentroDeLasComillas_ESt]?arIniContenidoANoTenerEnCuenta[contDentroDeLasComillas_ESt]:'')+'</span>'+_DivisorDePalabras);
 		}
+		
+		//	Coloca un epacio al final para que sea visible el <br> al final
+		valor_ESt_=valor_ESt_+'&nbsp;'+_DivisorDePalabras;
 		
 		//	Divide el codigo por palabras para sacar los numeros y colocarle color
 		arPorPalabrasValor_ESt=valor_ESt_.split(_DivisorDePalabras);
@@ -305,7 +315,8 @@
 				arPorPalabrasValor_ESt[contPorPalabrasValor_ESt]='<span num="ESt" >'+arPorPalabrasValor_ESt[contPorPalabrasValor_ESt]+'</span>';
 			}
 		}
-		//	Al final quita los divizores de lapabras
+		
+		//	Al final quita los divizores de la pabras
 		valor_ESt_=arPorPalabrasValor_ESt.join('');
 		
 		return valor_ESt_;
