@@ -130,7 +130,7 @@
 		var noPosicionDelElementoMasCercano=cualEsElElementoMasCercano_ESt(valor_ESt_,arIniDeLugaresDondeNoSeTendreEnCuenta);
 		//	Arreglo que contiene lo que esta dentro de las comillas
 		var arDentroDeLasComillas=new Array();
-		//	Solo entra si encuentra algun tipo de comill
+		//	Solo entra si encuentra algun tipo de comilla
 		if(noPosicionDelElementoMasCercano!=-1)
 		{
 			//	Contendra la posici�n mas cercana de los caracteres dentro de los cuales no se actua
@@ -171,6 +171,8 @@
 				{
 					//	Coloca lo que en medio de las comillas
 					stEntreComillas_ESt=stDesPrimComil_ESt.substr(0,posFinComilla_ESt);
+					//	Cambia los espacios para que funcionen como tal pero tambien como divizores
+					stEntreComillas_ESt=ReplaceAll_ESt('  ',' &nbsp;',stEntreComillas_ESt);
 					//	Guarda el contenido dentro de las comillas
 					arDentroDeLasComillas[contValoresDentroDeComillas]=stEntreComillas_ESt;
 					//	Coloca todo lo que existe despues de las comillas que cierran
@@ -189,8 +191,11 @@
 					
 					//	Guarda el contenido dentro de las comillas
 					arDentroDeLasComillas[contValoresDentroDeComillas]=stDesPrimComil_ESt;
+					
+//	Borrar estas dos linea:
 					//	Coloca el resultado sin el cierre de comillas
-					valor_ESt_=stAntesComillas_ESt+nuevoStEntreComillas_ESt;
+					//	valor_ESt_=stAntesComillas_ESt+nuevoStEntreComillas_ESt;
+					
 					//	Guarda los caracteres iniciales y finales a no tener en cuenta
 					arIniContenidoANoTenerEnCuenta[contValoresDentroDeComillas]=crtrIniConContenidoANoTenerEnCuenta;
 					//	Si las comillas no finalizaron
@@ -232,7 +237,7 @@
 		/**	"%o%(%LasComillasSeRemplazanPorTextosUnicos%)%%.%posicionEnX%(%12%)%;" **/
 		
 		//	Cambia los espacios por s simil en HTML
-		valor_ESt_=ReplaceAll_ESt(' ','&nbsp;',valor_ESt_);
+		valor_ESt_=ReplaceAll_ESt('  ','&nbsp;',valor_ESt_);
 		valor_ESt_=ReplaceAll_ESt('<','&#60;',valor_ESt_);
 		valor_ESt_=ReplaceAll_ESt('>','&#62;',valor_ESt_);
 		

@@ -50,7 +50,7 @@
 		
 		/***********************************
 		Colocar el texto { 
-	                                  */
+	    */
 		
 		.cLugarDelCodigoJS_ESt
 		{
@@ -96,6 +96,8 @@
 			/** Esta es la sombra del codigo de arriba, donde se veran los colores **/
 			.cSombraTextAreaCrearObjetos_LugarDelCodigoJS_ESt
 			{
+				width: 396px;
+				word-wrap: break-word;
 				border-width: 0px;
 				
 				padding: 0px;

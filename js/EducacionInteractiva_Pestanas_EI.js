@@ -1,71 +1,79 @@
-﻿function CargarEnDivCargado_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt)
+﻿function RegistrarCargado_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI,idDivEnDondeCargar_EI)
 {
-	if(!_arCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt][nombreDelDatoACargar_ESt])
+	if(!_arCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI][nombreDelDatoACargar_EI])
 	{
-		arNombreCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt][arNoCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]]=nombreDelDatoACargar_ESt;
-		arNombreDelIdEnDondeCargo_ESt[nombreGrupoDeDivs_ESt][arNoCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]]=idDivEnDondeCargar_ESt;
-		arNoCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]++;
+		arNombreCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI][arNoCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]]=nombreDelDatoACargar_EI;
+		arNombreDelIdEnDondeCargo_EI[nombreGrupoDeDivs_EI][arNoCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]]=idDivEnDondeCargar_EI;
+		arNoCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]++;
 	}
-	MostrarCargarEnDivsCargada_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt);
-	_arCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt][nombreDelDatoACargar_ESt]=true;
+	_arCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI][nombreDelDatoACargar_EI]=true;
 }
-function OcultarCargarEnDivsCargadas_ESt(nombreGrupoDeDivs_ESt)
+function OcultarCargarEnDivsCargadas_EI(nombreGrupoDeDivs_EI)
 {
-	for(contCargarEnDivsACargar_ESt=0;contCargarEnDivsACargar_ESt<arNoCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt];contCargarEnDivsACargar_ESt++)
+	for(contCargarEnDivsACargar_EI=0;contCargarEnDivsACargar_EI<arNoCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI];contCargarEnDivsACargar_EI++)
 	{
-		OcultarCargarEnDivsCargada_ESt(nombreGrupoDeDivs_ESt,arNombreCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt][contCargarEnDivsACargar_ESt],arNombreDelIdEnDondeCargo_ESt[nombreGrupoDeDivs_ESt][contCargarEnDivsACargar_ESt]);
+		OcultarCargarEnDivsCargada_EI(nombreGrupoDeDivs_EI,arNombreCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI][contCargarEnDivsACargar_EI],arNombreDelIdEnDondeCargo_EI[nombreGrupoDeDivs_EI][contCargarEnDivsACargar_EI]);
 	}
 }
-function OcultarCargarEnDivsCargada_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt)
+function OcultarCargarEnDivsCargada_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI,idDivEnDondeCargar_EI)
 {
-	document.getElementById(idDivEnDondeCargar_ESt).style.display="none";
+	document.getElementById(idDivEnDondeCargar_EI).style.display="none";
 }
-function MostrarCargarEnDivsCargada_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt)
+function MostrarCargarEnDivsCargada_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI,idDivEnDondeCargar_EI)
 {
-	document.getElementById(idDivEnDondeCargar_ESt).style.display="block";
+	document.getElementById(idDivEnDondeCargar_EI).style.display="block";
 }
-function idSubLugar_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt)
+function idSubLugar_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI)
 {
-	return "iSubLugar_"+nombreGrupoDeDivs_ESt+"_"+nombreDelDatoACargar_ESt+"_ESt";
+	return "iSubLugar_"+nombreGrupoDeDivs_EI+"_"+nombreDelDatoACargar_EI+"_EI";
 }
-function IniciarVariableCargarCargarEnDiv_ESt(nombreGrupoDeDivs_ESt)
+function IniciarVariableCargarCargarEnDiv_EI(nombreGrupoDeDivs_EI)
 {
-	if(!(_arCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]))
-	{ _arCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]=new Array(); }
-	if(!(arNombreCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]))
-	{ arNombreCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]=new Array(); }
-	if(!(arNoCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]))
-	{ arNoCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt]=0; }
-	if(!(arNombreDelIdEnDondeCargo_ESt[nombreGrupoDeDivs_ESt]))
-	{ arNombreDelIdEnDondeCargo_ESt[nombreGrupoDeDivs_ESt]=new Array();; }
+	if(!(_arCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]))
+	{ _arCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]=new Array(); }
+	if(!(arNombreCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]))
+	{ arNombreCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]=new Array(); }
+	if(!(arNoCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]))
+	{ arNoCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI]=0; }
+	if(!(arNombreDelIdEnDondeCargo_EI[nombreGrupoDeDivs_EI]))
+	{ arNombreDelIdEnDondeCargo_EI[nombreGrupoDeDivs_EI]=new Array();; }
 }
-var _arCargarEnDivsYaCargadas_ESt=new Array();
-var arNombreCargarEnDivsYaCargadas_ESt=new Array();
-var arNoCargarEnDivsYaCargadas_ESt=new Array();
-var arNombreDelIdEnDondeCargo_ESt=new Array();
-var noGruposCargarEnDivsYaCargadas_ESt=0;
-var _arCargarSiempre_ESt=new Array();
-function cargarEnDivTipoRadioButton_ESt(nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt,nombreGrupoDeDivs_ESt,direccionACargar_ESt)
+function MostrarCargandoEnDiv_EI(idDivEnDondeCargar_EI)
 {
-	if(nombreGrupoDeDivs_ESt==undefined)
+	document.getElementById(this.idDivEnDondeCargar_EI).innerHTML='... cargando ...';
+}
+var _arCargarEnDivsYaCargadas_EI=new Array();
+var arNombreCargarEnDivsYaCargadas_EI=new Array();
+var arNoCargarEnDivsYaCargadas_EI=new Array();
+var arNombreDelIdEnDondeCargo_EI=new Array();
+var noGruposCargarEnDivsYaCargadas_EI=0;
+var _arCargarSiempre_EI=new Array();
+var _mensajeError_cargarPestanas='Problema al cargar las pestanas';
+function cargarEnDivTipoRadioButton_EI(nombreDelDatoACargar_EI,idDivEnDondeCargar_EI,nombreGrupoDeDivs_EI,direccionACargar_EI)
+{
+	if(nombreGrupoDeDivs_EI==undefined)
 	{
-		nombreGrupoDeDivs_ESt="GrupoDivUnico"+noGruposCargarEnDivsYaCargadas_ESt++;
+		nombreGrupoDeDivs_EI="GrupoDivUnico"+noGruposCargarEnDivsYaCargadas_EI++;
 	}
-	if(direccionACargar_ESt==undefined)
+	if(direccionACargar_EI==undefined)
 	{
-		direccionACargar_ESt="../Tablas/";
+		direccionACargar_EI="../Tablas/";
 	}
 	
-	OcultarCargarEnDivsCargadas_ESt(nombreGrupoDeDivs_ESt);
+	OcultarCargarEnDivsCargadas_EI(nombreGrupoDeDivs_EI);
 	
-	IniciarVariableCargarCargarEnDiv_ESt(nombreGrupoDeDivs_ESt);
+	IniciarVariableCargarCargarEnDiv_EI(nombreGrupoDeDivs_EI);
 	
-	if(_arCargarEnDivsYaCargadas_ESt[nombreGrupoDeDivs_ESt][nombreDelDatoACargar_ESt] && !(_arCargarSiempre_ESt[idDivEnDondeCargar_ESt]))
+	if(_arCargarEnDivsYaCargadas_EI[nombreGrupoDeDivs_EI][nombreDelDatoACargar_EI] && !(_arCargarSiempre_EI[idDivEnDondeCargar_EI]))
 	{
-		MostrarCargarEnDivsCargada_ESt(nombreGrupoDeDivs_ESt,nombreDelDatoACargar_ESt,idDivEnDondeCargar_ESt);
+		MostrarCargarEnDivsCargada_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI,idDivEnDondeCargar_EI);
 	}
 	else
 	{
+		RegistrarCargado_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI,idDivEnDondeCargar_EI);
+		MostrarCargarEnDivsCargada_EI(nombreGrupoDeDivs_EI,nombreDelDatoACargar_EI,idDivEnDondeCargar_EI);
+		
+		
 		var xmlhttp;
 		if (window.XMLHttpRequest)
 		{	// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -76,44 +84,47 @@ function cargarEnDivTipoRadioButton_ESt(nombreDelDatoACargar_ESt,idDivEnDondeCar
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		
-		xmlhttp.nombreGrupoDeDivs_ESt=nombreGrupoDeDivs_ESt;
-		xmlhttp.nombreDelDatoACargar_ESt=nombreDelDatoACargar_ESt;
-		xmlhttp.idDivEnDondeCargar_ESt=idDivEnDondeCargar_ESt;
+		xmlhttp.nombreGrupoDeDivs_EI=nombreGrupoDeDivs_EI;
+		xmlhttp.nombreDelDatoACargar_EI=nombreDelDatoACargar_EI;
+		xmlhttp.idDivEnDondeCargar_EI=idDivEnDondeCargar_EI;
 		xmlhttp.onreadystatechange=function()
 		{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			if (xmlhttp.readyState==4)
 			{
-				document.getElementById(this.idDivEnDondeCargar_ESt).innerHTML=xmlhttp.responseText;
-				
-				if(xmlhttp.responseText.indexOf("<!--IniOnload_ESt--")!=-1)
+				if(xmlhttp.status==200)
 				{
-					var valorInicialACortar_=xmlhttp.responseText.indexOf("<!--IniOnload_ESt--");
-					var valorFinalACortar_=xmlhttp.responseText.indexOf("--/FinOnload_ESt-->");
+					document.getElementById(this.idDivEnDondeCargar_EI).innerHTML=xmlhttp.responseText;
 					
-					eval(xmlhttp.responseText.substring(valorInicialACortar_+("<!--IniOnload_ESt--".length),valorFinalACortar_));
-				}
-				
-				if(xmlhttp.responseText.indexOf("<!--Alto_ESt-ini--")!=-1)
-				{
-					var valorInicialACortar_=xmlhttp.responseText.indexOf("<!--Alto_ESt-ini--");
-					var valorFinalACortar_=xmlhttp.responseText.indexOf("--fin-Alto_ESt-->");
+					if(xmlhttp.responseText.indexOf("<!--IniOnload_EI--")!=-1)
+					{
+						var valorInicialACortar_=xmlhttp.responseText.indexOf("<!--IniOnload_EI--");
+						var valorFinalACortar_=xmlhttp.responseText.indexOf("--/FinOnload_EI-->");
+						
+						eval(xmlhttp.responseText.substring(valorInicialACortar_+("<!--IniOnload_EI--".length),valorFinalACortar_));
+					}
 					
-					xmlhttp.responseText.substring(valorInicialACortar_+("<!--Alto_ESt-ini--".length),valorFinalACortar_);
+					if(xmlhttp.responseText.indexOf("<!--Alto_EI-ini--")!=-1)
+					{
+						var valorInicialACortar_=xmlhttp.responseText.indexOf("<!--Alto_EI-ini--");
+						var valorFinalACortar_=xmlhttp.responseText.indexOf("--fin-Alto_EI-->");
+						
+						xmlhttp.responseText.substring(valorInicialACortar_+("<!--Alto_EI-ini--".length),valorFinalACortar_);
+					}
+					
+					if(xmlhttp.responseText.indexOf("<!--CargarSiempre-->")!=-1)
+					{
+						_arCargarSiempre_EI[this.idDivEnDondeCargar_EI]=true;
+					}
 				}
-				
-				if(xmlhttp.responseText.indexOf("<!--CargarSiempre-->")!=-1)
+				else
 				{
-					_arCargarSiempre_ESt[this.idDivEnDondeCargar_ESt]=true;
+					document.getElementById(this.idDivEnDondeCargar_EI).innerHTML='<span class="Error_EI_Pestanas" >'+_mensajeError_cargarPestanas+'<span>';
+					_arCargarSiempre_EI[this.idDivEnDondeCargar_EI]=true;
 				}
-				
-				CargarEnDivCargado_ESt(this.nombreGrupoDeDivs_ESt,this.nombreDelDatoACargar_ESt,this.idDivEnDondeCargar_ESt);
-				
-				OcultarCargarEnDivsCargadas_ESt(this.nombreGrupoDeDivs_ESt);
-				MostrarCargarEnDivsCargada_ESt(this.nombreGrupoDeDivs_ESt,this.nombreDelDatoACargar_ESt,this.idDivEnDondeCargar_ESt);
 			}
 		}
-		xmlhttp.open("POST",direccionACargar_ESt,true);
+		xmlhttp.open("POST",direccionACargar_EI,true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded;charset:ISO-8859-1");
-		xmlhttp.send("nombreDeLDatoACargar="+nombreDelDatoACargar_ESt);
+		xmlhttp.send("nombreDeLDatoACargar="+nombreDelDatoACargar_EI);
 	}
 }
