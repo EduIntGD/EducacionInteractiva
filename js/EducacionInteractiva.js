@@ -4,17 +4,14 @@
 	
 	//	variables usada para personas que hablan español
 	verdadero=true;
+	falso=false;
 	
-	//	12 <- redondear_ESt(12.245,0);
-	//	12.2 <- redondear_ESt(12.245,1);
-	//	12.23 <- redondear_ESt(12.245,2);
 	function redondear_ESt(valor_ESt,decimales_ESt)
 	{
 		var myDecimales_ESt = Math.pow(10,decimales_ESt);
 		return Math.round(valor_ESt*myDecimales_ESt)/myDecimales_ESt;
 	}
 	
-	//	12.343.345.38 <- 12343345.3789
 	function numeroTipoMoneda_ESt(numero_MyR,numeroDecimales_ESt)
 	{
 		if(numeroDecimales_ESt==undefined) { numeroDecimales_ESt=2; }
@@ -54,57 +51,26 @@
 	
 	//	Se asegura de que un codigo solo retorne true una sola vez
 	var _arSolUnaVezLanzTruePrCod_ESt=new Array();
-	//	Solo una vez lanza true por codigo, todas las demas false
 	function bnCodigoNoUsado_ESt(codigo_ESt)
 	{ if(_arSolUnaVezLanzTruePrCod_ESt[codigo_ESt]==undefined) {
 	_arSolUnaVezLanzTruePrCod_ESt[codigo_ESt]=true; return true;
 	} else { return false; } }
 	
-	
-	//	Clona un objeto
 	function cloneObject_ESt(obj_ESt) {
 	if(null==obj_ESt || 'object'!=typeof obj_ESt) { return obj_ESt; } 
 	var copy = obj_ESt.constructor(); for (var attr in obj_ESt) {
 	if(obj_ESt.hasOwnProperty(attr)) copy[attr]= obj_ESt[attr]; }
 	return copy; }
 	
-	
-//	BORRAR
-//	+-> Si no se usa
-	//	Carga un archivo y lo lee
-	function CargarArchivoCodigoLienzo_ESt(archivo,funcionAlCargar,noLienzo)
+	function ReplaceAll_ESt(aCambiar_EI,aColocar_EI,valor_EI)
 	{
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{	// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{	// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.noLienzo=noLienzo;
-		xmlhttp.funcionAlCargar=funcionAlCargar;
-		xmlhttp.onreadystatechange=
-			function()
-			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					this.funcionAlCargar(xmlhttp.responseText,noLienzo);
-				}
-			}
-		xmlhttp.open("GET",archivo,true);
-		xmlhttp.send();
+		while(0<=valor_EI.indexOf(aCambiar_EI))
+		{ valor_EI=valor_EI.replace(aCambiar_EI,'¬'); }
+		while(0<=valor_EI.indexOf('¬'))
+		{ valor_EI=valor_EI.replace('¬',aColocar_EI); }
+		return valor_EI;
 	}
 	
-	function ReplaceAll_ESt(aCambiar_MyR,aColocar,valor_MyR)
-	{
-		while(0<=valor_MyR.indexOf(aCambiar_MyR))
-		{ valor_MyR=valor_MyR.replace(aCambiar_MyR,'¬'); }
-		while(0<=valor_MyR.indexOf('¬'))
-		{ valor_MyR=valor_MyR.replace('¬',aColocar); }
-		return valor_MyR;
-	}
 	//	Cuando se tienen objetos estaticos el saca una vez la posicion, y el resto
 	//	de veces solo lo carga de estas variables
 	var _arPosicionesEnXObjetosEstaticos=new Array();
@@ -153,6 +119,7 @@
 			return curtop;
 		}
 	}
+	
 	function bnNumero_ESt(numero_ESt)
 	{
 		return !isNaN(numero_ESt%1);
@@ -236,6 +203,79 @@
 		}
 	}
 	
+	function filtroInput_ESt(tipoDeFiltro,valor_ESt)
+	{
+		//	Coloca el valor en otra variable para concervar el valor original en caso de ser necesario
+		valorReturn_ESt=valor_ESt;
+		//	Si existe algun tipo de filtro
+		if(tipoDeFiltro)
+		{
+			//	Averigua si NO es un arreglo o un solo tipo
+			if(tipoDeFiltro.constructor!=Array)
+			{
+				//	
+				switch(tipoDeFiltro)
+				{
+					case 'pesosColombianos':
+						//	El valor aceptado es el punto(.) NO la coma(,)
+						if(valorReturn_ESt.split(',').length==2  && valorReturn_ESt.split('.').length==1)
+						{ valorReturn_ESt=valorReturn_ESt.replace(',','.'); }
+						break;
+					case 'numeroDeDocumento':
+						while(valorReturn_ESt.indexOf(' ')!=-1) { valorReturn_ESt=valorReturn_ESt.replace(' ',''); }
+						while(valorReturn_ESt.indexOf(',')!=-1) { valorReturn_ESt=valorReturn_ESt.replace(',',''); }
+						while(valorReturn_ESt.indexOf('.')!=-1) { valorReturn_ESt=valorReturn_ESt.replace('.',''); }
+						break;
+					case 'nombre':
+						valorReturn_ESt=filtroTipoNombre_ESt(valor_ESt);
+						break;
+					default:
+						valorReturn_ESt=valorReturn_ESt;
+						break;
+				}
+			}
+		}
+		//	
+		return valorReturn_ESt;
+	}
+
+	//	
+	function mascaraInput_ESt(tipoDeMascara,valor_ESt)
+	{
+		//	Coloca el valor en otra variable para concervar el valor original en caso de ser necesario
+		valorReturn_ESt=valor_ESt;
+		//	Si existe algun tipo de mascara
+		if(tipoDeMascara)
+		{
+			//	Averigua si NO es un arreglo o un solo tipo
+			if(tipoDeMascara.constructor!=Array)
+			{
+				//	
+				switch(tipoDeMascara)
+				{
+					case 'pesosColombianos':
+						//	Si hat algo coloca la mascara
+						if(valorReturn_ESt!='')
+						{ valorReturn_ESt='$ '+numeroTipoMoneda_ESt(valorReturn_ESt); }
+						break;
+					case 'numeroDeDocumento':
+						//	Si hat algo coloca la mascara
+						if(valorReturn_ESt!='')
+						{
+							var arValorReturn_ESt=valorReturn_ESt.split('-');
+							arValorReturn_ESt[0]=numeroTipoMoneda_ESt(arValorReturn_ESt[0],0);
+							if(1<arValorReturn_ESt.length)
+							{ valorReturn_ESt=arValorReturn_ESt[0]+'-'+arValorReturn_ESt[1]; }
+							else
+							{ valorReturn_ESt=arValorReturn_ESt[0]; }
+						}
+						break;
+				}
+			}
+		}
+		
+		return valorReturn_ESt;
+	}
 	function Filtro_ESt(objeto,arExistePropiedad)
 	{
 		//	Tiene que ser un input
@@ -252,16 +292,15 @@
 				//	Si no tiene mascara
 				else
 				{
-					objeto.setValor(TipoNombre_ESt(objeto.getValor()));
+					objeto.setValor(filtroTipoNombre_ESt(objeto.getValor()));
 				}
 			}
 		}
 	}
 	
-	//	Filtro tipo nombre
-	function TipoNombre_ESt(nombre_MyR)
+	function filtroTipoNombre_ESt(nombre_MyR)
 	{
-		nombre_MyR=Trim_ESt(nombre_MyR);
+		nombre_MyR=trim_ESt(nombre_MyR);
 		var arNombre_MyR=nombre_MyR.split(" ");
 		var noArNombre_MyR=arNombre_MyR.length;
 		for(var contArNombre=0;contArNombre<noArNombre_MyR;contArNombre++)
@@ -278,7 +317,7 @@
 		return arNombre_MyR.join(" ");
 	}
 	
-	function Trim_ESt(valor_MyR)
+	function trim_ESt(valor_MyR)
 	{
 		while(0<=valor_MyR.indexOf("  "))
 		{
