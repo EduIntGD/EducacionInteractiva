@@ -1063,7 +1063,7 @@
 	{
 		//	Si existe borra los parametros la animacion anterior
 		if(_bnSeEstaEjecuntandoLaAnimacion)
-		{ clearInterval(_noAnimacion); }
+		{ finalizarAnimacion_EI(_arCodigoUnicoDelLienzo_ESt[_noDelLienzo_ESt]); }
 	}
 	
 	//	Aca se reinicaran todas las variables
@@ -2223,15 +2223,22 @@
 	//	true, si se esta ejecutando la animacion
 	var _bnSeEstaEjecuntandoLaAnimacion=false;
 	//	Valor de la animacion
-	var _noAnimacion;
+	//	var _noAnimacion;
 	//	Inicia la animación, debe ir despues del ejecutarDesdeCeroLienzo_ESt()
 	function ejecutarAnimacionLienzo_ESt(codigoUnicoLienzo_ESt)
 	{
 		//	Si existe borra los parametros la animacion anterior
 		if(_bnSeEstaEjecuntandoLaAnimacion)
-		{ clearInterval(_noAnimacion); }
+		{ finalizarAnimacion_EI(codigoUnicoLienzo_ESt); }
 		//	Planear	entrar esta en un tiempo determinado
-		_noAnimacion=setInterval("ejecutarAnimacion_ESt('"+codigoUnicoLienzo_ESt+"'); ",getMilisegundosDeUnFrame_ESt());
+		//	_noAnimacion=setInterval("ejecutarAnimacion_ESt('"+codigoUnicoLienzo_ESt+"'); ",getMilisegundosDeUnFrame_ESt());
+		_onAnimationRun_EI[codigoUnicoLienzo_ESt]={};
+		_onAnimationRun_EI[codigoUnicoLienzo_ESt].codigoUnicoLienzo=codigoUnicoLienzo_ESt;
+		_onAnimationRun_EI[codigoUnicoLienzo_ESt].animationFunction=function()
+			{
+				ejecutarAnimacion_ESt(this.codigoUnicoLienzo);
+			};
+		iniciarAnimacion_EI(codigoUnicoLienzo_ESt);
 	}
 	
 	//	La funcion que se ejecuta en cada frame
